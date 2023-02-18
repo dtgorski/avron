@@ -14,11 +14,6 @@ class CommentsReadQueue
         $this->comments[] = $comment;
     }
 
-    public function dequeue(): Comment|null
-    {
-        return array_shift($this->comments);
-    }
-
     public function size(): int
     {
         return sizeof($this->comments);

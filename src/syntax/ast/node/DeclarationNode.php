@@ -26,7 +26,7 @@ abstract class DeclarationNode extends Node
         return $this->namespace;
     }
 
-    public function setNamespace(NodeNamespace|null $namespace): Node
+    public function setNamespace(NodeNamespace|null $namespace): DeclarationNode
     {
         $this->namespace = $namespace;
         return $this;
@@ -37,7 +37,7 @@ abstract class DeclarationNode extends Node
         return $this->sourceFile;
     }
 
-    public function setSourceFile(SourceFile $sourceFile): Node
+    public function setSourceFile(SourceFile $sourceFile): DeclarationNode
     {
         $this->sourceFile = $sourceFile;
         return $this;
@@ -49,7 +49,7 @@ abstract class DeclarationNode extends Node
         return $this->comments;
     }
 
-    public function setComments(Comments $comments): Node
+    public function setComments(Comments $comments): DeclarationNode
     {
         $this->comments = $comments;
         return $this;

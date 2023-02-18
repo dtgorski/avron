@@ -7,7 +7,7 @@ namespace lengo\avron\avdl;
 use lengo\avron\ast\JsonValueNode;
 
 /**
- * @covers \lengo\avron\avdl\JSONValueNodeHandler
+ * @covers \lengo\avron\avdl\JsonValueNodeHandler
  * @uses   \lengo\avron\ast\JsonValueNode
  * @uses   \lengo\avron\ast\Node
  * @uses   \lengo\avron\avdl\HandlerAbstract
@@ -19,18 +19,18 @@ class JsonValueNodeHandlerTest extends HandlerTestCase
     {
         list($ctx) = $this->createContextAndWriter();
 
-        $handler = new JSONValueNodeHandler($ctx);
+        $handler = new JsonValueNodeHandler($ctx);
         $node = new JsonValueNode(null);
 
         $this->assertTrue($handler->canHandle($node));
     }
 
-    /** @dataProvider provideJSONValues */
+    /** @dataProvider provideJsonValues */
     public function testHandleVisit(mixed $value, string $expect): void
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $handler = new JSONValueNodeHandler($ctx);
+        $handler = new JsonValueNodeHandler($ctx);
         $handler->handleVisit(new JsonValueNode($value));
 
         $this->assertEquals($expect, $writer->getBuffer());
@@ -44,13 +44,13 @@ class JsonValueNodeHandlerTest extends HandlerTestCase
         $node->addNode(new JsonValueNode(42));
         $node->addNode(new JsonValueNode(42));
 
-        $handler = new JSONValueNodeHandler($ctx);
+        $handler = new JsonValueNodeHandler($ctx);
         $handler->handleVisit($node->getChildNodeAt(1));
 
         $this->assertEquals(", 42", $writer->getBuffer());
     }
 
-    public function provideJSONValues(): array
+    public function provideJsonValues(): array
     {
         // @formatter:off
         return [

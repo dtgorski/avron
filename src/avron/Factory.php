@@ -30,7 +30,7 @@ use lengo\avron\avdl\ImportStatementNodeHandler;
 use lengo\avron\avdl\JsonArrayNodeHandler;
 use lengo\avron\avdl\JsonFieldNodeHandler;
 use lengo\avron\avdl\JsonObjectNodeHandler;
-use lengo\avron\avdl\JSONValueNodeHandler;
+use lengo\avron\avdl\JsonValueNodeHandler;
 use lengo\avron\avdl\LogicalTypeNodeHandler;
 use lengo\avron\avdl\MapTypeNodeHandler;
 use lengo\avron\avdl\MessageDeclarationNodeHandler;
@@ -49,6 +49,7 @@ use lengo\avron\core\ImportsLoader;
 use lengo\avron\core\NodeNamespace;
 use lengo\avron\core\ProtocolLoader;
 use lengo\avron\core\ProtocolParser;
+use lengo\avron\core\ProtocolParserVerbose;
 use lengo\avron\core\StreamParser;
 use lengo\avron\diag\DumpAstVisitor;
 use lengo\avron\walker\DelegateHandlerVisitor;
@@ -87,7 +88,11 @@ class Factory
 
     public function createProtocolParser(): SourceParser
     {
-        return new ProtocolParser($this->createStreamParser());
+        $parser = new ProtocolParser($this->createStreamParser());
+
+        return $this->config->get(Config::VERBOSITY_LEVEL) > 0
+            ? new ProtocolParserVerbose($parser, $this->logger)
+            : $parser;
     }
 
     public function createStreamParser(): StreamParser
@@ -119,7 +124,7 @@ class Factory
             new JsonArrayNodeHandler($ctx),
             new JsonFieldNodeHandler($ctx),
             new JsonObjectNodeHandler($ctx),
-            new JSONValueNodeHandler($ctx),
+            new JsonValueNodeHandler($ctx),
             new LogicalTypeNodeHandler($ctx),
             new MapTypeNodeHandler($ctx),
             new MessageDeclarationNodeHandler($ctx),

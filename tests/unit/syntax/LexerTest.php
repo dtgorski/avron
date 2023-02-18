@@ -177,7 +177,7 @@ class LexerTest extends AvronTestCase
     public function testLineAndColumnAndLoadReported(): void
     {
         $this->markTestSkipped();
-        
+
         $stream = $this->openStream(sprintf("%s/../../data/lex-dont-modify-schema.avdl", __DIR__));
         $expect = $this->openStream(sprintf("%s/../../data/lex-line-column-load.csv", __DIR__));
 

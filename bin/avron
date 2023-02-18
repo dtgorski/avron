@@ -17,24 +17,24 @@ require_once(sprintf("%s/../vendor/autoload.php", __DIR__));
 
 // ----------------------------------------------------------------------------
 
-$opts = getopt("e:hvV", ["exclude:", "help", "version", "verbose"], $rest);
+$opts = getopt("e:hvV", ["exclude:", "help", "verbose", "version"], $rest);
 $opts = $opts ?? ["h" => false];
 
-$has = function (string $name) use ($opts): bool {
-    return isset($opts[$name]);
+$has = function (string $name, ?string $alt = "") use ($opts): bool {
+    return isset($opts[$name]) || isset($opts[$alt]);
 };
-$get = function (string $name, string $alt) use ($opts, $has): string|array {
+$get = function (string $name, ?string $alt = "") use ($opts, $has): string|array {
     return match (true) {
         $has($name) => $opts[$name],
         $has($alt) => $opts[$alt],
         default => ""
     };
 };
-if ($has("h") || $has("help") || sizeof($argv) == 1) {
+if ($has("h", "help") || sizeof($argv) == 1) {
     usage();
     exit(1);
 }
-if ($has("v") || $has("version")) {
+if ($has("V", "version")) {
     version();
     exit(0);
 }
@@ -45,14 +45,15 @@ $logger = new Logger(new StdoutWriter(), new StderrWriter());
 
 try {
     $factory = new Factory(Config::fromArray([
-        Config::VERBOSITY_LEVEL => (int)$get("V", "verbose"),
+        Config::VERBOSITY_LEVEL => (int)$has("v", "verbose"),
     ]), $logger);
 
-    $sourceMap = $factory->createProtocolLoader()->load(...array_slice($argv, $rest));
+    $filenames = array_slice($argv, $rest);
+    $map = $factory->createProtocolLoader()->load(...$filenames);
 
-    foreach ($sourceMap as $visitable) {
-        $visitable->accept($factory->createAvdlPrinter());
-    }
+#    foreach ($map as $visitable) {
+#        $visitable->accept($factory->createAvdlPrinter());
+#    }
 
 } catch (AvroException $e) {
     foreach (explode("\n", trim($e->getError())) as $line) $logger->error($line);
@@ -111,13 +112,13 @@ Options:
         
         When the result type option is omitted, the IDL (avdl) format is chosen. 
                
-    -V, --verbose               
+    -v, --verbose               
         Increases output verbosity level.
         
                             
 More options:
     -h, --help      Display this usage help.
-    -v, --version   Print program version.
+    -V, --version   Print program version.
 
 Sources: <https://github.com/dtgorski/avron>
 ";

@@ -8,6 +8,7 @@
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
+        <directory name="bin"/>
         <directory name="src"/>
         <ignoreFiles>
             <file name="src/syntax/Lexer.php"/>

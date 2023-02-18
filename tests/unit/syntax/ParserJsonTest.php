@@ -42,7 +42,7 @@ class ParserJsonTest extends AvronTestCase
         );
     }
 
-    public function testThrowsExceptionWhenInvalidJSONType(): void
+    public function testThrowsExceptionWhenInvalidJsonType(): void
     {
         $stream = $this->createStream('{"foo":x}');
         $parser = $this->factory->createAvdlParser($stream);
@@ -52,7 +52,7 @@ class ParserJsonTest extends AvronTestCase
         $parser->parseJson();
     }
 
-    public function testThrowsExceptionWhenInvalidJSONChar(): void
+    public function testThrowsExceptionWhenInvalidJsonChar(): void
     {
         $stream = $this->createStream("`");
         $parser = $this->factory->createAvdlParser($stream);

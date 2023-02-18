@@ -7,6 +7,7 @@ namespace lengo\avron\ast;
 use lengo\avron\AvronTestCase;
 
 /**
+ * @requires extension brain.so
  * @covers \lengo\avron\ast\Lexer
  * @uses   \lengo\avron\ast\CommentsReadQueue
  * @uses   \lengo\avron\ast\ByteStreamReader
@@ -156,8 +157,6 @@ class LexerTest extends AvronTestCase
     /** @dataProvider provideMangledSequences */
     public function testCanHandleMangledSequences(string $src, array $loads): void
     {
-        $this->markTestSkipped();
-
         $stream = $this->createStream($src);
         $cursor = $this->createCursor($stream);
 
@@ -176,8 +175,6 @@ class LexerTest extends AvronTestCase
 
     public function testLineAndColumnAndLoadReported(): void
     {
-        $this->markTestSkipped();
-
         $stream = $this->openStream(sprintf("%s/../../data/lex-dont-modify-schema.avdl", __DIR__));
         $expect = $this->openStream(sprintf("%s/../../data/lex-line-column-load.csv", __DIR__));
 

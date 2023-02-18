@@ -4,7 +4,10 @@
 
 namespace lengo\avron\api;
 
+use Exception;
+
 interface SourceParser
 {
+    /** @throws Exception  */
     public function parse(SourceMap $sourceMap, SourceFile $sourceFile): void;
 }

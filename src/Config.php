@@ -7,6 +7,7 @@ namespace lengo\avron;
 class Config
 {
     const VERBOSITY_LEVEL = "verbosity-level";
+    const PERFORM_DRY_RUN = "perform-dry-run";
 
     public static function fromArray(array $config): Config
     {

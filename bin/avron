@@ -17,19 +17,29 @@ require_once(sprintf("%s/../vendor/autoload.php", __DIR__));
 
 // ----------------------------------------------------------------------------
 
-$opts = getopt("e:hvV", ["exclude:", "help", "verbose", "version"], $rest);
-$opts = $opts ?? ["h" => false];
+$opts = [
+    "e:" /**/ => "exclude:",
+    "h" /* */ => "help",
+    "o:" /**/ => "output:",
+    "v" /* */ => "verbose",
+    "V" /* */ => "version",
+];
 
-$has = function (string $name, ?string $alt = "") use ($opts): bool {
-    return isset($opts[$name]) || isset($opts[$alt]);
+$opt = getopt(join("", array_keys($opts)), array_values($opts), $rest);
+$opt = $opt ?? ["h" => false];
+
+$has = function (string $name, ?string $alt = "") use ($opt): bool {
+    return isset($opt[$name]) || isset($opt[$alt]);
 };
-$get = function (string $name, ?string $alt = "") use ($opts, $has): string|array {
+
+$get = function (string $name, ?string $alt = "") use ($opt, $has): string|array {
     return match (true) {
-        $has($name) => $opts[$name],
-        $has($alt) => $opts[$alt],
+        $has($name) => $opt[$name],
+        $has($alt) => $opt[$alt],
         default => ""
     };
 };
+
 if ($has("h", "help") || sizeof($argv) == 1) {
     usage();
     exit(1);
@@ -46,14 +56,15 @@ $logger = new Logger(new StdoutWriter(), new StderrWriter());
 try {
     $factory = new Factory(Config::fromArray([
         Config::VERBOSITY_LEVEL => (int)$has("v", "verbose"),
+        Config::PERFORM_DRY_RUN => !$has("o", "output"),
     ]), $logger);
 
     $filenames = array_slice($argv, $rest);
     $map = $factory->createProtocolLoader()->load(...$filenames);
 
-#    foreach ($map as $visitable) {
-#        $visitable->accept($factory->createAvdlPrinter());
-#    }
+//    foreach ($map as $visitable) {
+//        $visitable->accept($factory->createAvdlPrinter());
+//    }
 
 } catch (AvroException $e) {
     foreach (explode("\n", trim($e->getError())) as $line) $logger->error($line);
@@ -89,7 +100,7 @@ Apache Avro IDL transpiler.
 
 Options:
     -e, --exclude
-        Skip files matching the pattern. The value of exclude can be a PCRE regular
+        Skip files matching the path pattern. The pattern can be a PCRE regular
         expression. This option can be repeated and aggregates to an OR filter.
         Exclude has no effect when the transpilation input is read from stdin. 
         
@@ -99,29 +110,24 @@ Options:
     -o, --output
         Denotes the output directory for the transpilation result. Existing files
         will not be overwritten, unless you specify the [ -f | --force ] option.
-        
         In general, you should avoid overwriting result files and always set up
         a fresh and empty directory to avoid clutter with outdated files.
-        
-        When the output directory option is omitted, the transpilation result
-        will be written to stdout.  
      
-    -t, --type
-        The transpilation result type, which can be one of:
-          · avdl
+    -t, --transpile
+        The transpilation result target type, which can be one of:
+          * avdl
         
         When the result type option is omitted, the IDL (avdl) format is chosen. 
                
     -v, --verbose               
         Increases output verbosity level.
-        
                             
 More options:
-    -h, --help      Display this usage help.
-    -V, --version   Print program version.
+    -h, --help      Display this usage help and exit.
+    -V, --version   Print program version and exit.
 
-Sources: <https://github.com/dtgorski/avron>
-";
+Sources: <https://github.com/dtgorski/avron>";
+
     fwrite(STDOUT, trim($usage));
     fwrite(STDOUT, "\n");
 }

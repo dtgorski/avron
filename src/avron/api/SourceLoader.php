@@ -4,7 +4,10 @@
 
 namespace lengo\avron\api;
 
+use Exception;
+
 interface SourceLoader
 {
+    /** @throws Exception */
     public function load(string ...$filenames): SourceMap;
 }

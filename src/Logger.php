@@ -9,26 +9,26 @@ use lengo\avron\api\Writer;
 class Logger
 {
     public function __construct(
-        private readonly Writer $stdoutWriter,
-        private readonly Writer $stderrWriter,
+        private readonly Writer $stdout,
+        private readonly Writer $stderr,
     ) {
     }
 
     public function info(string|float|int|null ...$msgs): void {
-        $this->stdoutWriter->write("[info] ");
-        foreach ($msgs as $msg) $this->stdoutWriter->write($msg);
-        $this->stdoutWriter->write("\n");
+        $this->stdout->write("[info] ");
+        foreach ($msgs as $msg) $this->stdout->write($msg);
+        $this->stdout->write("\n");
     }
 
     public function warn(string|float|int|null ...$msgs): void {
-        $this->stderrWriter->write("[warn] ");
-        foreach ($msgs as $msg) $this->stderrWriter->write($msg);
-        $this->stderrWriter->write("\n");
+        $this->stderr->write("[warn] ");
+        foreach ($msgs as $msg) $this->stderr->write($msg);
+        $this->stderr->write("\n");
     }
 
     public function error(string|float|int|null ...$msgs): void {
-        $this->stderrWriter->write("[erro] ");
-        foreach ($msgs as $msg) $this->stderrWriter->write($msg);
-        $this->stderrWriter->write("\n");
+        $this->stderr->write("[error] ");
+        foreach ($msgs as $msg) $this->stderr->write($msg);
+        $this->stderr->write("\n");
     }
 }

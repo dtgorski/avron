@@ -16,7 +16,10 @@ enum NamedTypes: string
         return in_array($type, self::names(), true);
     }
 
-    /** @return string[] The named type names. */
+    /**
+     * @codeCoverageIgnore Inherent static initialization does not play well with coverage.
+     * @return string[] The named type names.
+     */
     public static function names(): array
     {
         /** @var string[] $names */

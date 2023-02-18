@@ -6,7 +6,6 @@ namespace lengo\avron\ast;
 
 use lengo\avron\api\SourceFile;
 use lengo\avron\core\NodeNamespace;
-use lengo\avron\core\RealPath;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,15 +27,14 @@ class DeclarationNodeTest extends TestCase
         $node->setComments(new Comments([new Comment("foo"), new Comment("bar")]));
         $this->assertSame(2, $node->getComments()->size());
 
+        $test = function (Comment $comment, int $i): void {
+            $expect = ["foo", "bar"];
+            $this->assertEquals($expect[$i], $comment->getText());
+        };
+
         $i = 0;
         foreach ($node->getComments() as $comment) {
-            if ($i == 0) {
-                $this->assertEquals("foo", $comment->getText());
-            }
-            if ($i == 1) {
-                $this->assertEquals("bar", $comment->getText());
-            }
-            $i++;
+            $test($comment, $i++);
         }
     }
 
@@ -47,7 +45,8 @@ class DeclarationNodeTest extends TestCase
         $this->assertNull($node->getNamespace());
 
         $namespace = $this->createMock(NodeNamespace::class);
-        $this->assertSame($namespace, $node->setNamespace($namespace)->getNamespace());
+        $node->setNamespace($namespace);
+        $this->assertSame($namespace, $node->getNamespace());
     }
 
     public function testSetGetSourceFile(): void
@@ -57,6 +56,7 @@ class DeclarationNodeTest extends TestCase
         $this->assertNull($node->getSourceFile());
 
         $sourceFile = $this->createMock(SourceFile::class);
-        $this->assertSame($sourceFile, $node->setSourceFile($sourceFile)->getSourceFile());
+        $node->setSourceFile($sourceFile);
+        $this->assertSame($sourceFile, $node->getSourceFile());
     }
 }

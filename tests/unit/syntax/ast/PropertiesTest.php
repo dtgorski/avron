@@ -28,18 +28,14 @@ class PropertiesTest extends TestCase
 
         $this->assertSame(3, $props->size());
 
+        $test = function (Property $prop, int $i): void {
+            $expect = ["x", "Y", "a"];
+            $this->assertEquals($expect[$i], $prop->getName());
+        };
+
         $i = 0;
         foreach ($props as $prop) {
-            if ($i == 0) {
-                $this->assertEquals("x", $prop->getName());
-            }
-            if ($i == 1) {
-                $this->assertEquals("Y", $prop->getName());
-            }
-            if ($i == 2) {
-                $this->assertEquals("a", $prop->getName());
-            }
-            $i++;
+            $test($prop, $i++);
         }
     }
 }

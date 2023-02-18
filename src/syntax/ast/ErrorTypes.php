@@ -14,7 +14,10 @@ enum ErrorTypes: string
         return in_array($type, self::names(), true);
     }
 
-    /** @return string[] The error type names. */
+    /**
+     * @codeCoverageIgnore Inherent static initialization does not play well with coverage.
+     * @return string[] The error type names.
+     */
     public static function names(): array
     {
         /** @var string[] $names */

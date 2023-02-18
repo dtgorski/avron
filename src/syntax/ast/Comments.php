@@ -6,11 +6,10 @@ namespace lengo\avron\ast;
 
 use ArrayIterator;
 use IteratorAggregate;
-use JsonSerializable;
 use Traversable;
 
 /** @template-implements \IteratorAggregate<Comment> */
-class Comments implements IteratorAggregate, JsonSerializable
+class Comments implements IteratorAggregate
 {
     /** @param Comment[] $comments */
     public function __construct(private array $comments = [])
@@ -31,10 +30,5 @@ class Comments implements IteratorAggregate, JsonSerializable
     public function getIterator(): Traversable
     {
         return new ArrayIterator($this->comments);
-    }
-
-    public function jsonSerialize(): object
-    {
-        return (object)$this->comments;
     }
 }

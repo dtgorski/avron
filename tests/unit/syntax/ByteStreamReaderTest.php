@@ -4,6 +4,7 @@
 
 namespace lengo\avron\ast;
 
+use InvalidArgumentException;
 use lengo\avron\AvronTestCase;
 
 /**
@@ -15,6 +16,12 @@ use lengo\avron\AvronTestCase;
  */
 class ByteStreamReaderTest extends AvronTestCase
 {
+    public function testInvalidInitialization(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new ByteStreamReader(null);
+    }
+
     public function testLineAndColumnAndLoadReportedOnEmptyDocument(): void
     {
         $stream = $this->createStream("");

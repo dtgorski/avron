@@ -4,9 +4,9 @@
 
 namespace lengo\avron\core;
 
-use lengo\avron\api\SourceParser;
 use lengo\avron\api\SourceFile;
 use lengo\avron\api\SourceMap;
+use lengo\avron\api\SourceParser;
 use lengo\avron\AvroException;
 
 class ProtocolParser implements SourceParser
@@ -22,13 +22,16 @@ class ProtocolParser implements SourceParser
      */
     public function parse(SourceMap $sourceMap, SourceFile $sourceFile): void
     {
-        if ($sourceMap->has($sourceFile->getPath())) {
+        $path = $sourceFile->getPath();
+
+        if ($sourceMap->has($path)) {
             return;
         }
-        if (!$stream = fopen($sourceFile->getPath(), "r")) {
-            throw new AvroException(
-                sprintf("failed to open file: %s", $sourceFile->getPath())
-            );
+        if (!is_readable($path) || is_dir($path)) {
+            throw new AvroException(sprintf("unable to read protocol file %s", $path));
+        }
+        if (!$stream = fopen($path, "r")) {
+            throw new AvroException(sprintf("failed to open protocol file: %s", $path));
         }
 
         try {
@@ -36,7 +39,7 @@ class ProtocolParser implements SourceParser
 
         } catch (AvroException $e) {
             throw new AvroException(
-                sprintf("%s in file %s\n", $e->getMessage(), $sourceFile->getPath()), 0, $e
+                sprintf("%s in file %s\n", $e->getMessage(), $path), 0, $e
             );
 
         } finally {

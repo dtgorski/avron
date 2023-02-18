@@ -15,19 +15,19 @@ class Logger
     }
 
     public function info(string|float|int|null ...$msgs): void {
-        $this->stdoutWriter->write("info: ");
+        $this->stdoutWriter->write("[info] ");
         foreach ($msgs as $msg) $this->stdoutWriter->write($msg);
         $this->stdoutWriter->write("\n");
     }
 
     public function warn(string|float|int|null ...$msgs): void {
-        $this->stderrWriter->write("warn: ");
+        $this->stderrWriter->write("[warn] ");
         foreach ($msgs as $msg) $this->stderrWriter->write($msg);
         $this->stderrWriter->write("\n");
     }
 
     public function error(string|float|int|null ...$msgs): void {
-        $this->stderrWriter->write("error: ");
+        $this->stderrWriter->write("[erro] ");
         foreach ($msgs as $msg) $this->stderrWriter->write($msg);
         $this->stderrWriter->write("\n");
     }

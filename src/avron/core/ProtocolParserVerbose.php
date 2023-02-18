@@ -25,7 +25,7 @@ class ProtocolParserVerbose implements SourceParser
      */
     public function parse(SourceMap $sourceMap, SourceFile $sourceFile): void
     {
-        $this->logger->info(sprintf("reading protocol %s", $sourceFile->getPath()));
+        $this->logger->info(sprintf("reading protocol file: %s", $sourceFile->getPath()));
         $this->protocolParser->parse($sourceMap, $sourceFile);
     }
 }

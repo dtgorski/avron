@@ -2,7 +2,8 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
 
-use lengo\avron\Config;
+namespace lengo\avron;
+
 use PHPUnit\Framework\TestCase;
 
 /**

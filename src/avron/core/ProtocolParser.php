@@ -39,9 +39,10 @@ class ProtocolParser implements SourceParser
 
         } catch (AvroException $e) {
             throw new AvroException(
-                sprintf("%s in file %s\n", $e->getMessage(), $path), 0, $e
+                sprintf("%s in file %s\n", $e->getMessage(), $path),
+                0,
+                $e
             );
-
         } finally {
             fclose($stream);
         }

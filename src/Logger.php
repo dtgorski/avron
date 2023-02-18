@@ -14,21 +14,30 @@ class Logger
     ) {
     }
 
-    public function info(string|float|int|null ...$msgs): void {
+    public function info(string|float|int|null ...$msgs): void
+    {
         $this->stdout->write("[info] ");
-        foreach ($msgs as $msg) $this->stdout->write($msg);
+        foreach ($msgs as $msg) {
+            $this->stdout->write($msg);
+        }
         $this->stdout->write("\n");
     }
 
-    public function warn(string|float|int|null ...$msgs): void {
+    public function warn(string|float|int|null ...$msgs): void
+    {
         $this->stderr->write("[warn] ");
-        foreach ($msgs as $msg) $this->stderr->write($msg);
+        foreach ($msgs as $msg) {
+            $this->stderr->write($msg);
+        }
         $this->stderr->write("\n");
     }
 
-    public function error(string|float|int|null ...$msgs): void {
+    public function error(string|float|int|null ...$msgs): void
+    {
         $this->stderr->write("[error] ");
-        foreach ($msgs as $msg) $this->stderr->write($msg);
+        foreach ($msgs as $msg) {
+            $this->stderr->write($msg);
+        }
         $this->stderr->write("\n");
     }
 }

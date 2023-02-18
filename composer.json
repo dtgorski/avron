@@ -1,0 +1,30 @@
+{
+    "name": "lengo/avron",
+    "version": "0.1.0",
+    "description": "Apache Avro IDL transpiler",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel T. Gorski <dtg [at] lengo [dot] org>"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpunit/phpunit": "^9.2",
+        "phpbench/phpbench": "^1.2",
+        "vimeo/psalm": "^5.4"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    }
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         bootstrap="../vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="true"
+         beStrictAboutCoversAnnotation="true"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         stopOnError="false"
+         stopOnFailure="false"
+         verbose="true"
+         cacheResult="false"
+>
+    <coverage includeUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">../src</directory>
+        </include>
+        <report>
+            <!-- <text outputFile="/dev/stdout" /> -->
+            <html outputDirectory="reports/coverage/" lowUpperBound="85" highLowerBound="100"/>
+        </report>
+    </coverage>
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>unit/</directory>
+        </testsuite>
+        <testsuite name="Stencil">
+            <directory>stencil/</directory>
+        </testsuite>
+    </testsuites>
+    <logging/>
+    <php/>
+</phpunit>

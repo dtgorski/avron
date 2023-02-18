@@ -1,0 +1,9 @@
+makefile
+docs/
+dev/
+
+.*
+!.gitignore
+
+tests/reports/
+vendor/

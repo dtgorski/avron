@@ -1,0 +1,126 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+
+use lengo\avron\AvroException;
+use lengo\avron\Config;
+use lengo\avron\Factory;
+use lengo\avron\Logger;
+use lengo\avron\StderrWriter;
+use lengo\avron\StdoutWriter;
+
+setlocale(LC_ALL, "C");
+error_reporting(file_exists(sprintf("%s/../.git", __DIR__)) ? E_ALL : 0);
+
+require_once(sprintf("%s/../vendor/autoload.php", __DIR__));
+
+// ----------------------------------------------------------------------------
+
+$opts = getopt("e:hvV", ["exclude:", "help", "version", "verbose"], $rest);
+$opts = $opts ?? ["h" => false];
+
+$has = function (string $name) use ($opts): bool {
+    return isset($opts[$name]);
+};
+$get = function (string $name, string $alt) use ($opts, $has): string|array {
+    return match (true) {
+        $has($name) => $opts[$name],
+        $has($alt) => $opts[$alt],
+        default => ""
+    };
+};
+if ($has("h") || $has("help") || sizeof($argv) == 1) {
+    usage();
+    exit(1);
+}
+if ($has("v") || $has("version")) {
+    version();
+    exit(0);
+}
+
+// ----------------------------------------------------------------------------
+
+$logger = new Logger(new StdoutWriter(), new StderrWriter());
+
+try {
+    $factory = new Factory(Config::fromArray([
+        Config::VERBOSITY_LEVEL => (int)$get("V", "verbose"),
+    ]), $logger);
+
+    $sourceMap = $factory->createProtocolLoader()->load(...array_slice($argv, $rest));
+
+    foreach ($sourceMap as $visitable) {
+        $visitable->accept($factory->createAvdlPrinter());
+    }
+
+} catch (AvroException $e) {
+    foreach (explode("\n", trim($e->getError())) as $line) $logger->error($line);
+    exit(1);
+
+} catch (\Exception $e) {
+    $logger->error($e->getMessage());
+    foreach (explode("\n", $e->getTraceAsString()) as $line) $logger->error($line);
+    exit(1);
+}
+
+// ----------------------------------------------------------------------------
+
+function version(): void
+{
+    $json = composer();
+    fwrite(STDOUT, $json && isset($json["version"]) ? $json["version"] : "0.0.0");
+    fwrite(STDOUT, "\n");
+}
+
+function composer(): array
+{
+    return is_readable($composer = sprintf("%s/../composer.json", __DIR__))
+        ? json_decode(file_get_contents($composer), true)
+        : [];
+}
+
+function usage(): void
+{
+    $usage = "
+Usage: avron [OPTION...] [FILE... | -]
+Apache Avro IDL transpiler.
+
+Options:
+    -e, --exclude
+        Skip files matching the pattern. The value of exclude can be a PCRE regular
+        expression. This option can be repeated and aggregates to an OR filter.
+        Exclude has no effect when the transpilation input is read from stdin. 
+        
+    -f, --force
+        This tool does not overwrite existing files, unless you force it to.
+        
+    -o, --output
+        Denotes the output directory for the transpilation result. Existing files
+        will not be overwritten, unless you specify the [ -f | --force ] option.
+        
+        In general, you should avoid overwriting result files and always set up
+        a fresh and empty directory to avoid clutter with outdated files.
+        
+        When the output directory option is omitted, the transpilation result
+        will be written to stdout.  
+     
+    -t, --type
+        The transpilation result type, which can be one of:
+          · avdl
+        
+        When the result type option is omitted, the IDL (avdl) format is chosen. 
+               
+    -V, --verbose               
+        Increases output verbosity level.
+        
+                            
+More options:
+    -h, --help      Display this usage help.
+    -v, --version   Print program version.
+
+Sources: <https://github.com/dtgorski/avron>
+";
+    fwrite(STDOUT, trim($usage));
+    fwrite(STDOUT, "\n");
+}

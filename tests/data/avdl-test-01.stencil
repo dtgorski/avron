@@ -1,0 +1,381 @@
+; Two blocks is this stencil: a) IDL to parse and b) output expectation.
+
+---
+@name-space-$({"x": "y"})
+@namespace("org.lengo.avron")
+
+protocol ProtocolName {
+
+	fixed x(42);
+
+	@fixed("")
+	fixed $(42);
+
+	@annotated(1)
+	error Error {
+		string message = "";
+	}
+
+	@annotated(2)
+	record PrimtiveTypes {
+
+		@property(1)
+		boolean @property(2) trueOrFalse = true;
+
+		@property(3)
+		double moreAccurateNumber = 3.141592653589793;
+
+		@property(4)
+		float inaccurateNumber = 3.14159;
+
+		@property(5)
+		int smallInteger = 42;
+
+		@property(6)
+		long largeInteger = 4398046511104;
+
+		@property(7)
+		bytes byteArray = [0, 1, 2];
+
+		@property(8)
+		string text = "fortytwo";
+
+		@property(9)
+		null alwaysNull = null;
+
+		@property(10)
+		FooType? @x("baz") baz,@y("faz-1") @z("faz-2") faz = 42;
+	}
+
+	@annotated(3)
+	record LogicalTypes {
+		decimal(6,2) accurateNumber;
+		uuid aUniqueIdentifier;
+		date aDate;
+		time_ms aTimeInMilliseconds;
+		timestamp_ms aTimeInMilliseconds;
+		local_timestamp_ms aTimestamp;
+
+		@logicalType("time-micros")
+		long aTimeInMicroseconds;
+
+		@logicalType("decimal")
+		@precision(6)
+		@scale(2)
+		bytes accurateNumber;
+	}
+
+	@annotated(4)
+	record ComplexTypes {
+		array<string> listOfStrings = [];
+		map<int> mapOfStringToInt = {};
+		union{string, date, int} dateDescription = "tomorrow";
+		union{null, string} defaultsToEmpty = null;
+		union{string, null} defaultsToSomeText = "default value";
+		string? defaultsToEmptyNew = null;
+		string? defaultsToSomeTextNew = "default value";
+		Duration threeHundredDays = [0, 0, 0, 0, 1, 44, 0, 0, 0];
+		Duration oneYear = [0, 0, 12, 0, 0, 0, 0, 0, 0];
+		array<Result> results = [];
+		map<array<string>> namedLists;
+		union{array<int>, map<int>} why;
+		union{null, union{null, Result?}} nullPointerInvitation;
+		union{@union("null") null, @union("other") other, @union("type") type} @union("name") name = 42;
+	}
+
+	@annotated(5)
+	@other(6)
+	enum Enumeration {
+		A, B, C
+	} = C;
+
+	string hello(string greeting);
+	TestRecord echo(TestRecord `record`);
+	int add(int arg1, int arg2);
+	bytes echoBytes(bytes data);
+	void `error`() throws TestError, OtherError;
+	void ping() oneway;
+}
+
+---
+ProtocolDeclarationNode
+    ├── FixedDeclarationNode
+    ├── FixedDeclarationNode
+    ├── ErrorDeclarationNode
+    │   └── FieldDeclarationNode
+    │       ├── TypeNode
+    │       │   └── PrimitiveTypeNode
+    │       └── VariableDeclaratorNode
+    │           └── JsonValueNode
+    ├── RecordDeclarationNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonArrayNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   └── FieldDeclarationNode
+    │       ├── NullableTypeNode
+    │       │   └── ReferenceTypeNode
+    │       ├── VariableDeclaratorNode
+    │       └── VariableDeclaratorNode
+    │           └── JsonValueNode
+    ├── RecordDeclarationNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── DecimalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── LogicalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── LogicalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── LogicalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── LogicalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── LogicalTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   └── FieldDeclarationNode
+    │       ├── TypeNode
+    │       │   └── PrimitiveTypeNode
+    │       └── VariableDeclaratorNode
+    ├── RecordDeclarationNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── ArrayTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonArrayNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── MapTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonObjectNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── UnionTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── PrimitiveTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── LogicalTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── UnionTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── PrimitiveTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── UnionTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── PrimitiveTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── NullableTypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── NullableTypeNode
+    │   │   │   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── ReferenceTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonArrayNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── ReferenceTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonArrayNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           ├── JsonValueNode
+    │   │           └── JsonValueNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── ArrayTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── ReferenceTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   │       └── JsonArrayNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── MapTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── ArrayTypeNode
+    │   │   │               └── TypeNode
+    │   │   │                   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── UnionTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── ArrayTypeNode
+    │   │   │       │       └── TypeNode
+    │   │   │       │           └── PrimitiveTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── MapTypeNode
+    │   │   │               └── TypeNode
+    │   │   │                   └── PrimitiveTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   ├── FieldDeclarationNode
+    │   │   ├── TypeNode
+    │   │   │   └── UnionTypeNode
+    │   │   │       ├── TypeNode
+    │   │   │       │   └── PrimitiveTypeNode
+    │   │   │       └── TypeNode
+    │   │   │           └── UnionTypeNode
+    │   │   │               ├── TypeNode
+    │   │   │               │   └── PrimitiveTypeNode
+    │   │   │               └── NullableTypeNode
+    │   │   │                   └── ReferenceTypeNode
+    │   │   └── VariableDeclaratorNode
+    │   └── FieldDeclarationNode
+    │       ├── TypeNode
+    │       │   └── UnionTypeNode
+    │       │       ├── TypeNode
+    │       │       │   └── PrimitiveTypeNode
+    │       │       ├── TypeNode
+    │       │       │   └── ReferenceTypeNode
+    │       │       └── TypeNode
+    │       │           └── ReferenceTypeNode
+    │       └── VariableDeclaratorNode
+    │           └── JsonValueNode
+    ├── EnumDeclarationNode
+    │   ├── EnumConstantNode
+    │   ├── EnumConstantNode
+    │   └── EnumConstantNode
+    ├── MessageDeclarationNode
+    │   ├── ResultTypeNode
+    │   │   └── TypeNode
+    │   │       └── PrimitiveTypeNode
+    │   └── FormalParametersNode
+    │       └── FormalParameterNode
+    │           ├── TypeNode
+    │           │   └── PrimitiveTypeNode
+    │           └── VariableDeclaratorNode
+    ├── MessageDeclarationNode
+    │   ├── ResultTypeNode
+    │   │   └── TypeNode
+    │   │       └── ReferenceTypeNode
+    │   └── FormalParametersNode
+    │       └── FormalParameterNode
+    │           ├── TypeNode
+    │           │   └── ReferenceTypeNode
+    │           └── VariableDeclaratorNode
+    ├── MessageDeclarationNode
+    │   ├── ResultTypeNode
+    │   │   └── TypeNode
+    │   │       └── PrimitiveTypeNode
+    │   └── FormalParametersNode
+    │       ├── FormalParameterNode
+    │       │   ├── TypeNode
+    │       │   │   └── PrimitiveTypeNode
+    │       │   └── VariableDeclaratorNode
+    │       └── FormalParameterNode
+    │           ├── TypeNode
+    │           │   └── PrimitiveTypeNode
+    │           └── VariableDeclaratorNode
+    ├── MessageDeclarationNode
+    │   ├── ResultTypeNode
+    │   │   └── TypeNode
+    │   │       └── PrimitiveTypeNode
+    │   └── FormalParametersNode
+    │       └── FormalParameterNode
+    │           ├── TypeNode
+    │           │   └── PrimitiveTypeNode
+    │           └── VariableDeclaratorNode
+    ├── MessageDeclarationNode
+    │   ├── ResultTypeNode
+    │   ├── FormalParametersNode
+    │   └── ErrorListNode
+    │       ├── TypeNode
+    │       │   └── ReferenceTypeNode
+    │       └── TypeNode
+    │           └── ReferenceTypeNode
+    └── MessageDeclarationNode
+        ├── ResultTypeNode
+        ├── FormalParametersNode
+        └── TypeNode
+            └── OnewayStatementNode

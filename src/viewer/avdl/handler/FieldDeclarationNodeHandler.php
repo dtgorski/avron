@@ -8,6 +8,7 @@ use lengo\avron\api\Visitable;
 use lengo\avron\ast\ErrorListNode;
 use lengo\avron\ast\FieldDeclarationNode;
 
+/** @internal This class is not part of the official API. */
 class FieldDeclarationNodeHandler extends HandlerAbstract
 {
     public function canHandle(Visitable $visitable): bool

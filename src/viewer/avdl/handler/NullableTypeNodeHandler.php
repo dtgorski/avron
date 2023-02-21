@@ -8,6 +8,7 @@ use lengo\avron\api\Visitable;
 use lengo\avron\ast\NullableTypeNode;
 use lengo\avron\ast\TypeNode;
 
+/** @internal This class is not part of the official API. */
 class NullableTypeNodeHandler extends TypeNodeHandler
 {
     public function canHandle(Visitable $visitable): bool

@@ -4,7 +4,7 @@
 
 namespace lengo\avron\core;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,7 +33,7 @@ class NodeNamespaceTest extends TestCase
     /** @dataProvider provideInvalidNamespaceNames */
     public function testInvalidNamespaces(string $namespace): void
     {
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         NodeNamespace::fromString($namespace);
     }
 

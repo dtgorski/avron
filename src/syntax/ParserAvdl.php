@@ -4,15 +4,16 @@
 
 namespace lengo\avron\ast;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
+/** @internal This class is not part of the official API. */
 class ParserAvdl extends ParserJson
 {
     /**
      * ProtocolDeclaration <EOF>
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     public function parseProtocol(): Node
     {
@@ -25,7 +26,7 @@ class ParserAvdl extends ParserJson
      * ( Property )* "protocol" Identifier ProtocolBody
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseProtocolDeclaration(): Node
     {
@@ -45,7 +46,7 @@ class ParserAvdl extends ParserJson
      * "{" ( Imports | Declarations )*  "}"
      *
      * @return Node[]
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseProtocolBody(): array
     {
@@ -68,7 +69,7 @@ class ParserAvdl extends ParserJson
      * ( ImportIdl | ImportProtocol | ImportSchema )*
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseImportStatement(): Node
     {
@@ -85,7 +86,7 @@ class ParserAvdl extends ParserJson
      * ( Property )* ( NamedDeclaration | MessageDeclaration ) )*
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseDeclaration(): Node
     {
@@ -103,7 +104,7 @@ class ParserAvdl extends ParserJson
      * ResultType Identifier FormalParameters ( "oneway" | "throws" ErrorList )? ";"
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseMessageDeclaration(): Node
     {
@@ -126,7 +127,7 @@ class ParserAvdl extends ParserJson
      *    ( "(" ( FormalParameter ( "," FormalParameter )* )? ")" )
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseFormalParameters(): Node
     {
@@ -148,7 +149,7 @@ class ParserAvdl extends ParserJson
      * Type VariableDeclarator
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseFormalParameter(): Node
     {
@@ -162,7 +163,7 @@ class ParserAvdl extends ParserJson
      * ReferenceType ( "," ReferenceType )*
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseErrorList(): Node
     {
@@ -181,7 +182,7 @@ class ParserAvdl extends ParserJson
      * "oneway"
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseOnewayStatement(): Node
     {
@@ -193,7 +194,7 @@ class ParserAvdl extends ParserJson
      * ( RecordDeclaration | ErrorDeclaration | EnumDeclaration | FixedDeclaration )
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseNamedDeclaration(): Node
     {
@@ -213,7 +214,7 @@ class ParserAvdl extends ParserJson
      * "fixed" Identifier "(" <INTEGER> ")" ";"
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseFixedDeclaration(): Node
     {
@@ -232,7 +233,7 @@ class ParserAvdl extends ParserJson
      * "record" Identifier "{" (FieldDeclaration)* "}"
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseRecordDeclaration(): Node
     {
@@ -252,7 +253,7 @@ class ParserAvdl extends ParserJson
      * "error" Identifier "{" (FieldDeclaration)* "}"
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseErrorDeclaration(): Node
     {
@@ -272,7 +273,7 @@ class ParserAvdl extends ParserJson
      * "enum" Identifier "{" EnumBody "}" ( <EQ> Identifier )
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseEnumDeclaration(): Node
     {
@@ -298,7 +299,7 @@ class ParserAvdl extends ParserJson
      * ( Identifier ( "," Identifier )* )?
      *
      * @return Node[]
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseEnumBody(): array
     {
@@ -318,7 +319,7 @@ class ParserAvdl extends ParserJson
      * ( ( Property )* Type VariableDeclarator ( "," VariableDeclarator )* ";" )*
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseFieldDeclaration(): Node
     {
@@ -342,7 +343,7 @@ class ParserAvdl extends ParserJson
      * ( Property )* Identifier ( <EQ> JSONValue )?
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseVariableDeclarator(): Node
     {
@@ -360,7 +361,7 @@ class ParserAvdl extends ParserJson
      * "void" | Type
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseResultType(): Node
     {
@@ -375,7 +376,7 @@ class ParserAvdl extends ParserJson
      * ( Property )* ( ReferenceType | PrimitiveType | UnionType | ArrayType | MapType | DecimalType ) "?"?
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseType(): Node
     {
@@ -401,7 +402,7 @@ class ParserAvdl extends ParserJson
      * "boolean" | "bytes" | "int" | "string" | "float" | ...
      *
      * @return Node|null
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parsePrimitiveType(): Node|null
     {
@@ -418,7 +419,7 @@ class ParserAvdl extends ParserJson
      * "decimal" "(" <INTEGER>, <INTEGER> ")"
      *
      * @return Node|null
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseDecimalType(): Node|null
     {
@@ -447,7 +448,7 @@ class ParserAvdl extends ParserJson
      * "array" "<" Type ">"
      *
      * @return Node|null
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseArrayType(): Node|null
     {
@@ -465,7 +466,7 @@ class ParserAvdl extends ParserJson
      * "map" "<" Type ">"
      *
      * @return Node|null
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseMapType(): Node|null
     {
@@ -483,7 +484,7 @@ class ParserAvdl extends ParserJson
      * "union" "{" Type ( "," Type )* "}"
      *
      * @return Node|null
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseUnionType(): Node|null
     {
@@ -506,7 +507,7 @@ class ParserAvdl extends ParserJson
      * ( Identifier ( "." Identifier )* )
      *
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseReferenceType(): Node
     {
@@ -522,7 +523,7 @@ class ParserAvdl extends ParserJson
      * "@" PropertyName "(" JSONValue ")"
      *
      * @return Property
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseProperty(): Property
     {
@@ -541,7 +542,7 @@ class ParserAvdl extends ParserJson
      * ( "@" PropertyName "(" JSONValue ")" )*
      *
      * @return Properties
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseProperties(): Properties
     {
@@ -556,7 +557,7 @@ class ParserAvdl extends ParserJson
      * <IDENTIFIER> (<DASH> <IDENTIFIER>)*
      *
      * @return string
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parsePropertyName(): string
     {
@@ -571,7 +572,7 @@ class ParserAvdl extends ParserJson
     /**
      * @param string $hint Informative part for a possible error message.
      * @return string
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseIdentifierWithHint(string $hint): string
     {
@@ -580,7 +581,7 @@ class ParserAvdl extends ParserJson
 
     /**
      * @return string
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseIdentifier(): string
     {
@@ -590,7 +591,7 @@ class ParserAvdl extends ParserJson
     /**
      * @param string $hint Informative part for a possible error message.
      * @return string
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseAnyIdentifierWithHint(string $hint): string
     {
@@ -605,7 +606,7 @@ class ParserAvdl extends ParserJson
 
     /**
      * @return string
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseAnyIdentifier(): string
     {

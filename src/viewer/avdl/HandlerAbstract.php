@@ -13,6 +13,7 @@ use lengo\avron\ast\FieldDeclarationNode;
 use lengo\avron\ast\Properties;
 use lengo\avron\ast\ProtocolDeclarationNode;
 
+/** @internal This class is not part of the official API. */
 abstract class HandlerAbstract implements NodeHandler
 {
     public function __construct(private readonly HandlerContext $context)

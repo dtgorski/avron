@@ -4,6 +4,7 @@
 
 namespace lengo\avron\api;
 
+/** @internal This interface is not part of the official API. */
 interface Writer
 {
     public function write(string|float|int|null ...$args): void;

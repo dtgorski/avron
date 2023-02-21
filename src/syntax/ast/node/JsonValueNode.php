@@ -6,6 +6,7 @@ namespace lengo\avron\ast;
 
 use JsonSerializable;
 
+/** @internal This class is not part of the official API. */
 class JsonValueNode extends Node implements JsonSerializable
 {
     public function __construct(private readonly bool|null|float|string $value)

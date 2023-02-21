@@ -4,7 +4,7 @@
 
 namespace lengo\avron\ast;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 use lengo\avron\AvronTestCase;
 use lengo\avron\BufferedWriter;
 use lengo\avron\Config;
@@ -59,7 +59,7 @@ use lengo\avron\Logger;
  * @uses   \lengo\avron\BufferedWriter
  * @uses   \lengo\avron\Factory
  * @uses   \lengo\avron\diag\DumpAstVisitor
- * @uses   \lengo\avron\AvroException
+ * @uses   \lengo\avron\AvronException
  */
 class ParserAvdlTest extends AvronTestCase
 {
@@ -91,7 +91,7 @@ class ParserAvdlTest extends AvronTestCase
             $parser->parseProtocol()->accept($dumper);
             $got = $writer->getBuffer();
 
-        } catch (AvroException $e) {
+        } catch (AvronException $e) {
             $got = $e->getError();
         }
 
@@ -126,7 +126,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consume(Token::TICK));
     }
 
@@ -135,7 +135,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consumeWithHint(Token::TICK, ""));
     }
 
@@ -144,7 +144,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("foo");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consume(Token::TICK));
     }
 
@@ -153,7 +153,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("foo");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consumeWithHint(Token::TICK, ""));
     }
 
@@ -162,7 +162,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("foo");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consume(Token::IDENT, "bar"));
     }
 
@@ -171,7 +171,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("foo");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->assertFalse($parser->consumeWithHint(Token::IDENT, "", "bar"));
     }
 
@@ -180,7 +180,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("protocol x { decimal(-1, 0) foo(); } ");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->expectExceptionMessageMatches("/unexpected negative decimal type precision/");
         $parser->parseProtocol();
     }
@@ -190,7 +190,7 @@ class ParserAvdlTest extends AvronTestCase
         $stream = $this->createStream("protocol x { decimal(0, -1) foo(); } ");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->expectExceptionMessageMatches("/unexpected invalid decimal type scale/");
         $parser->parseProtocol();
     }

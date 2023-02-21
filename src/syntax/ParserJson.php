@@ -4,13 +4,14 @@
 
 namespace lengo\avron\ast;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
+/** @internal This class is not part of the official API. */
 class ParserJson extends ParserBase
 {
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     public function parseJson(): Node
     {
@@ -36,7 +37,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonString(): Node
     {
@@ -45,7 +46,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonNumber(): Node
     {
@@ -54,7 +55,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonBool(): Node
     {
@@ -64,7 +65,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonNull(): Node
     {
@@ -74,7 +75,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonArray(): Node
     {
@@ -95,7 +96,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonObject(): Node
     {
@@ -116,7 +117,7 @@ class ParserJson extends ParserBase
 
     /**
      * @return Node
-     * @throws AvroException
+     * @throws AvronException
      */
     protected function parseJsonField(): Node
     {

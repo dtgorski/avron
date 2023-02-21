@@ -7,6 +7,7 @@ namespace lengo\avron\ast;
 use lengo\avron\api\SourceFile;
 use lengo\avron\core\NodeNamespace;
 
+/** @internal This class is not part of the official API. */
 abstract class DeclarationNode extends Node
 {
     private NodeNamespace|null $namespace = null;

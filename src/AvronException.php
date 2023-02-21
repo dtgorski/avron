@@ -6,10 +6,10 @@ namespace lengo\avron;
 
 use Exception;
 
-class AvroException extends Exception
+class AvronException extends Exception
 {
     public function getError(): string
     {
-        return sprintf("avro exception: %s", parent::getMessage());
+        return sprintf("avron error: %s", parent::getMessage());
     }
 }

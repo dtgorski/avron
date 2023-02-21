@@ -7,6 +7,7 @@ namespace lengo\avron\avdl;
 use lengo\avron\api\Writer;
 use RuntimeException;
 
+/** @internal This class is not part of the official API. */
 class HandlerContext
 {
     private int $step = 0;

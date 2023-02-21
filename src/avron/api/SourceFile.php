@@ -4,6 +4,7 @@
 
 namespace lengo\avron\api;
 
+/** @internal This interface is not part of the official API. */
 interface SourceFile extends \Stringable
 {
     public function getPath(): string;

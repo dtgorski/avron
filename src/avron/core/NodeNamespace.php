@@ -4,26 +4,27 @@
 
 namespace lengo\avron\core;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
+/** @internal This class is not part of the official API. */
 class NodeNamespace implements \Stringable
 {
     /** @var string[] $hierarchy */
     private readonly array $hierarchy;
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     public static function fromString(string $namespace): NodeNamespace
     {
         return new NodeNamespace($namespace);
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     private function __construct(private readonly string $namespace)
     {
         // Empty namespaces allowed per specification.
         if ($namespace !== "") {
             if (!preg_match(self::$regex, $namespace)) {
-                throw new AvroException(sprintf("invalid namespace '%s'", $namespace));
+                throw new AvronException(sprintf("invalid namespace '%s'", $namespace));
             }
         }
         $this->hierarchy = explode(".", $namespace);

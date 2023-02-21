@@ -8,6 +8,7 @@ use Generator;
 use lengo\avron\api\ByteReader;
 
 // @formatter:off
+/** @internal This class is not part of the official API. */
 class Lexer
 {
     private const SCANNING = 0xFF;

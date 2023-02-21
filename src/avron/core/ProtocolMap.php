@@ -11,7 +11,10 @@ use lengo\avron\api\SourceMap;
 use lengo\avron\api\Visitable;
 use Traversable;
 
-/** @template-implements \IteratorAggregate<Visitable> */
+/**
+ * @internal This class is not part of the official API.
+ * @template-implements \IteratorAggregate<Visitable>
+ */
 class ProtocolMap implements IteratorAggregate, SourceMap
 {
     /** @var array $map SourceFile => Visitable */

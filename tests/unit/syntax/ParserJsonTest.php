@@ -4,7 +4,7 @@
 
 namespace lengo\avron\ast;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 use lengo\avron\AvronTestCase;
 use lengo\avron\Config;
 use lengo\avron\Factory;
@@ -47,7 +47,7 @@ class ParserJsonTest extends AvronTestCase
         $stream = $this->createStream('{"foo":x}');
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->expectExceptionMessageMatches("/unexpected identifier, expected valid JSON/");
         $parser->parseJson();
     }
@@ -57,7 +57,7 @@ class ParserJsonTest extends AvronTestCase
         $stream = $this->createStream("`");
         $parser = $this->factory->createAvdlParser($stream);
 
-        $this->expectException(AvroException::class);
+        $this->expectException(AvronException::class);
         $this->expectExceptionMessageMatches("/unexpected '`'/");
         $parser->parseJson();
     }

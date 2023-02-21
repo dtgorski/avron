@@ -8,7 +8,10 @@ use ArrayIterator;
 use IteratorAggregate;
 use Traversable;
 
-/** @template-implements \IteratorAggregate<Comment> */
+/**
+ * @internal This class is not part of the official API.
+ * @template-implements \IteratorAggregate<Comment>
+ */
 class Comments implements IteratorAggregate
 {
     /** @param Comment[] $comments */

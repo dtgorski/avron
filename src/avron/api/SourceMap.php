@@ -6,6 +6,7 @@ namespace lengo\avron\api;
 
 use Traversable;
 
+/** @internal This interface is not part of the official API. */
 interface SourceMap
 {
     public function set(SourceFile $sourceFile, Visitable $visitable): SourceMap;

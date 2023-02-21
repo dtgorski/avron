@@ -6,6 +6,7 @@ namespace lengo\avron\ast;
 
 use InvalidArgumentException;
 
+/** @internal This class is not part of the official API. */
 class DecimalTypeNode extends Node
 {
     public function __construct(

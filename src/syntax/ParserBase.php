@@ -4,8 +4,9 @@
 
 namespace lengo\avron\ast;
 
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
+/** @internal This class is not part of the official API. */
 abstract class ParserBase
 {
     public function __construct(private readonly Cursor $cursor)
@@ -43,7 +44,7 @@ abstract class ParserBase
         return in_array($token->getLoad(), $accepted, true);
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     public function consumeWithHint(int $tokenType, string $hint, string ...$accepted): Token
     {
         $token = $this->peek();
@@ -60,7 +61,7 @@ abstract class ParserBase
         return $this->next();
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     public function consume(int $tokenType, string ...$accepted): Token
     {
         $token = $this->peek();
@@ -77,24 +78,24 @@ abstract class ParserBase
         return $this->next();
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     protected function throwUnexpectedToken(Token $token): never
     {
         $fmt = sprintf("unexpected %s", $token->getFormat());
         $this->throwException($token, $fmt, $token->getSymbol());
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     protected function throwUnexpectedTokenWithHint(Token $token, string $msg): never
     {
         $fmt = sprintf("unexpected %s, expected %%s", $token->getFormat());
         $this->throwException($token, $fmt, $token->getSymbol(), $msg);
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     protected function throwException(Token $token, string ...$msg): never
     {
-        throw new AvroException(sprintf(
+        throw new AvronException(sprintf(
             "%s at line %d, column %d",
             sprintf(...$msg),
             $token->getLine(),

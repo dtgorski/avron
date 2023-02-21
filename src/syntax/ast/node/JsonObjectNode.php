@@ -7,6 +7,7 @@ namespace lengo\avron\ast;
 use JsonSerializable;
 use stdClass;
 
+/** @internal This class is not part of the official API. */
 class JsonObjectNode extends Node implements JsonSerializable
 {
     public function jsonSerialize(): object

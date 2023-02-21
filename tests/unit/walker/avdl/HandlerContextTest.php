@@ -4,7 +4,7 @@
 
 namespace lengo\avron\avdl;
 
-use lengo\avron\StdoutWriter;
+use lengo\avron\StandardWriter;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -15,7 +15,7 @@ class HandlerContextTest extends TestCase
 {
     public function testGetWriter(): void
     {
-        $writer = $this->createMock(StdoutWriter::class);
+        $writer = $this->createMock(StandardWriter::class);
         $ctx = new HandlerContext($writer);
 
         $this->assertSame($writer, $ctx->getWriter());
@@ -23,7 +23,7 @@ class HandlerContextTest extends TestCase
 
     public function testStepInStepPutIndent(): void
     {
-        $writer = $this->createMock(StdoutWriter::class);
+        $writer = $this->createMock(StandardWriter::class);
         $ctx = new HandlerContext($writer);
 
         $this->assertSame(0, $ctx->getStep());
@@ -36,7 +36,7 @@ class HandlerContextTest extends TestCase
 
     public function testThrowsExceptionOnUnderrun(): void
     {
-        $writer = $this->createMock(StdoutWriter::class);
+        $writer = $this->createMock(StandardWriter::class);
         $ctx = new HandlerContext($writer);
 
         $this->expectException(RuntimeException::class);

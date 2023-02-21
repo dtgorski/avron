@@ -10,9 +10,13 @@ use lengo\avron\api\Visitable;
 use lengo\avron\api\Visitor;
 use lengo\avron\ast\ImportStatementNode;
 use lengo\avron\ast\ImportTypes;
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
-/** Follows imports and loads nested protocols. */
+/**
+ * Follows imports and loads nested protocols.
+ *
+ * @internal This class is not part of the official API.
+ */
 class ImportsLoader implements Visitor
 {
     public function __construct(
@@ -22,7 +26,7 @@ class ImportsLoader implements Visitor
     ) {
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     public function visit(Visitable $node): bool
     {
         if (!$node instanceof ImportStatementNode) {
@@ -30,7 +34,7 @@ class ImportsLoader implements Visitor
         }
         // FIXME: implement protocol and schema imports.
         if ($node->getType() !== ImportTypes::idl) {
-            throw new AvroException(sprintf("unsupported import type '%s'", $node->getType()->value));
+            throw new AvronException(sprintf("unsupported import type '%s'", $node->getType()->value));
         }
 
         $sourceFile = RealPath::fromString(sprintf("%s/%s", $this->dir, $node->getPath()));

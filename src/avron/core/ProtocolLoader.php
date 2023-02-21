@@ -7,8 +7,9 @@ namespace lengo\avron\core;
 use lengo\avron\api\SourceLoader;
 use lengo\avron\api\SourceParser;
 use lengo\avron\api\SourceMap;
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
+/** @internal This class is not part of the official API. */
 class ProtocolLoader implements SourceLoader
 {
     public function __construct(private readonly SourceParser $parser)
@@ -18,7 +19,7 @@ class ProtocolLoader implements SourceLoader
     /**
      * @param string ...$filenames
      * @return SourceMap
-     * @throws AvroException
+     * @throws AvronException
      */
     public function load(string ...$filenames): SourceMap
     {

@@ -4,6 +4,7 @@
 
 namespace lengo\avron\ast;
 
+/** @internal This enum is not part of the official API. */
 enum PrimitiveTypes: string
 {
     case boolean = "boolean";

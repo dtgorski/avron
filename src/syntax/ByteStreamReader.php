@@ -7,6 +7,7 @@ namespace lengo\avron\ast;
 use InvalidArgumentException;
 use lengo\avron\api\ByteReader;
 
+/** @internal This class is not part of the official API. */
 class ByteStreamReader implements ByteReader
 {
     private int $line = 1;

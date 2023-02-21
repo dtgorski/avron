@@ -6,6 +6,7 @@ namespace lengo\avron\ast;
 
 use Generator;
 
+/** @internal This class is not part of the official API. */
 class CommentsReadCursor implements Cursor
 {
     private bool $ahead = false;

@@ -7,13 +7,13 @@ namespace lengo\avron;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\AvroException
+ * @covers \lengo\avron\AvronException
  */
-class AvroExceptionTest extends TestCase
+class AvronExceptionTest extends TestCase
 {
     public function testGetError(): void
     {
-        $e = new AvroException("foo");
-        $this->assertSame("avro exception: foo", $e->getError());
+        $e = new AvronException("foo");
+        $this->assertSame("avron error: foo", $e->getError());
     }
 }

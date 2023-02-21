@@ -9,6 +9,7 @@ use lengo\avron\api\Visitor;
 use RuntimeException;
 use Stringable;
 
+/** @internal This class is not part of the official API. */
 abstract class Node implements Visitable, Stringable
 {
     private Properties $properties;

@@ -54,6 +54,7 @@ use lengo\avron\core\StreamParser;
 use lengo\avron\diag\DumpAstVisitor;
 use lengo\avron\walker\DelegateHandlerVisitor;
 
+/** @internal This class is not part of the official API. */
 class Factory
 {
     public function __construct(
@@ -73,12 +74,13 @@ class Factory
         $lexer = new Lexer();
         $reader = new ByteStreamReader($stream);
         $cursor = new CommentsSaveCursor($lexer->createTokenStream($reader), new CommentsReadQueue());
+
         return new ParserAvdl($cursor);
     }
 
     public function createProtocolLoader(): SourceLoader
     {
-        return new ProtocolLoader(new ProtocolParser(new StreamParser($this)));
+        return new ProtocolLoader($this->createProtocolParser());
     }
 
     public function createImportsLoader(SourceMap $map, string $filename): ImportsLoader
@@ -90,7 +92,7 @@ class Factory
     {
         $parser = new ProtocolParser($this->createStreamParser());
 
-        return $this->config->get(Config::VERBOSITY_LEVEL) > 0
+        return $this->config->verbosityLevel() > 0
             ? new ProtocolParserVerbose($parser, $this->logger)
             : $parser;
     }
@@ -105,7 +107,7 @@ class Factory
         return new DeclarationFinalizer($namespace, $sourceFile);
     }
 
-    public function createAvdlPrinter(Writer $writer = new StdoutWriter()): Visitor
+    public function createAvdlPrinter(Writer $writer = new StandardWriter(STDOUT)): Visitor
     {
         $ctx = new HandlerContext($writer);
 
@@ -141,7 +143,7 @@ class Factory
         ]);
     }
 
-    public function createTreeDumper(Writer $writer = new StdoutWriter()): Visitor
+    public function createTreeDumper(Writer $writer = new StandardWriter(STDOUT)): Visitor
     {
         return new DumpAstVisitor($writer);
     }

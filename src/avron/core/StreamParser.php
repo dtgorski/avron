@@ -6,9 +6,10 @@ namespace lengo\avron\core;
 
 use lengo\avron\api\SourceFile;
 use lengo\avron\api\SourceMap;
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 use lengo\avron\Factory;
 
+/** @internal This class is not part of the official API. */
 class StreamParser
 {
     public function __construct(private readonly Factory $factory)
@@ -19,7 +20,7 @@ class StreamParser
      * @param SourceMap $sourceMap
      * @param SourceFile $sourceFile
      * @param resource $stream
-     * @throws AvroException
+     * @throws AvronException
      */
     public function parse(SourceMap $sourceMap, SourceFile $sourceFile, $stream): void
     {

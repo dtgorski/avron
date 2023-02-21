@@ -8,7 +8,10 @@ use ArrayIterator;
 use IteratorAggregate;
 use Traversable;
 
-/** @template-implements \IteratorAggregate<Property> */
+/**
+ * @internal This class is not part of the official API.
+ * @template-implements \IteratorAggregate<Property>
+ */
 class Properties implements IteratorAggregate, \JsonSerializable
 {
     /** @var Property[] */

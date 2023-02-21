@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \lengo\avron\Logger
  * @uses   \lengo\avron\BufferedWriter
- * @uses   \lengo\avron\StderrWriter
- * @uses   \lengo\avron\StdoutWriter
+ * @uses   \lengo\avron\StandardWriter
  */
 class LoggerTest extends TestCase
 {

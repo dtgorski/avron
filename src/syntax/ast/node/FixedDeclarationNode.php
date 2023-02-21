@@ -4,6 +4,7 @@
 
 namespace lengo\avron\ast;
 
+/** @internal This class is not part of the official API. */
 class FixedDeclarationNode extends DeclarationNode
 {
     public function __construct(

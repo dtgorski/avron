@@ -4,6 +4,7 @@
 
 namespace lengo\avron\ast;
 
+/** @internal This class is not part of the official API. */
 class PrimitiveTypeNode extends Node
 {
     public function __construct(private readonly PrimitiveTypes $type)

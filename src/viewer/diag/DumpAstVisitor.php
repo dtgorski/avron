@@ -8,11 +8,12 @@ use lengo\avron\api\Visitable;
 use lengo\avron\api\Visitor;
 use lengo\avron\api\Writer;
 use lengo\avron\ast\Node;
-use lengo\avron\StdoutWriter;
+use lengo\avron\StandardWriter;
 
+/** @internal This class is not part of the official API. */
 class DumpAstVisitor implements Visitor
 {
-    public function __construct(private readonly Writer $writer = new StdoutWriter())
+    public function __construct(private readonly Writer $writer = new StandardWriter(STDIN))
     {
     }
 

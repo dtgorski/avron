@@ -6,6 +6,7 @@ namespace lengo\avron\api;
 
 use Exception;
 
+/** @internal This interface is not part of the official API. */
 interface SourceLoader
 {
     /** @throws Exception */

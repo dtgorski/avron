@@ -4,6 +4,7 @@
 
 namespace lengo\avron\ast;
 
+/** @internal This class is not part of the official API. */
 class ResultTypeNode extends Node
 {
     public function __construct(private readonly bool $isVoid)

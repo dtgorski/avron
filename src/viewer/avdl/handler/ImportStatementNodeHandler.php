@@ -7,6 +7,7 @@ namespace lengo\avron\avdl;
 use lengo\avron\api\Visitable;
 use lengo\avron\ast\ImportStatementNode;
 
+/** @internal This class is not part of the official API. */
 class ImportStatementNodeHandler extends HandlerAbstract
 {
     public function canHandle(Visitable $visitable): bool

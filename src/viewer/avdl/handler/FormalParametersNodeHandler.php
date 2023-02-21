@@ -8,6 +8,7 @@ use lengo\avron\api\Visitable;
 use lengo\avron\ast\FormalParametersNode;
 use lengo\avron\ast\MessageDeclarationNode;
 
+/** @internal This class is not part of the official API. */
 class FormalParametersNodeHandler extends HandlerAbstract
 {
     public function canHandle(Visitable $visitable): bool

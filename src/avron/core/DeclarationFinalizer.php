@@ -8,9 +8,13 @@ use lengo\avron\api\SourceFile;
 use lengo\avron\api\Visitable;
 use lengo\avron\api\Visitor;
 use lengo\avron\ast\DeclarationNode;
-use lengo\avron\AvroException;
+use lengo\avron\AvronException;
 
-/** Sets filename and namespace on declaration nodes. */
+/**
+ * Sets filename and namespace on declaration nodes.
+ *
+ * @internal This class is not part of the official API.
+ */
 class DeclarationFinalizer implements Visitor
 {
     public function __construct(
@@ -19,7 +23,7 @@ class DeclarationFinalizer implements Visitor
     ) {
     }
 
-    /** @throws AvroException */
+    /** @throws AvronException */
     public function visit(Visitable $node): bool
     {
         if (!$node instanceof DeclarationNode) {

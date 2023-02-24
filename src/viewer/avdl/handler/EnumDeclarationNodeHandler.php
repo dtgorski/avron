@@ -7,7 +7,10 @@ namespace lengo\avron\avdl;
 use lengo\avron\api\Visitable;
 use lengo\avron\ast\EnumDeclarationNode;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class EnumDeclarationNodeHandler extends HandlerAbstract
 {
     public function canHandle(Visitable $visitable): bool

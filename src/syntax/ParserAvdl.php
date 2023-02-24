@@ -6,7 +6,10 @@ namespace lengo\avron\ast;
 
 use lengo\avron\AvronException;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class ParserAvdl extends ParserJson
 {
     /**
@@ -401,10 +404,10 @@ class ParserAvdl extends ParserJson
     /**
      * "boolean" | "bytes" | "int" | "string" | "float" | ...
      *
-     * @return Node|null
+     * @return ?Node
      * @throws AvronException
      */
-    protected function parsePrimitiveType(): Node|null
+    protected function parsePrimitiveType(): ?Node
     {
         if ($this->expect(Token::IDENT, ...LogicalTypes::names())) {
             return new LogicalTypeNode(LogicalTypes::from($this->parseIdentifier()));
@@ -418,10 +421,10 @@ class ParserAvdl extends ParserJson
     /**
      * "decimal" "(" <INTEGER>, <INTEGER> ")"
      *
-     * @return Node|null
+     * @return ?Node
      * @throws AvronException
      */
-    protected function parseDecimalType(): Node|null
+    protected function parseDecimalType(): ?Node
     {
         if (!$this->expect(Token::IDENT, "decimal")) {
             return null;
@@ -447,10 +450,10 @@ class ParserAvdl extends ParserJson
     /**
      * "array" "<" Type ">"
      *
-     * @return Node|null
+     * @return ?Node
      * @throws AvronException
      */
-    protected function parseArrayType(): Node|null
+    protected function parseArrayType(): ?Node
     {
         if (!$this->expect(Token::IDENT, "array")) {
             return null;
@@ -465,10 +468,10 @@ class ParserAvdl extends ParserJson
     /**
      * "map" "<" Type ">"
      *
-     * @return Node|null
+     * @return ?Node
      * @throws AvronException
      */
-    protected function parseMapType(): Node|null
+    protected function parseMapType(): ?Node
     {
         if (!$this->expect(Token::IDENT, "map")) {
             return null;
@@ -483,10 +486,10 @@ class ParserAvdl extends ParserJson
     /**
      * "union" "{" Type ( "," Type )* "}"
      *
-     * @return Node|null
+     * @return ?Node
      * @throws AvronException
      */
-    protected function parseUnionType(): Node|null
+    protected function parseUnionType(): ?Node
     {
         if (!$this->expect(Token::IDENT, "union")) {
             return null;

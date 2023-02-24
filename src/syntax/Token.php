@@ -4,7 +4,10 @@
 
 namespace lengo\avron\ast;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class Token
 {
     public function __construct(
@@ -55,17 +58,17 @@ class Token
         return !$this->is($type);
     }
 
-    public static function type(int|null $type): string
+    public static function type(?int $type): string
     {
         return Token::TYPES[$type][0] ?? "?";
     }
 
-    public static function symbol(int|null $type): string
+    public static function symbol(?int $type): string
     {
         return Token::TYPES[$type][1] ?? "?";
     }
 
-    public static function format(int|null $type): string
+    public static function format(?int $type): string
     {
         switch ($type) {
             case Token::EOF:

@@ -8,7 +8,11 @@ use ArrayIterator;
 use IteratorAggregate;
 use Traversable;
 
-/** @template-implements \IteratorAggregate<string,string> */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ * @template-implements \IteratorAggregate<string,string>
+ */
 class Config implements IteratorAggregate
 {
     const COMPILER_TARGET = "COMPILER_TARGET";
@@ -17,6 +21,11 @@ class Config implements IteratorAggregate
     const OVERWRITE_FILES = "OVERWRITE_FILES";
     const PERFORM_DRY_RUN = "PERFORM_DRY_RUN";
     const VERBOSITY_LEVEL = "VERBOSITY_LEVEL";
+
+    public static function fromDefault(): Config
+    {
+        return self::fromArray([]);
+    }
 
     public static function fromArray(array $config): Config
     {
@@ -45,12 +54,17 @@ class Config implements IteratorAggregate
             $this->config[$key] = $val;
             return $this;
         }
-        if (gettype($this->config[$key]) === gettype($val)) {
+
+        $want = gettype($this->config[$key]);
+        $have = gettype($val);
+
+        if ($want === $have) {
             $this->config[$key] = $val;
             return $this;
         }
+
         throw new \InvalidArgumentException(
-            sprintf("incompatible types for %s", $key)
+            sprintf("incompatible types for %s (want %s, have %s)", $key, $want, $have)
         );
     }
 

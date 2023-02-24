@@ -9,12 +9,15 @@ use lengo\avron\api\Visitor;
 use RuntimeException;
 use Stringable;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 abstract class Node implements Visitable, Stringable
 {
     private Properties $properties;
 
-    private Node|null $parent = null;
+    private ?Node $parent = null;
 
     /** @var Node[] */
     private array $nodes = [];
@@ -36,7 +39,7 @@ abstract class Node implements Visitable, Stringable
     }
 
     /** Appends node(s) to already existing child nodes. Sets child-parent relationship. */
-    public function addNode(Node|null ...$nodes): Node
+    public function addNode(?Node ...$nodes): Node
     {
         foreach ($nodes as $node) {
             if ($node === null) {
@@ -52,13 +55,13 @@ abstract class Node implements Visitable, Stringable
     }
 
     /** Returns the parent node or null, if the node has no parent. */
-    public function getParent(): Node|null
+    public function getParent(): ?Node
     {
         return $this->parent;
     }
 
     /** Friend method. Do not use in your client code. */
-    public function setParent(Node|null $node): Node
+    public function setParent(?Node $node): Node
     {
         $this->parent = $node;
         return $this;
@@ -75,19 +78,19 @@ abstract class Node implements Visitable, Stringable
         return sizeof($this->nodes);
     }
 
-    /** @return Node|null null, when previous sibling does not exist. */
-    public function getPrevSibling(): Node|null
+    /** @return ?Node null, when previous sibling does not exist. */
+    public function getPrevSibling(): ?Node
     {
         return $this->getParent()?->getChildNodeAt($this->getChildIndex() - 1);
     }
 
-    /** @return Node|null null, when next sibling does not exist. */
-    public function getNextSibling(): Node|null
+    /** @return ?Node null, when next sibling does not exist. */
+    public function getNextSibling(): ?Node
     {
         return $this->getParent()?->getChildNodeAt($this->getChildIndex() + 1);
     }
 
-    public function getChildNodeAt(int $i): Node|null
+    public function getChildNodeAt(int $i): ?Node
     {
         return $i >= 0 && $i < sizeof($this->nodes) ? $this->nodes[$i] : null;
     }

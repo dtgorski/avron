@@ -10,7 +10,10 @@ use lengo\avron\api\SourceParser;
 use lengo\avron\AvronException;
 use lengo\avron\Logger;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class ProtocolParserVerbose implements SourceParser
 {
     public function __construct(

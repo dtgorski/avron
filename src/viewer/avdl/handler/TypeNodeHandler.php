@@ -9,7 +9,10 @@ use lengo\avron\ast\DeclarationNode;
 use lengo\avron\ast\OnewayStatementNode;
 use lengo\avron\ast\TypeNode;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class TypeNodeHandler extends HandlerAbstract
 {
     public function canHandle(Visitable $visitable): bool

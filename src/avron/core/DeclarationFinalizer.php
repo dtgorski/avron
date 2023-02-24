@@ -13,7 +13,8 @@ use lengo\avron\AvronException;
 /**
  * Sets filename and namespace on declaration nodes.
  *
- * @internal This class is not part of the official API.
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
  */
 class DeclarationFinalizer implements Visitor
 {

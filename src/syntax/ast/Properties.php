@@ -9,7 +9,8 @@ use IteratorAggregate;
 use Traversable;
 
 /**
- * @internal This class is not part of the official API.
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
  * @template-implements \IteratorAggregate<Property>
  */
 class Properties implements IteratorAggregate, \JsonSerializable
@@ -23,7 +24,7 @@ class Properties implements IteratorAggregate, \JsonSerializable
         return $this;
     }
 
-    public function getByName(string $name): Property|null
+    public function getByName(string $name): ?Property
     {
         foreach ($this->props as $prop) {
             if ($name === $prop->getName()) {

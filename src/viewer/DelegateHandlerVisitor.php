@@ -8,7 +8,10 @@ use lengo\avron\api\NodeHandler;
 use lengo\avron\api\Visitable;
 use lengo\avron\api\Visitor;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class DelegateHandlerVisitor implements Visitor
 {
     /** @param NodeHandler[] $handlers */

@@ -4,11 +4,15 @@
 
 namespace lengo\avron;
 
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class Avron
 {
 //    /**
 //     * @param string $filename Readable file location in a file system.
-//     * @param Config|null $config (Optional) Configuration options.
+//     * @param ?Config $config (Optional) Configuration options.
 //     * @throws \lengo\avron\Exception when the file can not be read or the parser is not able to continue properly.
 //     * @throws \Exception in case of any other internal error.
 //     */

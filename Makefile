@@ -1,4 +1,3 @@
-.PHONY: docs
 
 BIN := ./vendor/bin
 
@@ -7,7 +6,6 @@ help:                                            # Displays this list
 	@echo " Usage: make <TARGET> [ARGS=...]"; echo
 
 clean:                                           # Removes generated files
-	@rm -rf $(PWD)/docs
 	@rm -rf $(PWD)/tests/reports
 
 dist-clean: clean                                # Removes generated files and ./vendor

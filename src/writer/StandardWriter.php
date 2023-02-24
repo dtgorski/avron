@@ -6,7 +6,10 @@ namespace lengo\avron;
 
 use lengo\avron\api\Writer;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 class StandardWriter implements Writer
 {
     /** @param resource $stream  */

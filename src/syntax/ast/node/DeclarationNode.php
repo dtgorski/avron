@@ -7,12 +7,15 @@ namespace lengo\avron\ast;
 use lengo\avron\api\SourceFile;
 use lengo\avron\core\NodeNamespace;
 
-/** @internal This class is not part of the official API. */
+/**
+ * @internal This declaration is internal and is NOT PART of any official API.
+ *           Semantic versioning consent does not apply here. Use at own risk.
+ */
 abstract class DeclarationNode extends Node
 {
-    private NodeNamespace|null $namespace = null;
+    private ?NodeNamespace $namespace = null;
 
-    private SourceFile|null $sourceFile = null;
+    private ?SourceFile $sourceFile = null;
 
     private Comments $comments;
 
@@ -22,18 +25,18 @@ abstract class DeclarationNode extends Node
         $this->comments = new Comments();
     }
 
-    public function getNamespace(): NodeNamespace|null
+    public function getNamespace(): ?NodeNamespace
     {
         return $this->namespace;
     }
 
-    public function setNamespace(NodeNamespace|null $namespace): DeclarationNode
+    public function setNamespace(NodeNamespace $namespace): DeclarationNode
     {
         $this->namespace = $namespace;
         return $this;
     }
 
-    public function getSourceFile(): SourceFile|null
+    public function getSourceFile(): ?SourceFile
     {
         return $this->sourceFile;
     }

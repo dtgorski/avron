@@ -1,7 +1,6 @@
 {
     "name": "lengo/avron",
-    "version": "0.0.0",
-    "description": "Apache Avro IDL transpiler",
+    "description": "Apache Avro IDL transpiler.",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +8,8 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ulrichsg/getopt-php": "^4.0"
     },
     "require-dev": {
         "phpbench/phpbench": "^1.2",

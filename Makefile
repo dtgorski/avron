@@ -12,6 +12,7 @@ dist-clean: clean                                # Removes generated files and .
 	@rm -rf $(PWD)/vendor
 
 install:                                         # Installs ./vendor dependencies
+	@composer validate --strict
 	@composer install $(ARGS)
 
 update:                                          # Updates ./vendor dependencies

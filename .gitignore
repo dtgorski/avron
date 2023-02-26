@@ -3,7 +3,11 @@ docs/
 dev/
 
 .*
+!.github
 !.gitignore
 
 tests/reports/
 vendor/
+
+# must be created in CI workflow
+VERSION

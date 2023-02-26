@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \lengo\avron\ast\ErrorListNode
  * @uses   \lengo\avron\ast\ErrorTypes
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class ErrorListNodeTest extends TestCase
 {

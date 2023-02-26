@@ -14,6 +14,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \lengo\avron\ast\Comment
  * @uses   \lengo\avron\ast\Comments
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\core\NodeNamespace
  */
 class DeclarationNodeTest extends TestCase

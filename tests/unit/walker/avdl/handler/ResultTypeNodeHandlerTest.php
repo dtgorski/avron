@@ -9,6 +9,7 @@ use lengo\avron\ast\ResultTypeNode;
 /**
  * @covers \lengo\avron\avdl\ResultTypeNodeHandler
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\ast\ResultTypeNode
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter

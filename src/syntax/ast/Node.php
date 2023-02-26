@@ -24,7 +24,7 @@ abstract class Node implements Visitable, Stringable
 
     public function __construct()
     {
-        $this->properties = new Properties();
+        $this->properties = Properties::fromArray([]);
     }
 
     /** Apply visitor to sub-tree. */

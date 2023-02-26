@@ -14,6 +14,7 @@ use lengo\avron\ast\MessageDeclarationNode;
  * @uses   \lengo\avron\ast\FormalParametersNode
  * @uses   \lengo\avron\ast\MessageDeclarationNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

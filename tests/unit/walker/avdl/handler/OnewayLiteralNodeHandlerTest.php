@@ -10,6 +10,7 @@ use lengo\avron\ast\OnewayStatementNode;
  * @covers \lengo\avron\avdl\OnewayStatementNodeHandler
  * @covers \lengo\avron\ast\OnewayStatementNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

@@ -17,9 +17,15 @@ class ConfigTest extends TestCase
         $this->assertSame(42, $config->get(Config::VERBOSITY_LEVEL));
     }
 
+    public function testDefaultConfigKey(): void
+    {
+        $config = Config::fromArray([]);
+        $this->assertSame(0, $config->get(Config::VERBOSITY_LEVEL));
+    }
+
     public function testNonExistingConfigKey(): void
     {
         $config = Config::fromArray([]);
-        $this->assertNull($config->get(Config::VERBOSITY_LEVEL));
+        $this->assertNull($config->get("foo"));
     }
 }

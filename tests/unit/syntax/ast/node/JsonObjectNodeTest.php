@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \lengo\avron\ast\JsonFieldNode
  * @uses   \lengo\avron\ast\JsonValueNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class JsonObjectNodeTest extends TestCase
 {

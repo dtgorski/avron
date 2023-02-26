@@ -13,8 +13,8 @@ class Avron
 //    /**
 //     * @param string $filename Readable file location in a file system.
 //     * @param ?Config $config (Optional) Configuration options.
-//     * @throws \lengo\avron\Exception when the file can not be read or the parser is not able to continue properly.
-//     * @throws \Exception in case of any other internal error.
+//     * @throws \lengo\avron\ArgError when the file can not be read or the parser is not able to continue properly.
+//     * @throws \ArgError in case of any other internal error.
 //     */
 //    public static function load(string $filename, ?Config $config = null): Schema
 //    {

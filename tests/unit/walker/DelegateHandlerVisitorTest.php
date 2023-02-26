@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \lengo\avron\walker\DelegateHandlerVisitor
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class DelegateHandlerVisitorTest extends TestCase
 {

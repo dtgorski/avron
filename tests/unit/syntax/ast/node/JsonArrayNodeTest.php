@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \lengo\avron\ast\JsonArrayNode
  * @uses   \lengo\avron\ast\JsonValueNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class JsonArrayNodeTest extends TestCase
 {

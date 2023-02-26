@@ -10,6 +10,7 @@ use lengo\avron\ast\JsonArrayNode;
  * @covers \lengo\avron\avdl\JsonArrayNodeHandler
  * @uses   \lengo\avron\ast\JsonArrayNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

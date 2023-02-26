@@ -11,6 +11,7 @@ use RuntimeException;
 
 /**
  * @covers \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class NodeTest extends TestCase
 {
@@ -112,9 +113,9 @@ class NodeTest extends TestCase
         $other->addNode($child);
     }
 
-    public function testSetGetProperties(): void
+    public function testGetProperties(): void
     {
-        $props = new Properties();
+        $props = Properties::fromArray([]);
         $this->assertSame($props, (new TestNode())->setProperties($props)->getProperties());
     }
 

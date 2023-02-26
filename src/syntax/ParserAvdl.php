@@ -549,11 +549,11 @@ class ParserAvdl extends ParserJson
      */
     protected function parseProperties(): Properties
     {
-        $props = new Properties();
+        $props = [];
         while ($this->expect(Token::AT)) {
-            $props->add($this->parseProperty());
+            $props[] = $this->parseProperty();
         }
-        return $props;
+        return Properties::fromArray($props);
     }
 
     /**

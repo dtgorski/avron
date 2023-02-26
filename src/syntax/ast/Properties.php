@@ -6,6 +6,8 @@ namespace lengo\avron\ast;
 
 use ArrayIterator;
 use IteratorAggregate;
+use lengo\avron\cli\Commands;
+use lengo\avron\cli\Option;
 use Traversable;
 
 /**
@@ -15,20 +17,23 @@ use Traversable;
  */
 class Properties implements IteratorAggregate, \JsonSerializable
 {
-    /** @var Property[] */
-    private array $props = [];
-
-    public function add(Property $property): Properties
+    /** @param Property[] $properties */
+    public static function fromArray(array $properties): Properties
     {
-        $this->props[] = $property;
-        return $this;
+        return new Properties($properties);
+    }
+
+    /** @param Property[] $properties */
+    private function __construct(private readonly array $properties)
+    {
+        // TODO: check uniqueness of short & long options
     }
 
     public function getByName(string $name): ?Property
     {
-        foreach ($this->props as $prop) {
-            if ($name === $prop->getName()) {
-                return $prop;
+        foreach ($this->properties as $property) {
+            if ($name === $property->getName()) {
+                return $property;
             }
         }
         return null;
@@ -36,16 +41,16 @@ class Properties implements IteratorAggregate, \JsonSerializable
 
     public function size(): int
     {
-        return sizeof($this->props);
+        return sizeof($this->properties);
     }
 
     public function getIterator(): Traversable
     {
-        return new ArrayIterator($this->props);
+        return new ArrayIterator($this->properties);
     }
 
     public function jsonSerialize(): object
     {
-        return (object)$this->props;
+        return (object)$this->properties;
     }
 }

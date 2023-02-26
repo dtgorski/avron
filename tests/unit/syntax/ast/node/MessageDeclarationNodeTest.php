@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \lengo\avron\ast\Comments
  * @uses   \lengo\avron\ast\DeclarationNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class MessageDeclarationNodeTest extends TestCase
 {

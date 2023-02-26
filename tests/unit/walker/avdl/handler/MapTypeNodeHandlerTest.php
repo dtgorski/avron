@@ -10,6 +10,7 @@ use lengo\avron\ast\MapTypeNode;
  * @covers \lengo\avron\avdl\MapTypeNodeHandler
  * @uses   \lengo\avron\ast\MapTypeNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

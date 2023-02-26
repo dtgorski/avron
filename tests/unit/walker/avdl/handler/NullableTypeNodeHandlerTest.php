@@ -10,6 +10,7 @@ use lengo\avron\ast\NullableTypeNode;
  * @covers \lengo\avron\avdl\NullableTypeNodeHandler
  * @uses   \lengo\avron\ast\Node
  * @uses   \lengo\avron\ast\NullableTypeNode
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\avdl\TypeNodeHandler
  * @uses   \lengo\avron\BufferedWriter

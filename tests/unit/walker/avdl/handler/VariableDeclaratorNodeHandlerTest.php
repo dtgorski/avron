@@ -8,7 +8,7 @@ use lengo\avron\ast\VariableDeclaratorNode;
 
 /**
  * @covers \lengo\avron\avdl\VariableDeclaratorNodeHandler
- * @uses   \lengo\avron\ast\Properties::getIterator
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\ast\Node
  * @uses   \lengo\avron\ast\VariableDeclaratorNode
  * @uses   \lengo\avron\avdl\HandlerAbstract

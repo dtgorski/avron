@@ -11,6 +11,7 @@ use lengo\avron\ast\FormalParameterNode;
  * @uses   \lengo\avron\ast\Comments
  * @uses   \lengo\avron\ast\FormalParameterNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \lengo\avron\ast\JsonValueNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class JsonValueNodeTest extends TestCase
 {

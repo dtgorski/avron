@@ -11,6 +11,7 @@ use lengo\avron\ast\ErrorTypes;
  * @covers \lengo\avron\avdl\ErrorListNodeHandler
  * @uses   \lengo\avron\ast\ErrorListNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

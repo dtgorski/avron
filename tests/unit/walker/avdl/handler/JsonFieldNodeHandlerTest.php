@@ -10,6 +10,7 @@ use lengo\avron\ast\JsonFieldNode;
  * @covers \lengo\avron\avdl\JsonFieldNodeHandler
  * @uses   \lengo\avron\ast\JsonFieldNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\avdl\HandlerAbstract
  * @uses   \lengo\avron\BufferedWriter
  */

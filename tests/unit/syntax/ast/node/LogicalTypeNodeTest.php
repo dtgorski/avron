@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \lengo\avron\ast\LogicalTypeNode
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class LogicalTypeNodeTest extends TestCase
 {

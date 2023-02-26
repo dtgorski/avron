@@ -24,6 +24,7 @@ use lengo\avron\Logger;
  * @uses   \lengo\avron\ast\Node
  * @uses   \lengo\avron\ast\ParserAvdl
  * @uses   \lengo\avron\ast\ParserBase
+ * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\ast\Token
  * @uses   \lengo\avron\Avron
  * @uses   \lengo\avron\Factory

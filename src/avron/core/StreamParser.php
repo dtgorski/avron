@@ -29,8 +29,9 @@ class StreamParser
     {
         $parser = $this->factory->createAvdlParser($stream);
 
-        // Create IDL AST.
-        $sourceMap->set($sourceFile, $protocol = $parser->parseProtocol());
+        // Create AST from IDL.
+        $protocol = $parser->parseProtocol();
+        $sourceMap->set($sourceFile, $protocol);
 
         // Follow and load imports.
         $loader = $this->factory->createImportsLoader($sourceMap, $sourceFile->getDir());

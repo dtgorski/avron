@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \lengo\avron\ast\DeclarationNode
  * @uses   \lengo\avron\ast\ImportTypes
  * @uses   \lengo\avron\ast\Node
+ * @uses   \lengo\avron\ast\Properties
  */
 class ImportStatementNodeTest extends TestCase
 {

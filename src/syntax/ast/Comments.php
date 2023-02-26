@@ -4,26 +4,20 @@
 
 namespace lengo\avron\ast;
 
-use ArrayIterator;
-use IteratorAggregate;
-use Traversable;
-
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<Comment>
  */
-class Comments implements IteratorAggregate
+class Comments
 {
-    /** @param Comment[] $comments */
-    public function __construct(private array $comments = [])
+    public static function fromArray(array $comments): Comments
     {
+        return new Comments($comments);
     }
 
-    public function add(Comment $comment): Comments
+    /** @param Comment[] $comments */
+    private function __construct(private readonly array $comments)
     {
-        $this->comments[] = $comment;
-        return $this;
     }
 
     public function size(): int
@@ -31,8 +25,8 @@ class Comments implements IteratorAggregate
         return sizeof($this->comments);
     }
 
-    public function getIterator(): Traversable
+    public function asArray(): array
     {
-        return new ArrayIterator($this->comments);
+        return $this->comments;
     }
 }

@@ -4,16 +4,11 @@
 
 namespace lengo\avron;
 
-use ArrayIterator;
-use IteratorAggregate;
-use Traversable;
-
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<string,string>
  */
-class Config implements IteratorAggregate
+class Config
 {
     const COMPILER_TARGET = "COMPILER_TARGET";
     const EXCLUDE_PATTERNS = "EXCLUDE_PATTERNS";
@@ -66,11 +61,6 @@ class Config implements IteratorAggregate
         throw new \InvalidArgumentException(
             sprintf("incompatible types for %s (want %s, have %s)", $key, $want, $have)
         );
-    }
-
-    public function getIterator(): Traversable
-    {
-        return new ArrayIterator($this->config);
     }
 
     public function asArray(): array

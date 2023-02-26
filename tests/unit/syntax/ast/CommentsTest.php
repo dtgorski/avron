@@ -12,26 +12,14 @@ use PHPUnit\Framework\TestCase;
  */
 class CommentsTest extends TestCase
 {
-    public function testAddRetrieve(): void
+    public function testComments()
     {
-        $c0 = $this->createMock(Comment::class);
-        $c1 = $this->createMock(Comment::class);
-        $c2 = $this->createMock(Comment::class);
+        $comment1 = new Comment("foo");
+        $comment2 = new Comment("bar");
 
-        $comments = new Comments([$c0, $c1]);
+        $comments = Comments::fromArray([$comment1, $comment2]);
+
         $this->assertSame(2, $comments->size());
-
-        $comments->add($c2);
-        $this->assertSame(3, $comments->size());
-
-        $test = function (Comment $comment, int $i) use ($c0, $c1, $c2): void {
-            $expect = [$c0, $c1, $c2];
-            $this->assertSame($expect[$i], $comment);
-        };
-
-        $i = 0;
-        foreach ($comments as $comment) {
-            $test($comment, $i++);
-        }
+        $this->assertEquals([$comment1, $comment2], $comments->asArray());
     }
 }

@@ -630,7 +630,7 @@ class ParserAvdl extends ParserJson
     /** @return Comments */
     private function fromCommentQueue(): Comments
     {
-        return new Comments($this->getCursor()->getCommentQueue()->drain());
+        return Comments::fromArray($this->getCursor()->getCommentQueue()->drain());
     }
 
     // @formatter:off

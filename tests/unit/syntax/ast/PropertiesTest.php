@@ -14,25 +14,17 @@ class PropertiesTest extends TestCase
 {
     public function testProperties()
     {
-        $props = Properties::fromArray([
-            new Property("x", 1),
-            new Property("Y", 2)
-        ]);
+        $property1 = new Property("foo", 1);
+        $property2 = new Property("bar", 2);
 
-        $this->assertSame(null, $props->getByName("z"));
-        $this->assertEquals(1, $props->getByName("x")->getValue());
-        $this->assertEquals(2, $props->getByName("Y")->getValue());
+        $properties = Properties::fromArray([$property1, $property2]);
 
-        $this->assertSame(2, $props->size());
+        $this->assertSame($property1, $properties->getByName("foo"));
+        $this->assertSame($property2, $properties->getByName("bar"));
 
-//        $test = function (Property $prop, int $i): void {
-//            $expect = ["x", "Y"];
-//            $this->assertEquals($expect[$i], $prop->getName());
-//        };
-//
-//        $i = 0;
-//        foreach ($props as $prop) {
-//            $test($prop, $i++);
-//        }
+        $this->assertSame(null, $properties->getByName(""));
+        $this->assertSame(2, $properties->size());
+
+        $this->assertEquals([$property1, $property2], $properties->asArray());
     }
 }

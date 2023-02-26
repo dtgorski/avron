@@ -16,5 +16,6 @@ interface SourceMap
 
     public function has(string $filename): bool;
 
-    public function getIterator(): Traversable;
+    /** @return array<SourceFile,Visitable> */
+    public function asArray(): array;
 }

@@ -4,18 +4,11 @@
 
 namespace lengo\avron\ast;
 
-use ArrayIterator;
-use IteratorAggregate;
-use lengo\avron\cli\Commands;
-use lengo\avron\cli\Option;
-use Traversable;
-
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<Property>
  */
-class Properties implements IteratorAggregate, \JsonSerializable
+class Properties
 {
     /** @param Property[] $properties */
     public static function fromArray(array $properties): Properties
@@ -44,13 +37,8 @@ class Properties implements IteratorAggregate, \JsonSerializable
         return sizeof($this->properties);
     }
 
-    public function getIterator(): Traversable
+    public function asArray(): array
     {
-        return new ArrayIterator($this->properties);
-    }
-
-    public function jsonSerialize(): object
-    {
-        return (object)$this->properties;
+        return $this->properties;
     }
 }

@@ -25,7 +25,7 @@ class DeclarationNodeTest extends TestCase
         };
 
         $this->assertSame(0, $node->getComments()->size());
-        $node->setComments(new Comments([new Comment("foo"), new Comment("bar")]));
+        $node->setComments(Comments::fromArray([new Comment("foo"), new Comment("bar")]));
         $this->assertSame(2, $node->getComments()->size());
 
         $test = function (Comment $comment, int $i): void {

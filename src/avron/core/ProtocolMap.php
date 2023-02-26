@@ -4,21 +4,17 @@
 
 namespace lengo\avron\core;
 
-use ArrayIterator;
-use IteratorAggregate;
 use lengo\avron\api\SourceFile;
 use lengo\avron\api\SourceMap;
 use lengo\avron\api\Visitable;
-use Traversable;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<Visitable>
  */
-class ProtocolMap implements IteratorAggregate, SourceMap
+class ProtocolMap implements SourceMap
 {
-    /** @var array $map SourceFile => Visitable */
+    /** @var array<SourceFile,Visitable> $map */
     private array $map = [];
 
     public function set(SourceFile $sourceFile, Visitable $visitable): SourceMap
@@ -34,8 +30,8 @@ class ProtocolMap implements IteratorAggregate, SourceMap
         return array_key_exists($filename, $this->map);
     }
 
-    public function getIterator(): Traversable
+    public function asArray(): array
     {
-        return new ArrayIterator($this->map);
+        return $this->map;
     }
 }

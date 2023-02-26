@@ -8,7 +8,7 @@ namespace lengo\avron\ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class Property implements \JsonSerializable
+class Property
 {
     public function __construct(
         private readonly string $name,
@@ -24,12 +24,5 @@ class Property implements \JsonSerializable
     public function getValue(): mixed
     {
         return $this->value;
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            $this->getName() => $this->getValue()
-        ];
     }
 }

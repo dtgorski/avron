@@ -22,7 +22,7 @@ abstract class DeclarationNode extends Node
     public function __construct()
     {
         parent::__construct();
-        $this->comments = new Comments();
+        $this->comments = Comments::fromArray([]);
     }
 
     public function getNamespace(): ?NodeNamespace

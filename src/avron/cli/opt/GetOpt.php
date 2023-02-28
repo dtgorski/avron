@@ -30,7 +30,7 @@ class GetOpt
     ) {
     }
 
-    /** @throws ArgumentException */
+    /** @throws Exception */
     public function createArguments(): Arguments
     {
         $_ = $this->argv[0];
@@ -51,7 +51,7 @@ class GetOpt
      * @param ArrayIterator<int,Arg> $it
      * @param ?Options $options
      * @return ?Options|null
-     * @throws ArgumentException
+     * @throws Exception
      */
     private function readOptions(ArrayIterator $it, ?Options $options): ?Options
     {
@@ -101,7 +101,7 @@ class GetOpt
      * @param ArrayIterator<int,Arg> $it
      * @param ?Commands $commands
      * @return ?Command
-     * @throws ArgumentException
+     * @throws Exception
      */
     private function readCommand(ArrayIterator $it, ?Commands $commands): ?Command
     {
@@ -179,9 +179,9 @@ class GetOpt
         return $args;
     }
 
-    /** @throws ArgumentException */
+    /** @throws Exception */
     private function throw(string $format, string ...$values): void
     {
-        throw new ArgumentException(sprintf($format, ...$values));
+        throw new Exception(sprintf($format, ...$values));
     }
 }

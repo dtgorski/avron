@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\ErrorDeclarationNode;
 
 /**
- * @covers \Avron\AVDL\ErrorDeclarationNodeHandler
+ * @covers \Avron\IDL\ErrorDeclarationNodeHandler
  * @uses   \Avron\AST\Comments
  * @uses   \Avron\AST\DeclarationNode
  * @uses   \Avron\AST\ErrorDeclarationNode
  * @uses   \Avron\AST\Properties
  * @uses   \Avron\AST\Node
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ErrorDeclarationNodeHandlerTest extends HandlerTestCase

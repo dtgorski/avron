@@ -4,6 +4,6 @@
 
 namespace Avron\CLI;
 
-class ArgumentException extends \Exception
+class Exception extends \Exception
 {
 }

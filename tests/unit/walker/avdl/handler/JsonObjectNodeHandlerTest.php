@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\JsonObjectNode;
 
 /**
- * @covers \Avron\AVDL\JsonObjectNodeHandler
+ * @covers \Avron\IDL\JsonObjectNodeHandler
  * @uses   \Avron\AST\JsonObjectNode
  * @uses   \Avron\AST\Node
  * @uses   \Avron\AST\Properties
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class JsonObjectNodeHandlerTest extends HandlerTestCase

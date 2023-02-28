@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\ErrorListNode;
 use Avron\AST\ErrorType;
 
 /**
- * @covers \Avron\AVDL\ErrorListNodeHandler
+ * @covers \Avron\IDL\ErrorListNodeHandler
  * @uses   \Avron\AST\ErrorListNode
  * @uses   \Avron\AST\Node
  * @uses   \Avron\AST\Properties
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ErrorListNodeHandlerTest extends HandlerTestCase

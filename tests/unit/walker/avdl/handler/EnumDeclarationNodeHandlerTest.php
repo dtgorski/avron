@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\EnumDeclarationNode;
 
 /**
- * @covers \Avron\AVDL\EnumDeclarationNodeHandler
+ * @covers \Avron\IDL\EnumDeclarationNodeHandler
  * @uses   \Avron\AST\Comments
  * @uses   \Avron\AST\DeclarationNode
  * @uses   \Avron\AST\EnumDeclarationNode
  * @uses   \Avron\AST\Properties
  * @uses   \Avron\AST\Node
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class EnumDeclarationNodeHandlerTest extends HandlerTestCase

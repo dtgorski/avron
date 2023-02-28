@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\ProtocolDeclarationNode;
 
 /**
- * @covers \Avron\AVDL\ProtocolDeclarationNodeHandler
+ * @covers \Avron\IDL\ProtocolDeclarationNodeHandler
  * @uses   \Avron\AST\Comments
  * @uses   \Avron\AST\DeclarationNode
  * @uses   \Avron\AST\Properties
  * @uses   \Avron\AST\Node
  * @uses   \Avron\AST\ProtocolDeclarationNode
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ProtocolDeclarationNodeHandlerTest extends HandlerTestCase

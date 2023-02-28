@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\StandardWriter;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @covers \Avron\AVDL\HandlerContext
+ * @covers \Avron\IDL\HandlerContext
  */
 class HandlerContextTest extends TestCase
 {

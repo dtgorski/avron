@@ -116,13 +116,13 @@ class Bootstrap
 //            $command->configure($selectedOptions);
 //            $command->execute($commandOperands);
 
-        } catch (ArgumentException $e) {
+        } catch (\Avron\CLI\Exception $e) {
             foreach (explode("\n", trim($e->getMessage())) as $line) {
                 $logger->error($line);
             }
             exit(1);
 
-        } catch (AvronException $e) {
+        } catch (\Avron\AvronException $e) {
             foreach (explode("\n", trim($e->getError())) as $line) {
                 $logger->error($line);
             }

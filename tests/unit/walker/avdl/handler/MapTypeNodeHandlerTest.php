@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\MapTypeNode;
 
 /**
- * @covers \Avron\AVDL\MapTypeNodeHandler
+ * @covers \Avron\IDL\MapTypeNodeHandler
  * @uses   \Avron\AST\MapTypeNode
  * @uses   \Avron\AST\Node
  * @uses   \Avron\AST\Properties
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class MapTypeNodeHandlerTest extends HandlerTestCase

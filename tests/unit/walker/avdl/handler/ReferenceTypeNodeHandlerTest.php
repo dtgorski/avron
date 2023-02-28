@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AVDL;
+namespace Avron\IDL;
 
 use Avron\AST\ReferenceTypeNode;
 
 /**
- * @covers \Avron\AVDL\ReferenceTypeNodeHandler
+ * @covers \Avron\IDL\ReferenceTypeNodeHandler
  * @uses   \Avron\AST\Properties
  * @uses   \Avron\AST\Node
  * @uses   \Avron\AST\ReferenceTypeNode
- * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\IDL\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ReferenceTypeNodeHandlerTest extends HandlerTestCase

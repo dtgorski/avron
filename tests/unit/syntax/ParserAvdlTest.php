@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -29,23 +29,23 @@ use lengo\avron\Logger;
  * @uses   \lengo\avron\ast\EnumDeclarationNode
  * @uses   \lengo\avron\ast\ErrorDeclarationNode
  * @uses   \lengo\avron\ast\ErrorListNode
- * @uses   \lengo\avron\ast\ErrorTypes
+ * @uses   \lengo\avron\ast\ErrorType
  * @uses   \lengo\avron\ast\FieldDeclarationNode
  * @uses   \lengo\avron\ast\FixedDeclarationNode
  * @uses   \lengo\avron\ast\ImportStatementNode
- * @uses   \lengo\avron\ast\ImportTypes
+ * @uses   \lengo\avron\ast\ImportType
  * @uses   \lengo\avron\ast\JsonArrayNode
  * @uses   \lengo\avron\ast\JsonFieldNode
  * @uses   \lengo\avron\ast\JsonObjectNode
  * @uses   \lengo\avron\ast\JsonValueNode
  * @uses   \lengo\avron\ast\Lexer
  * @uses   \lengo\avron\ast\LogicalTypeNode
- * @uses   \lengo\avron\ast\LogicalTypes
+ * @uses   \lengo\avron\ast\LogicalType
  * @uses   \lengo\avron\ast\MessageDeclarationNode
- * @uses   \lengo\avron\ast\NamedTypes
+ * @uses   \lengo\avron\ast\NamedType
  * @uses   \lengo\avron\ast\Node
  * @uses   \lengo\avron\ast\PrimitiveTypeNode
- * @uses   \lengo\avron\ast\PrimitiveTypes
+ * @uses   \lengo\avron\ast\PrimitiveType
  * @uses   \lengo\avron\ast\Properties
  * @uses   \lengo\avron\ast\Property
  * @uses   \lengo\avron\ast\ProtocolDeclarationNode

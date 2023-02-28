@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\avdl;
 
 use lengo\avron\ast\PrimitiveTypeNode;
-use lengo\avron\ast\PrimitiveTypes;
+use lengo\avron\ast\PrimitiveType;
 
 /**
  * @covers \lengo\avron\avdl\PrimitiveTypeNodeHandler
@@ -22,7 +22,7 @@ class PrimitiveTypeNodeHandlerTest extends HandlerTestCase
         list($ctx) = $this->createContextAndWriter();
 
         $handler = new PrimitiveTypeNodeHandler($ctx);
-        $node = new PrimitiveTypeNode(PrimitiveTypes::int);
+        $node = new PrimitiveTypeNode(PrimitiveType::int);
 
         $this->assertTrue($handler->canHandle($node));
     }
@@ -32,7 +32,7 @@ class PrimitiveTypeNodeHandlerTest extends HandlerTestCase
         list($ctx, $writer) = $this->createContextAndWriter();
 
         $handler = new PrimitiveTypeNodeHandler($ctx);
-        $handler->handleVisit(new PrimitiveTypeNode(PrimitiveTypes::int));
+        $handler->handleVisit(new PrimitiveTypeNode(PrimitiveType::int));
 
         $this->assertEquals("int", $writer->getBuffer());
     }

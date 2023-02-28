@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\avdl;
 
 use lengo\avron\ast\LogicalTypeNode;
-use lengo\avron\ast\LogicalTypes;
+use lengo\avron\ast\LogicalType;
 
 /**
  * @covers \lengo\avron\avdl\LogicalTypeNodeHandler
@@ -22,7 +22,7 @@ class LogicalTypeNodeHandlerTest extends HandlerTestCase
         list($ctx) = $this->createContextAndWriter();
 
         $handler = new LogicalTypeNodeHandler($ctx);
-        $node = new LogicalTypeNode(LogicalTypes::date);
+        $node = new LogicalTypeNode(LogicalType::date);
 
         $this->assertTrue($handler->canHandle($node));
     }
@@ -32,7 +32,7 @@ class LogicalTypeNodeHandlerTest extends HandlerTestCase
         list($ctx, $writer) = $this->createContextAndWriter();
 
         $handler = new LogicalTypeNodeHandler($ctx);
-        $handler->handleVisit(new LogicalTypeNode(LogicalTypes::date));
+        $handler->handleVisit(new LogicalTypeNode(LogicalType::date));
 
         $this->assertEquals("date", $writer->getBuffer());
     }

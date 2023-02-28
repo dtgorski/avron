@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\core;
 
@@ -9,7 +9,7 @@ use lengo\avron\api\SourceMap;
 use lengo\avron\api\Visitable;
 use lengo\avron\api\Visitor;
 use lengo\avron\ast\ImportStatementNode;
-use lengo\avron\ast\ImportTypes;
+use lengo\avron\ast\ImportType;
 use lengo\avron\AvronException;
 
 /**
@@ -34,7 +34,7 @@ class ImportsLoader implements Visitor
             return true;
         }
         // FIXME: implement protocol and schema imports.
-        if ($node->getType() !== ImportTypes::idl) {
+        if ($node->getType() !== ImportType::idl) {
             throw new AvronException(sprintf("unsupported import type '%s'", $node->getType()->value));
         }
 

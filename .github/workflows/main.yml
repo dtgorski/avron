@@ -16,14 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies
+      - name: Update VERSION file
+        run: git describe --tags | tr -d '\n' > VERSION
+
+      - name: Install composer dependencies
         run: make install
 
-      - name: Syntax linter
+      - name: Run syntax linter
         run: make sniff
 
-#      - name: Static analysis
+#      - name: Run static analysis
 #        run: make analyse
 
-      - name: Unit tests
+      - name: Run unit tests
         run: make test

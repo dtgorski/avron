@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -76,13 +76,13 @@ class ParserAvdl extends ParserJson
      */
     protected function parseImportStatement(): Node
     {
-        $types = ImportTypes::names();
+        $types = ImportType::names();
         $this->consume(Token::IDENT, "import");
         $type = $this->consumeWithHint(Token::IDENT, self::hintImportTypeName, ...$types)->getLoad();
         $path = $this->consumeWithHint(Token::STRING, self::hintImportFilePath)->getLoad();
         $this->parseSemicolon();
 
-        return new ImportStatementNode(ImportTypes::from($type), $path);
+        return new ImportStatementNode(ImportType::from($type), $path);
     }
 
     /**
@@ -95,7 +95,7 @@ class ParserAvdl extends ParserJson
     {
         $props = $this->parseProperties();
 
-        if ($this->expect(Token::IDENT, ...NamedTypes::names())) {
+        if ($this->expect(Token::IDENT, ...NamedType::names())) {
             $node = $this->parseNamedDeclaration();
         } else {
             $node = $this->parseMessageDeclaration();
@@ -170,8 +170,8 @@ class ParserAvdl extends ParserJson
      */
     protected function parseErrorList(): Node
     {
-        $token = $this->consume(Token::IDENT, ...ErrorTypes::names());
-        $node = new ErrorListNode(ErrorTypes::from($token->getLoad()));
+        $token = $this->consume(Token::IDENT, ...ErrorType::names());
+        $node = new ErrorListNode(ErrorType::from($token->getLoad()));
         $node->addNode((new TypeNode())->addNode($this->parseReferenceType()));
 
         while ($this->expect(Token::COMMA)) {
@@ -409,11 +409,11 @@ class ParserAvdl extends ParserJson
      */
     protected function parsePrimitiveType(): ?Node
     {
-        if ($this->expect(Token::IDENT, ...LogicalTypes::names())) {
-            return new LogicalTypeNode(LogicalTypes::from($this->parseIdentifier()));
+        if ($this->expect(Token::IDENT, ...LogicalType::names())) {
+            return new LogicalTypeNode(LogicalType::from($this->parseIdentifier()));
         }
-        if ($this->expect(Token::IDENT, ...PrimitiveTypes::names())) {
-            return new PrimitiveTypeNode(PrimitiveTypes::from($this->parseIdentifier()));
+        if ($this->expect(Token::IDENT, ...PrimitiveType::names())) {
+            return new PrimitiveTypeNode(PrimitiveType::from($this->parseIdentifier()));
         }
         return null;
     }

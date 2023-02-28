@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\avdl;
 
 use lengo\avron\ast\ErrorListNode;
-use lengo\avron\ast\ErrorTypes;
+use lengo\avron\ast\ErrorType;
 
 /**
  * @covers \lengo\avron\avdl\ErrorListNodeHandler
@@ -22,7 +22,7 @@ class ErrorListNodeHandlerTest extends HandlerTestCase
         list($ctx) = $this->createContextAndWriter();
 
         $handler = new ErrorListNodeHandler($ctx);
-        $node = new ErrorListNode(ErrorTypes::throws);
+        $node = new ErrorListNode(ErrorType::throws);
 
         $this->assertTrue($handler->canHandle($node));
     }
@@ -32,7 +32,7 @@ class ErrorListNodeHandlerTest extends HandlerTestCase
         list($ctx, $writer) = $this->createContextAndWriter();
 
         $handler = new ErrorListNodeHandler($ctx);
-        $handler->handleVisit(new ErrorListNode(ErrorTypes::throws));
+        $handler->handleVisit(new ErrorListNode(ErrorType::throws));
 
         $this->assertEquals(" throws ", $writer->getBuffer());
     }

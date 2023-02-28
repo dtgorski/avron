@@ -1,15 +1,21 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
+
+use ArrayIterator;
+use IteratorAggregate;
+use Traversable;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
+ * @template-implements \IteratorAggregate<Comment>
  */
-class Comments
+class Comments implements IteratorAggregate
 {
+    /** @param Comment[] $comments */
     public static function fromArray(array $comments): Comments
     {
         return new Comments($comments);
@@ -20,13 +26,18 @@ class Comments
     {
     }
 
-    public function size(): int
-    {
-        return sizeof($this->comments);
-    }
-
     public function asArray(): array
     {
         return $this->comments;
+    }
+
+    public function size(): int
+    {
+        return sizeof($this->asArray());
+    }
+
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->asArray());
     }
 }

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -26,5 +26,7 @@ class PropertiesTest extends TestCase
         $this->assertSame(2, $properties->size());
 
         $this->assertEquals([$property1, $property2], $properties->asArray());
+        $this->assertEquals('{"0":{"foo":1},"1":{"bar":2}}', json_encode($properties));
+        $this->assertSame($property1, $properties->getIterator()->current());
     }
 }

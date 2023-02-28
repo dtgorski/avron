@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -8,13 +8,12 @@ namespace lengo\avron\ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-enum LogicalTypes: string
+enum NamedType: string
 {
-    case date = "date";
-    case time_ms = "time_ms";
-    case timestamp_ms = "timestamp_ms";
-    case local_timestamp_ms = "local_timestamp_ms";
-    case uuid = "uuid";
+    case enum = "enum";
+    case error = "error";
+    case fixed = "fixed";
+    case record = "record";
 
     public static function hasType(string $type): bool
     {
@@ -23,7 +22,7 @@ enum LogicalTypes: string
 
     /**
      * @codeCoverageIgnore Inherent static initialization does not play well with coverage.
-     * @return string[] The logical type names.
+     * @return string[] The named type names.
      */
     public static function names(): array
     {
@@ -33,6 +32,6 @@ enum LogicalTypes: string
         if (sizeof($names)) {
             return $names;
         }
-        return $names = array_column(LogicalTypes::cases(), "name");
+        return $names = array_column(NamedType::cases(), "name");
     }
 }

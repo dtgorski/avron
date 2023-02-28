@@ -21,16 +21,13 @@
             <directory suffix=".php">../src</directory>
         </include>
         <report>
-            <!-- <text outputFile="/dev/stdout" /> -->
+            <clover outputFile="reports/clover.xml"/>
             <html outputDirectory="reports/coverage/" lowUpperBound="85" highLowerBound="100"/>
         </report>
     </coverage>
     <testsuites>
         <testsuite name="Unit">
             <directory>unit/</directory>
-        </testsuite>
-        <testsuite name="Stencil">
-            <directory>stencil/</directory>
         </testsuite>
     </testsuites>
     <logging/>

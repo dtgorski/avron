@@ -11,26 +11,23 @@ clean:                                           # Removes generated files
 dist-clean: clean                                # Removes generated files and ./vendor
 	@rm -rf $(PWD)/vendor
 
-install:                                         # Installs ./vendor dependencies
+install: dist-clean                              # Installs ./vendor dependencies
 	@composer validate --strict
 	@composer install $(ARGS)
 
-update:                                          # Updates ./vendor dependencies
+update: clean                                    # Updates ./vendor dependencies
 	@composer update $(ARGS)
 
-test: .autoload                                  # Executes unit tests
-	@XDEBUG_MODE=coverage $(BIN)/phpunit -c ./tests/phpunit.xml tests $(ARGS) && echo "View in browser: <\e[32mfile://$(PWD)/tests/reports/coverage/index.html\e[0m>"
+test: clean .autoload                            # Executes unit tests
+	@XDEBUG_MODE=coverage $(BIN)/phpunit -c ./tests/phpunit.xml $(ARGS) && echo "View in browser: <\e[32mfile://$(PWD)/tests/reports/coverage/index.html\e[0m>"
 
-bench: .autoload                                 # Runs benchmarks
-	@$(BIN)/phpbench run --report=aggregate tests/bench/ $(ARGS)
-
-sniff: .autoload                                 # Runs linter on source and tests
+sniff: clean .autoload                           # Runs linter on source and tests
 	@$(BIN)/phpcs -s --standard=phpcs.xml ./src/ ./tests/unit $(ARGS)
 
-sniff-fix: .autoload                             # Tries to fix linter complaints
+sniff-fix: clean .autoload                       # Tries to fix linter complaints
 	@$(BIN)/phpcbf --standard=phpcs.xml ./src/ ./tests/unit $(ARGS)
 
-analyse: .autoload                               # Performs static analysis
+analyse: clean .autoload                         # Performs static analysis
 	@$(BIN)/psalm --no-cache --no-suggestions --monochrome --no-progress $(ARGS) | perl -0pe "s/-{3,}\s+([^\!]+)\!\s+-{3,}\s+/\1.\n/"
 
 .autoload:                                       # Creates the autoloader

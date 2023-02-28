@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -15,7 +15,7 @@ class LogicalTypeNodeTest extends TestCase
 {
     public function testGetName(): void
     {
-        $type = new LogicalTypeNode(LogicalTypes::date);
+        $type = new LogicalTypeNode(LogicalType::date);
         $this->assertSame("date", $type->getType()->name);
     }
 }

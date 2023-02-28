@@ -1,20 +1,24 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\core;
 
+use ArrayIterator;
+use IteratorAggregate;
 use lengo\avron\api\SourceFile;
 use lengo\avron\api\SourceMap;
 use lengo\avron\api\Visitable;
+use Traversable;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
+ * @template-implements \IteratorAggregate<string,Visitable>
  */
-class ProtocolMap implements SourceMap
+class ProtocolMap implements SourceMap, IteratorAggregate
 {
-    /** @var array<SourceFile,Visitable> $map */
+    /** @var array<string,Visitable> */
     private array $map = [];
 
     public function set(SourceFile $sourceFile, Visitable $visitable): SourceMap
@@ -27,11 +31,17 @@ class ProtocolMap implements SourceMap
 
     public function has(string $filename): bool
     {
-        return array_key_exists($filename, $this->map);
+        return array_key_exists($filename, $this->asArray());
     }
 
+    /** @return array<string,Visitable> */
     public function asArray(): array
     {
         return $this->map;
+    }
+
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->asArray());
     }
 }

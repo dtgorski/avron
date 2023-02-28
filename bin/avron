@@ -3,131 +3,32 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
 
-use lengo\avron\AvroException;
-use lengo\avron\Config;
-use lengo\avron\Factory;
-use lengo\avron\Logger;
-use lengo\avron\StderrWriter;
-use lengo\avron\StdoutWriter;
+use lengo\avron\cli\Bootstrap;
+use lengo\avron\cli\Manifest;
 
 setlocale(LC_ALL, "C");
+
 error_reporting(file_exists(sprintf("%s/../.git", __DIR__)) ? E_ALL : 0);
+
+if (!defined("PHP_VERSION_ID") || PHP_VERSION_ID < 80100) {
+    printf("[error] %s: requires PHP >= 8.1, you are running %s\n", basename($argv[0]), PHP_VERSION);
+    exit(1);
+}
+
+// ---
 
 require_once(sprintf("%s/../vendor/autoload.php", __DIR__));
 
-// ----------------------------------------------------------------------------
+$version = is_readable($path = sprintf("%s/../VERSION", __DIR__))
+    ? trim(file_get_contents($path))
+    : "0.0.0";
 
-$opts = [
-    "e:" /**/ => "exclude:",
-    "h" /* */ => "help",
-    "o:" /**/ => "output:",
-    "v" /* */ => "verbose",
-    "V" /* */ => "version",
-];
+$description = "Apache Avro IDL transpiler";
 
-$opt = getopt(join("", array_keys($opts)), array_values($opts), $rest);
-$opt = $opt ?? ["h" => false];
+$manifest = Manifest::fromParams(
+    basename($argv[0]),
+    $version,
+    $description
+);
 
-$has = function (string $name, ?string $alt = "") use ($opt): bool {
-    return isset($opt[$name]) || isset($opt[$alt]);
-};
-
-$get = function (string $name, ?string $alt = "") use ($opt, $has): string|array {
-    return match (true) {
-        $has($name) => $opt[$name],
-        $has($alt) => $opt[$alt],
-        default => ""
-    };
-};
-
-if ($has("h", "help") || sizeof($argv) == 1) {
-    usage();
-    exit(1);
-}
-if ($has("V", "version")) {
-    version();
-    exit(0);
-}
-
-// ----------------------------------------------------------------------------
-
-$logger = new Logger(new StdoutWriter(), new StderrWriter());
-
-try {
-    $factory = new Factory(Config::fromArray([
-        Config::VERBOSITY_LEVEL => (int)$has("v", "verbose"),
-        Config::PERFORM_DRY_RUN => !$has("o", "output"),
-    ]), $logger);
-
-    $filenames = array_slice($argv, $rest);
-    $map = $factory->createProtocolLoader()->load(...$filenames);
-
-//    foreach ($map as $visitable) {
-//        $visitable->accept($factory->createAvdlPrinter());
-//    }
-
-} catch (AvroException $e) {
-    foreach (explode("\n", trim($e->getError())) as $line) $logger->error($line);
-    exit(1);
-
-} catch (\Exception $e) {
-    $logger->error($e->getMessage());
-    foreach (explode("\n", $e->getTraceAsString()) as $line) $logger->error($line);
-    exit(1);
-}
-
-// ----------------------------------------------------------------------------
-
-function version(): void
-{
-    $json = composer();
-    fwrite(STDOUT, $json && isset($json["version"]) ? $json["version"] : "0.0.0");
-    fwrite(STDOUT, "\n");
-}
-
-function composer(): array
-{
-    return is_readable($composer = sprintf("%s/../composer.json", __DIR__))
-        ? json_decode(file_get_contents($composer), true)
-        : [];
-}
-
-function usage(): void
-{
-    $usage = "
-Usage: avron [OPTION...] [FILE... | -]
-Apache Avro IDL transpiler.
-
-Options:
-    -e, --exclude
-        Skip files matching the path pattern. The pattern can be a PCRE regular
-        expression. This option can be repeated and aggregates to an OR filter.
-        Exclude has no effect when the transpilation input is read from stdin. 
-        
-    -f, --force
-        This tool does not overwrite existing files, unless you force it to.
-        
-    -o, --output
-        Denotes the output directory for the transpilation result. Existing files
-        will not be overwritten, unless you specify the [ -f | --force ] option.
-        In general, you should avoid overwriting result files and always set up
-        a fresh and empty directory to avoid clutter with outdated files.
-     
-    -t, --transpile
-        The transpilation result target type, which can be one of:
-          * avdl
-        
-        When the result type option is omitted, the IDL (avdl) format is chosen. 
-               
-    -v, --verbose               
-        Increases output verbosity level.
-                            
-More options:
-    -h, --help      Display this usage help and exit.
-    -V, --version   Print program version and exit.
-
-Sources: <https://github.com/dtgorski/avron>";
-
-    fwrite(STDOUT, trim($usage));
-    fwrite(STDOUT, "\n");
-}
+(new Bootstrap($manifest, STDIN, STDOUT, STDERR, $argv))->run();

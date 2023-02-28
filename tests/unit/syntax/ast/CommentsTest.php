@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -21,5 +21,6 @@ class CommentsTest extends TestCase
 
         $this->assertSame(2, $comments->size());
         $this->assertEquals([$comment1, $comment2], $comments->asArray());
+        $this->assertSame($comment1, $comments->getIterator()->current());
     }
 }

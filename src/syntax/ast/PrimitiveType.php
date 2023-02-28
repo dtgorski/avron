@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
+// MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
 namespace lengo\avron\ast;
 
@@ -8,7 +8,7 @@ namespace lengo\avron\ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-enum PrimitiveTypes: string
+enum PrimitiveType: string
 {
     case boolean = "boolean";
     case bytes = "bytes";
@@ -36,6 +36,6 @@ enum PrimitiveTypes: string
         if (sizeof($names)) {
             return $names;
         }
-        return $names = array_column(PrimitiveTypes::cases(), "name");
+        return $names = array_column(PrimitiveType::cases(), "name");
     }
 }

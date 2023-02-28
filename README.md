@@ -14,7 +14,8 @@ Transform matrix:
 | **AVSC** |      |      |      |     |
 | **AVPR** |      |      |      |     |
 
-## @dev
+
+### @dev
 
 Try ```make```:
 
@@ -36,6 +37,9 @@ $ make
  Usage: make <TARGET> [ARGS=...]
 ```
 
-### License
+### Disclaimer
+The implementation and features of ```avron``` follow the [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it) principle.
+There is no claim for completeness or reliability.
 
+### License
 [MIT](https://opensource.org/licenses/MIT) - © dtg [at] lengo [dot] org

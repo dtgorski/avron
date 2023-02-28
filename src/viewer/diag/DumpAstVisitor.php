@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\diag;
+namespace Avron\Diag;
 
-use lengo\avron\api\Visitable;
-use lengo\avron\api\Visitor;
-use lengo\avron\api\Writer;
-use lengo\avron\ast\Node;
-use lengo\avron\StandardWriter;
+use Avron\API\Visitable;
+use Avron\API\Visitor;
+use Avron\API\Writer;
+use Avron\AST\Node;
+use Avron\StandardWriter;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

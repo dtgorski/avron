@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\cli;
+namespace Avron\CLI;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\cli\Options
- * @uses   \lengo\avron\cli\Option
+ * @covers \Avron\CLI\Options
+ * @uses   \Avron\CLI\Option
  */
 class OptionsTest extends TestCase
 {

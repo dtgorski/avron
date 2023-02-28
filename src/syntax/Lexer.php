@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use Generator;
-use lengo\avron\api\ByteReader;
+use Avron\API\ByteReader;
 
 // @formatter:off
 /**

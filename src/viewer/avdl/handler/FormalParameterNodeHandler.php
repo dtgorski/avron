@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\api\Visitable;
-use lengo\avron\ast\FormalParameterNode;
+use Avron\API\Visitable;
+use Avron\AST\FormalParameterNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

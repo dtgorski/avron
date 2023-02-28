@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Property
+ * @covers \Avron\AST\Properties
+ * @uses   \Avron\AST\Property
  */
 class PropertiesTest extends TestCase
 {

@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\cli;
+namespace Avron\CLI;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\cli\Command
- * @uses   \lengo\avron\cli\Handler
- * @uses   \lengo\avron\cli\Options
+ * @covers \Avron\CLI\Command
+ * @uses   \Avron\CLI\Handler
+ * @uses   \Avron\CLI\Options
  */
 class CommandTest extends TestCase
 {

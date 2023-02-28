@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\ReferenceTypeNode;
+use Avron\AST\ReferenceTypeNode;
 
 /**
- * @covers \lengo\avron\avdl\ReferenceTypeNodeHandler
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\ReferenceTypeNode
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\ReferenceTypeNodeHandler
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\ReferenceTypeNode
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class ReferenceTypeNodeHandlerTest extends HandlerTestCase
 {

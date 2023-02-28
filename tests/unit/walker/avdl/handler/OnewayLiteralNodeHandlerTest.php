@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\OnewayStatementNode;
+use Avron\AST\OnewayStatementNode;
 
 /**
- * @covers \lengo\avron\avdl\OnewayStatementNodeHandler
- * @covers \lengo\avron\ast\OnewayStatementNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\OnewayStatementNodeHandler
+ * @covers \Avron\AST\OnewayStatementNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class OnewayLiteralNodeHandlerTest extends HandlerTestCase
 {

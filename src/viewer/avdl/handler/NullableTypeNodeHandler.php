@@ -2,11 +2,11 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\api\Visitable;
-use lengo\avron\ast\NullableTypeNode;
-use lengo\avron\ast\TypeNode;
+use Avron\API\Visitable;
+use Avron\AST\NullableTypeNode;
+use Avron\AST\TypeNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

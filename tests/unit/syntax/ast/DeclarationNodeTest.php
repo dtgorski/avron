@@ -2,20 +2,20 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\api\SourceFile;
-use lengo\avron\core\NodeNamespace;
+use Avron\API\SourceFile;
+use Avron\Core\NodeNamespace;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\DeclarationNode
- * @uses   \lengo\avron\api\SourceFile
- * @uses   \lengo\avron\ast\Comment
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\core\NodeNamespace
+ * @covers \Avron\AST\DeclarationNode
+ * @uses   \Avron\API\SourceFile
+ * @uses   \Avron\AST\Comment
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\Core\NodeNamespace
  */
 class DeclarationNodeTest extends TestCase
 {

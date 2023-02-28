@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\api\Visitable;
-use lengo\avron\ast\DeclarationNode;
-use lengo\avron\ast\OnewayStatementNode;
-use lengo\avron\ast\TypeNode;
+use Avron\API\Visitable;
+use Avron\AST\DeclarationNode;
+use Avron\AST\OnewayStatementNode;
+use Avron\AST\TypeNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

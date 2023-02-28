@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
-use lengo\avron\api\SourceFile;
-use lengo\avron\api\SourceMap;
-use lengo\avron\api\SourceParser;
-use lengo\avron\AvronException;
-use lengo\avron\Logger;
+use Avron\API\SourceFile;
+use Avron\API\SourceMap;
+use Avron\API\SourceParser;
+use Avron\AvronException;
+use Avron\Logger;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
-use lengo\avron\api\SourceFile;
-use lengo\avron\AvronException;
+use Avron\API\SourceFile;
+use Avron\AvronException;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\cli;
+namespace Avron\CLI;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\cli\Manifest
+ * @covers \Avron\CLI\Manifest
  */
 class ManifestTest extends TestCase
 {

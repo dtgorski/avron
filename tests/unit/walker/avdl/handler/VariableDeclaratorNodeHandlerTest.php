@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\VariableDeclaratorNode;
+use Avron\AST\VariableDeclaratorNode;
 
 /**
- * @covers \lengo\avron\avdl\VariableDeclaratorNodeHandler
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\VariableDeclaratorNode
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\VariableDeclaratorNodeHandler
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\VariableDeclaratorNode
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class VariableDeclaratorNodeHandlerTest extends HandlerTestCase
 {

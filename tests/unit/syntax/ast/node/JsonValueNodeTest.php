@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\JsonValueNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
+ * @covers \Avron\AST\JsonValueNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
  */
 class JsonValueNodeTest extends TestCase
 {

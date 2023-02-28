@@ -2,19 +2,19 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\FixedDeclarationNode;
+use Avron\AST\FixedDeclarationNode;
 
 /**
- * @covers \lengo\avron\avdl\FixedDeclarationNodeHandler
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\DeclarationNode
- * @uses   \lengo\avron\ast\FixedDeclarationNode
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\FixedDeclarationNodeHandler
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\DeclarationNode
+ * @uses   \Avron\AST\FixedDeclarationNode
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class FixedDeclarationNodeHandlerTest extends HandlerTestCase
 {

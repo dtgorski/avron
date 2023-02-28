@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\walker;
+namespace Avron\Walker;
 
-use lengo\avron\api\NodeHandler;
-use lengo\avron\ast\TestNode;
+use Avron\API\NodeHandler;
+use Avron\AST\TestNode;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\walker\DelegateHandlerVisitor
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
+ * @covers \Avron\Walker\DelegateHandlerVisitor
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
  */
 class DelegateHandlerVisitorTest extends TestCase
 {

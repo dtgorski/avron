@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\Comment
+ * @covers \Avron\AST\Comments
+ * @uses   \Avron\AST\Comment
  */
 class CommentsTest extends TestCase
 {

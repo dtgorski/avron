@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\ArrayTypeNode;
+use Avron\AST\ArrayTypeNode;
 
 /**
- * @covers \lengo\avron\avdl\ArrayTypeNodeHandler
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\ArrayTypeNodeHandler
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class ArrayTypeNodeHandlerTest extends HandlerTestCase
 {

@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\api;
+namespace Avron\API;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

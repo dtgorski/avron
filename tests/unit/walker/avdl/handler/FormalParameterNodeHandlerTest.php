@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\FormalParameterNode;
+use Avron\AST\FormalParameterNode;
 
 /**
- * @covers \lengo\avron\avdl\FormalParameterNodeHandler
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\FormalParameterNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\FormalParameterNodeHandler
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\FormalParameterNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class FormalParameterNodeHandlerTest extends HandlerTestCase
 {

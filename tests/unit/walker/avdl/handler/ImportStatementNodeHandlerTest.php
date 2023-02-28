@@ -2,21 +2,21 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\ImportStatementNode;
-use lengo\avron\ast\ImportType;
+use Avron\AST\ImportStatementNode;
+use Avron\AST\ImportType;
 
 /**
- * @covers \lengo\avron\avdl\ImportStatementNodeHandler
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\DeclarationNode
- * @uses   \lengo\avron\ast\ImportStatementNode
- * @uses   \lengo\avron\ast\ImportType
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\ImportStatementNodeHandler
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\DeclarationNode
+ * @uses   \Avron\AST\ImportStatementNode
+ * @uses   \Avron\AST\ImportType
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class ImportStatementNodeHandlerTest extends HandlerTestCase
 {

@@ -2,11 +2,11 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\walker;
+namespace Avron\Walker;
 
-use lengo\avron\api\NodeHandler;
-use lengo\avron\api\Visitable;
-use lengo\avron\api\Visitor;
+use Avron\API\NodeHandler;
+use Avron\API\Visitable;
+use Avron\API\Visitor;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

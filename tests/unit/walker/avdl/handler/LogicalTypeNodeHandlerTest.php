@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\LogicalTypeNode;
-use lengo\avron\ast\LogicalType;
+use Avron\AST\LogicalTypeNode;
+use Avron\AST\LogicalType;
 
 /**
- * @covers \lengo\avron\avdl\LogicalTypeNodeHandler
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\LogicalTypeNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\LogicalTypeNodeHandler
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\LogicalTypeNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class LogicalTypeNodeHandlerTest extends HandlerTestCase
 {

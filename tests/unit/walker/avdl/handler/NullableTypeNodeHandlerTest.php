@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\NullableTypeNode;
+use Avron\AST\NullableTypeNode;
 
 /**
- * @covers \lengo\avron\avdl\NullableTypeNodeHandler
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\NullableTypeNode
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\avdl\TypeNodeHandler
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\NullableTypeNodeHandler
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\NullableTypeNode
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\AVDL\TypeNodeHandler
+ * @uses   \Avron\BufferedWriter
  */
 class NullableTypeNodeHandlerTest extends HandlerTestCase
 {

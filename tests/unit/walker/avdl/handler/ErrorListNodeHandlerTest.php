@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\ErrorListNode;
-use lengo\avron\ast\ErrorType;
+use Avron\AST\ErrorListNode;
+use Avron\AST\ErrorType;
 
 /**
- * @covers \lengo\avron\avdl\ErrorListNodeHandler
- * @uses   \lengo\avron\ast\ErrorListNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\ErrorListNodeHandler
+ * @uses   \Avron\AST\ErrorListNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class ErrorListNodeHandlerTest extends HandlerTestCase
 {

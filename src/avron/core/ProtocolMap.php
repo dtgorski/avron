@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
 use ArrayIterator;
 use IteratorAggregate;
-use lengo\avron\api\SourceFile;
-use lengo\avron\api\SourceMap;
-use lengo\avron\api\Visitable;
+use Avron\API\SourceFile;
+use Avron\API\SourceMap;
+use Avron\API\Visitable;
 use Traversable;
 
 /**

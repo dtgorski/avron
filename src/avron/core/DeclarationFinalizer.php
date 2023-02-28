@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
-use lengo\avron\api\SourceFile;
-use lengo\avron\api\Visitable;
-use lengo\avron\api\Visitor;
-use lengo\avron\ast\DeclarationNode;
-use lengo\avron\AvronException;
+use Avron\API\SourceFile;
+use Avron\API\Visitable;
+use Avron\API\Visitor;
+use Avron\AST\DeclarationNode;
+use Avron\AvronException;
 
 /**
  * Sets filename and namespace on declaration nodes.

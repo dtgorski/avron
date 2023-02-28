@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use InvalidArgumentException;
-use lengo\avron\api\ByteReader;
+use Avron\API\ByteReader;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

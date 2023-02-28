@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron;
+namespace Avron;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\Logger
- * @uses   \lengo\avron\BufferedWriter
- * @uses   \lengo\avron\StandardWriter
+ * @covers \Avron\Logger
+ * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\StandardWriter
  */
 class LoggerTest extends TestCase
 {

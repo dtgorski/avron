@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\JsonArrayNode;
+use Avron\AST\JsonArrayNode;
 
 /**
- * @covers \lengo\avron\avdl\JsonArrayNodeHandler
- * @uses   \lengo\avron\ast\JsonArrayNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\JsonArrayNodeHandler
+ * @uses   \Avron\AST\JsonArrayNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class JsonArrayNodeHandlerTest extends HandlerTestCase
 {

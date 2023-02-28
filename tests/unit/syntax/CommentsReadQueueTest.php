@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\CommentsReadQueue
- * @uses   \lengo\avron\ast\Comment
+ * @covers \Avron\AST\CommentsReadQueue
+ * @uses   \Avron\AST\Comment
  */
 class CommentsReadQueueTest extends TestCase
 {

@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\JsonFieldNode;
+use Avron\AST\JsonFieldNode;
 
 /**
- * @covers \lengo\avron\avdl\JsonFieldNodeHandler
- * @uses   \lengo\avron\ast\JsonFieldNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\JsonFieldNodeHandler
+ * @uses   \Avron\AST\JsonFieldNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class JsonFieldNodeHandlerTest extends HandlerTestCase
 {

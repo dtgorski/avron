@@ -2,32 +2,32 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\AvronException;
-use lengo\avron\AvronTestCase;
-use lengo\avron\Config;
-use lengo\avron\Factory;
-use lengo\avron\Logger;
+use Avron\AvronException;
+use Avron\AvronTestCase;
+use Avron\Config;
+use Avron\Factory;
+use Avron\Logger;
 
 /**
  * Majority of the JSONParser code is covered by the derived AVDLParser tests.
  *
- * @covers \lengo\avron\ast\ParserJson
- * @uses   \lengo\avron\ast\ByteStreamReader
- * @uses   \lengo\avron\ast\CommentsReadCursor
- * @uses   \lengo\avron\ast\CommentsSaveCursor
- * @uses   \lengo\avron\ast\CommentsSkipCursor
- * @uses   \lengo\avron\ast\FieldDeclarationNode
- * @uses   \lengo\avron\ast\JsonFieldNode
- * @uses   \lengo\avron\ast\Lexer
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\ParserAvdl
- * @uses   \lengo\avron\ast\ParserBase
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Token
- * @uses   \lengo\avron\Avron
- * @uses   \lengo\avron\Factory
+ * @covers \Avron\AST\ParserJson
+ * @uses   \Avron\AST\ByteStreamReader
+ * @uses   \Avron\AST\CommentsReadCursor
+ * @uses   \Avron\AST\CommentsSaveCursor
+ * @uses   \Avron\AST\CommentsSkipCursor
+ * @uses   \Avron\AST\FieldDeclarationNode
+ * @uses   \Avron\AST\JsonFieldNode
+ * @uses   \Avron\AST\Lexer
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\ParserAvdl
+ * @uses   \Avron\AST\ParserBase
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Token
+ * @uses   \Avron\Avron
+ * @uses   \Avron\Factory
  */
 class ParserJsonTest extends AvronTestCase
 {

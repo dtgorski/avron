@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\EnumConstantNode;
+use Avron\AST\EnumConstantNode;
 
 /**
- * @covers \lengo\avron\avdl\EnumConstantNodeHandler
- * @uses   \lengo\avron\ast\EnumConstantNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\EnumConstantNodeHandler
+ * @uses   \Avron\AST\EnumConstantNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class EnumConstantNodeHandlerTest extends HandlerTestCase
 {

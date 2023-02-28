@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\api\SourceFile;
-use lengo\avron\core\NodeNamespace;
+use Avron\API\SourceFile;
+use Avron\Core\NodeNamespace;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

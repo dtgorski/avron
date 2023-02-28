@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\api\NodeHandler;
-use lengo\avron\api\Visitable;
-use lengo\avron\ast\Comment;
-use lengo\avron\ast\Comments;
-use lengo\avron\ast\DeclarationNode;
-use lengo\avron\ast\FieldDeclarationNode;
-use lengo\avron\ast\Properties;
-use lengo\avron\ast\ProtocolDeclarationNode;
+use Avron\API\NodeHandler;
+use Avron\API\Visitable;
+use Avron\AST\Comment;
+use Avron\AST\Comments;
+use Avron\AST\DeclarationNode;
+use Avron\AST\FieldDeclarationNode;
+use Avron\AST\Properties;
+use Avron\AST\ProtocolDeclarationNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

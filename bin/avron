@@ -3,8 +3,8 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
 
-use lengo\avron\cli\Bootstrap;
-use lengo\avron\cli\Manifest;
+use Avron\cli\Bootstrap;
+use Avron\cli\Manifest;
 
 setlocale(LC_ALL, "C");
 

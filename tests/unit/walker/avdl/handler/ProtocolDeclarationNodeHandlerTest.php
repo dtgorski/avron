@@ -2,19 +2,19 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\ProtocolDeclarationNode;
+use Avron\AST\ProtocolDeclarationNode;
 
 /**
- * @covers \lengo\avron\avdl\ProtocolDeclarationNodeHandler
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\DeclarationNode
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\ProtocolDeclarationNode
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\ProtocolDeclarationNodeHandler
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\DeclarationNode
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\ProtocolDeclarationNode
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class ProtocolDeclarationNodeHandlerTest extends HandlerTestCase
 {

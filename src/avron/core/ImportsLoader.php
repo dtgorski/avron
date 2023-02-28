@@ -2,15 +2,15 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
-use lengo\avron\api\SourceParser;
-use lengo\avron\api\SourceMap;
-use lengo\avron\api\Visitable;
-use lengo\avron\api\Visitor;
-use lengo\avron\ast\ImportStatementNode;
-use lengo\avron\ast\ImportType;
-use lengo\avron\AvronException;
+use Avron\API\SourceParser;
+use Avron\API\SourceMap;
+use Avron\API\Visitable;
+use Avron\API\Visitor;
+use Avron\AST\ImportStatementNode;
+use Avron\AST\ImportType;
+use Avron\AvronException;
 
 /**
  * Follows imports and loads nested protocols.

@@ -2,11 +2,11 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\DeclarationNode;
-use lengo\avron\ast\Node;
-use lengo\avron\BufferedWriter;
+use Avron\AST\DeclarationNode;
+use Avron\AST\Node;
+use Avron\BufferedWriter;
 use PHPUnit\Framework\TestCase;
 
 class HandlerTestCase extends TestCase

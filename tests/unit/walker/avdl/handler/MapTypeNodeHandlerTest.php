@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\MapTypeNode;
+use Avron\AST\MapTypeNode;
 
 /**
- * @covers \lengo\avron\avdl\MapTypeNodeHandler
- * @uses   \lengo\avron\ast\MapTypeNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\MapTypeNodeHandler
+ * @uses   \Avron\AST\MapTypeNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class MapTypeNodeHandlerTest extends HandlerTestCase
 {

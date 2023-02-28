@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\ast\LogicalType
+ * @covers \Avron\AST\LogicalType
  */
 class LogicalTypeTest extends TestCase
 {

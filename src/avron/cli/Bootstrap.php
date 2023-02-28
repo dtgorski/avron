@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\cli;
+namespace Avron\CLI;
 
-use lengo\avron\AvronException;
-use lengo\avron\Config;
-use lengo\avron\Logger;
-use lengo\avron\StandardWriter;
+use Avron\AvronException;
+use Avron\Config;
+use Avron\Logger;
+use Avron\StandardWriter;
 
 /**
  * Bootstrap contains exit() invocations and can terminate the process.

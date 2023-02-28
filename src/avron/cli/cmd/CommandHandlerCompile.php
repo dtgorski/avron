@@ -2,11 +2,11 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\cli;
+namespace Avron\CLI;
 
-use lengo\avron\Config;
-use lengo\avron\Factory;
-use lengo\avron\Logger;
+use Avron\Config;
+use Avron\Factory;
+use Avron\Logger;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

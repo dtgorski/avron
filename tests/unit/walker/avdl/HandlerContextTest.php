@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\StandardWriter;
+use Avron\StandardWriter;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @covers \lengo\avron\avdl\HandlerContext
+ * @covers \Avron\AVDL\HandlerContext
  */
 class HandlerContextTest extends TestCase
 {

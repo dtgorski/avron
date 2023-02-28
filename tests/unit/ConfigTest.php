@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron;
+namespace Avron;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\Config
+ * @covers \Avron\Config
  */
 class ConfigTest extends TestCase
 {

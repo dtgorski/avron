@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\core;
+namespace Avron\Core;
 
-use lengo\avron\AvronException;
+use Avron\AvronException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \lengo\avron\core\NodeNamespace
+ * @covers \Avron\Core\NodeNamespace
  */
 class NodeNamespaceTest extends TestCase
 {

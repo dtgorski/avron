@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\DecimalTypeNode;
+use Avron\AST\DecimalTypeNode;
 
 /**
- * @covers \lengo\avron\avdl\DecimalTypeNodeHandler
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\DecimalTypeNode
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\DecimalTypeNodeHandler
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\DecimalTypeNode
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class DecimalTypeNodeHandlerTest extends HandlerTestCase
 {

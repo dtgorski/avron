@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\AvronTestCase;
+use Avron\AvronTestCase;
 
 /**
  * @requires extension brain.so
- * @covers \lengo\avron\ast\Lexer
- * @uses   \lengo\avron\ast\CommentsReadQueue
- * @uses   \lengo\avron\ast\ByteStreamReader
- * @uses   \lengo\avron\ast\CommentsReadCursor
- * @uses   \lengo\avron\ast\Token
+ * @covers \Avron\AST\Lexer
+ * @uses   \Avron\AST\CommentsReadQueue
+ * @uses   \Avron\AST\ByteStreamReader
+ * @uses   \Avron\AST\CommentsReadCursor
+ * @uses   \Avron\AST\Token
  */
 class LexerTest extends AvronTestCase
 {

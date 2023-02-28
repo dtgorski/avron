@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\avdl;
+namespace Avron\AVDL;
 
-use lengo\avron\ast\PrimitiveTypeNode;
-use lengo\avron\ast\PrimitiveType;
+use Avron\AST\PrimitiveTypeNode;
+use Avron\AST\PrimitiveType;
 
 /**
- * @covers \lengo\avron\avdl\PrimitiveTypeNodeHandler
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\PrimitiveTypeNode
- * @uses   \lengo\avron\avdl\HandlerAbstract
- * @uses   \lengo\avron\BufferedWriter
+ * @covers \Avron\AVDL\PrimitiveTypeNodeHandler
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\PrimitiveTypeNode
+ * @uses   \Avron\AVDL\HandlerAbstract
+ * @uses   \Avron\BufferedWriter
  */
 class PrimitiveTypeNodeHandlerTest extends HandlerTestCase
 {

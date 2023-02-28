@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\api\Visitable;
-use lengo\avron\api\Visitor;
+use Avron\API\Visitable;
+use Avron\API\Visitor;
 use RuntimeException;
 use Stringable;
 

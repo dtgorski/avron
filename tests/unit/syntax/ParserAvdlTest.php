@@ -2,64 +2,64 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace lengo\avron\ast;
+namespace Avron\AST;
 
-use lengo\avron\AvronException;
-use lengo\avron\AvronTestCase;
-use lengo\avron\BufferedWriter;
-use lengo\avron\Config;
-use lengo\avron\diag\DumpAstVisitor;
-use lengo\avron\Factory;
-use lengo\avron\Logger;
+use Avron\AvronException;
+use Avron\AvronTestCase;
+use Avron\BufferedWriter;
+use Avron\Config;
+use Avron\Diag\DumpAstVisitor;
+use Avron\Factory;
+use Avron\Logger;
 
 /**
- * @covers \lengo\avron\ast\ParserBase
- * @covers \lengo\avron\ast\ParserAvdl
- * @covers \lengo\avron\ast\ParserJson
- * @uses   \lengo\avron\ast\ByteStreamReader
- * @uses   \lengo\avron\ast\Comment
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\Comments
- * @uses   \lengo\avron\ast\CommentsReadCursor
- * @uses   \lengo\avron\ast\CommentsReadQueue
- * @uses   \lengo\avron\ast\CommentsSaveCursor
- * @uses   \lengo\avron\ast\DecimalTypeNode
- * @uses   \lengo\avron\ast\DeclarationNode
- * @uses   \lengo\avron\ast\EnumConstantNode
- * @uses   \lengo\avron\ast\EnumDeclarationNode
- * @uses   \lengo\avron\ast\ErrorDeclarationNode
- * @uses   \lengo\avron\ast\ErrorListNode
- * @uses   \lengo\avron\ast\ErrorType
- * @uses   \lengo\avron\ast\FieldDeclarationNode
- * @uses   \lengo\avron\ast\FixedDeclarationNode
- * @uses   \lengo\avron\ast\ImportStatementNode
- * @uses   \lengo\avron\ast\ImportType
- * @uses   \lengo\avron\ast\JsonArrayNode
- * @uses   \lengo\avron\ast\JsonFieldNode
- * @uses   \lengo\avron\ast\JsonObjectNode
- * @uses   \lengo\avron\ast\JsonValueNode
- * @uses   \lengo\avron\ast\Lexer
- * @uses   \lengo\avron\ast\LogicalTypeNode
- * @uses   \lengo\avron\ast\LogicalType
- * @uses   \lengo\avron\ast\MessageDeclarationNode
- * @uses   \lengo\avron\ast\NamedType
- * @uses   \lengo\avron\ast\Node
- * @uses   \lengo\avron\ast\PrimitiveTypeNode
- * @uses   \lengo\avron\ast\PrimitiveType
- * @uses   \lengo\avron\ast\Properties
- * @uses   \lengo\avron\ast\Property
- * @uses   \lengo\avron\ast\ProtocolDeclarationNode
- * @uses   \lengo\avron\ast\RecordDeclarationNode
- * @uses   \lengo\avron\ast\ReferenceTypeNode
- * @uses   \lengo\avron\ast\ResultTypeNode
- * @uses   \lengo\avron\ast\Token
- * @uses   \lengo\avron\ast\TypeNode
- * @uses   \lengo\avron\ast\VariableDeclaratorNode
- * @uses   \lengo\avron\Avron
- * @uses   \lengo\avron\BufferedWriter
- * @uses   \lengo\avron\Factory
- * @uses   \lengo\avron\diag\DumpAstVisitor
- * @uses   \lengo\avron\AvronException
+ * @covers \Avron\AST\ParserBase
+ * @covers \Avron\AST\ParserAvdl
+ * @covers \Avron\AST\ParserJson
+ * @uses   \Avron\AST\ByteStreamReader
+ * @uses   \Avron\AST\Comment
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\Comments
+ * @uses   \Avron\AST\CommentsReadCursor
+ * @uses   \Avron\AST\CommentsReadQueue
+ * @uses   \Avron\AST\CommentsSaveCursor
+ * @uses   \Avron\AST\DecimalTypeNode
+ * @uses   \Avron\AST\DeclarationNode
+ * @uses   \Avron\AST\EnumConstantNode
+ * @uses   \Avron\AST\EnumDeclarationNode
+ * @uses   \Avron\AST\ErrorDeclarationNode
+ * @uses   \Avron\AST\ErrorListNode
+ * @uses   \Avron\AST\ErrorType
+ * @uses   \Avron\AST\FieldDeclarationNode
+ * @uses   \Avron\AST\FixedDeclarationNode
+ * @uses   \Avron\AST\ImportStatementNode
+ * @uses   \Avron\AST\ImportType
+ * @uses   \Avron\AST\JsonArrayNode
+ * @uses   \Avron\AST\JsonFieldNode
+ * @uses   \Avron\AST\JsonObjectNode
+ * @uses   \Avron\AST\JsonValueNode
+ * @uses   \Avron\AST\Lexer
+ * @uses   \Avron\AST\LogicalTypeNode
+ * @uses   \Avron\AST\LogicalType
+ * @uses   \Avron\AST\MessageDeclarationNode
+ * @uses   \Avron\AST\NamedType
+ * @uses   \Avron\AST\Node
+ * @uses   \Avron\AST\PrimitiveTypeNode
+ * @uses   \Avron\AST\PrimitiveType
+ * @uses   \Avron\AST\Properties
+ * @uses   \Avron\AST\Property
+ * @uses   \Avron\AST\ProtocolDeclarationNode
+ * @uses   \Avron\AST\RecordDeclarationNode
+ * @uses   \Avron\AST\ReferenceTypeNode
+ * @uses   \Avron\AST\ResultTypeNode
+ * @uses   \Avron\AST\Token
+ * @uses   \Avron\AST\TypeNode
+ * @uses   \Avron\AST\VariableDeclaratorNode
+ * @uses   \Avron\Avron
+ * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Factory
+ * @uses   \Avron\Diag\DumpAstVisitor
+ * @uses   \Avron\AvronException
  */
 class ParserAvdlTest extends AvronTestCase
 {

@@ -2,19 +2,19 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
-use Avron\API\SourceFile;
+use Avron\Api\SourceFile;
 use Avron\Core\NodeNamespace;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\AST\DeclarationNode
- * @uses   \Avron\API\SourceFile
- * @uses   \Avron\AST\Comment
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
+ * @covers \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Api\SourceFile
+ * @uses   \Avron\Ast\Comment
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Core\NodeNamespace
  */
 class DeclarationNodeTest extends TestCase

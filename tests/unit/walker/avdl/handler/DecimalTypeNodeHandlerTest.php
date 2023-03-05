@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\DecimalTypeNode;
+use Avron\Ast\DecimalTypeNode;
 
 /**
- * @covers \Avron\IDL\DecimalTypeNodeHandler
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\DecimalTypeNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\DecimalTypeNodeHandler
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\DecimalTypeNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class DecimalTypeNodeHandlerTest extends HandlerTestCase

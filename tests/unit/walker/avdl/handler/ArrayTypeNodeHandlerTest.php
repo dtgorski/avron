@@ -2,15 +2,15 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\ArrayTypeNode;
+use Avron\Ast\ArrayTypeNode;
 
 /**
- * @covers \Avron\IDL\ArrayTypeNodeHandler
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\ArrayTypeNodeHandler
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ArrayTypeNodeHandlerTest extends HandlerTestCase

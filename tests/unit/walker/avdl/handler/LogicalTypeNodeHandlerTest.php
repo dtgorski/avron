@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\LogicalTypeNode;
-use Avron\AST\LogicalType;
+use Avron\Ast\LogicalTypeNode;
+use Avron\Ast\LogicalType;
 
 /**
- * @covers \Avron\IDL\LogicalTypeNodeHandler
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\LogicalTypeNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\LogicalTypeNodeHandler
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\LogicalTypeNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class LogicalTypeNodeHandlerTest extends HandlerTestCase

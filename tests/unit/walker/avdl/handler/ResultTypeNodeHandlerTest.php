@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\ResultTypeNode;
+use Avron\Ast\ResultTypeNode;
 
 /**
- * @covers \Avron\IDL\ResultTypeNodeHandler
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\ResultTypeNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\ResultTypeNodeHandler
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\ResultTypeNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ResultTypeNodeHandlerTest extends HandlerTestCase

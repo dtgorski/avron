@@ -4,8 +4,8 @@
 
 namespace Avron\Core;
 
-use Avron\API\SourceFile;
-use Avron\API\SourceMap;
+use Avron\Api\SourceFile;
+use Avron\Api\SourceMap;
 use Avron\AvronException;
 use Avron\Factory;
 

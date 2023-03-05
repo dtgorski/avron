@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use Avron\AvronException;
 use Avron\Config;
@@ -43,83 +43,29 @@ class Bootstrap
             new StandardWriter($this->stderr)
         );
 
-        $options = Options::fromArray([
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "h",
-                Option::OPT_LONG /* */ => "help",
-                Option::OPT_DESC /* */ => "Display this usage help, also usable on commands.",
-            ])
-
-
-
-
-
-        ,            Option::fromMap([
-                Option::OPT_SHORT /**/ => "d",
-                Option::OPT_LONG /* */ => "dry-run",
-                Option::OPT_DESC /* */ =>
-                    "Do not perform writes. Reasonable for diagnosis with --verbose."
-            ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "e",
-                Option::OPT_LONG /* */ => "exclude",
-                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
-                Option::OPT_ARGN /* */ => "regex",
-                Option::OPT_TEST /* */ => fn(string $v) => $v[0] != "-",
-                Option::OPT_DESC /* */ =>
-                    "Skip files matching the path pattern. The pattern can be a PCRE regular expression. " .
-                    "This option can be repeated and aggregates to an OR filter."
-            ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "f",
-                Option::OPT_LONG /* */ => "force",
-                Option::OPT_DESC /* */ =>
-                    "This utility does not overwrite existing files unless you activate the --force option. " .
-                    "If --dry-run is active, this option has no effect."
-            ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "o",
-                Option::OPT_LONG /* */ => "output",
-                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
-                Option::OPT_ARGN /* */ => "dir",
-                Option::OPT_TEST /* */ => fn(string $v) => $v[0] != "-",
-                Option::OPT_DESC /* */ =>
-                    "Denotes the output directory for the transpilation target. Existing files " .
-                    "are not overwritten unless you specify the --force option. In general, it is " .
-                    "not advisable to overwrite results, to avoid clutter with obsolete files. " .
-                    "If you do not provide this option, the application will enter the dry-run " .
-                    "mode and files will not be created nor modified."
-            ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "v",
-                Option::OPT_LONG /* */ => "verbose",
-                Option::OPT_DESC /* */ =>
-                    "Increases output verbosity level for diagnostic purposes."
-            ]),
-        ]);
+        $mainHandler = OptionsHandlerMain::create($config, $logger);
 
         $commands = Commands::fromArray([
             CommandHandlerCompile::create($config, $logger),
-            CommandHandlerVerify::create($config, $logger),
         ]);
 
         try {
-            $getOpt = new GetOpt($this->argv, $options, $commands);
-            $arguments = $getOpt->createArguments();
+            $getOpt = new GetOpt($this->argv, $mainHandler->getOptions(), $commands);
+            $params = $getOpt->createParameters();
 
-            $usage = new Usage($this->argv[0], $this->manifest);
-            $usage->renderGlobalHelp($options, $commands);
+            if ($params->getOptions()) {
+                print_r($params);
+            }
+
 //            $command->configure($selectedOptions);
 //            $command->execute($commandOperands);
 
-        } catch (\Avron\CLI\Exception $e) {
+        } catch (\Avron\Cli\Exception $e) {
             foreach (explode("\n", trim($e->getMessage())) as $line) {
                 $logger->error($line);
             }
+            $usage = new Usage($this->argv[0], $this->manifest);
+            $usage->renderUsage($mainHandler->getOptions(), $commands);
             exit(1);
 
         } catch (\Avron\AvronException $e) {

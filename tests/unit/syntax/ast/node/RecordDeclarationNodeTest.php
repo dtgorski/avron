@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\AST\RecordDeclarationNode
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
+ * @covers \Avron\Ast\RecordDeclarationNode
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
  */
 class RecordDeclarationNodeTest extends TestCase
 {

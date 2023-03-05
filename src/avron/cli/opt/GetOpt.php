@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use ArrayIterator;
 
@@ -20,57 +20,51 @@ class GetOpt
 
     /**
      * @param string[] $argv
-     * @param ?Options $options
-     * @param ?Commands $commands
+     * @param Options $options
+     * @param Commands $commands
      */
     public function __construct(
         private readonly array $argv,
-        private readonly ?Options $options,
-        private readonly ?Commands $commands
+        private readonly Options $options,
+        private readonly Commands $commands
     ) {
     }
 
     /** @throws Exception */
-    public function createArguments(): Arguments
+    public function createParameters(): Parameters
     {
-        $_ = $this->argv[0];
-
         $arguments = $this->orderArguments(array_slice($this->argv, 1));
 
-        /** @var ArrayIterator<int,Arg> $it */
+        /** @var ArrayIterator<int,Argument> $it */
         $it = new ArrayIterator($arguments);
 
-        $globals = $this->readOptions($it, $this->options);
+        $options = $this->readOptions($it, $this->options);
         $command = $this->readCommand($it, $this->commands);
         $operands = $this->readOperands($it);
 
-        return Arguments::fromParams($globals, $command, $operands);
+        return Parameters::fromParams($options, $command, $operands);
     }
 
     /**
-     * @param ArrayIterator<int,Arg> $it
-     * @param ?Options $options
-     * @return ?Options|null
+     * @param ArrayIterator<int,Argument> $it
+     * @param Options $options
+     * @return Options
      * @throws Exception
      */
-    private function readOptions(ArrayIterator $it, ?Options $options): ?Options
+    private function readOptions(ArrayIterator $it, Options $options): Options
     {
-        if (!$options) {
-            return null;
-        }
-
         $opts = [];
         while (($arg = $it->current()) && $arg->isOption()) {
 
             // Argument is not a supported option?
             if (!$opt = $options->getByName($arg->getValue())) {
-                $this->throw(self::$errUnsupportedOption, $arg->getValue());
+                throw new Exception(sprintf(self::$errUnsupportedOption, $arg->getValue()));
             }
 
             // Option is standalone? Must not have any value assigned via "=" (preset).
             if ($opt->get(Option::OPT_MODE) == Option::MODE_ARG_NONE) {
                 if ($arg->getPreset()) {
-                    $this->throw(self::$errOptionNoArguments, $arg->getValue());
+                    throw new Exception(sprintf(self::$errOptionNoArguments, $arg->getValue()));
                 }
                 $opts[] = $opt;
                 $it->next();
@@ -85,47 +79,48 @@ class GetOpt
                     continue;
                 }
                 $it->next();
-                if (!($op = $it->current()) || $op->getType() == ArgType::OPERAND) {
+                if (!($op = $it->current()) || $op->getType() == Argument::OPERAND) {
                     $opts[] = Option::fromOption($opt, [Option::OPT_VALUE => $op->getValue()]);
                     $it->next();
                     continue;
                 }
-                $this->throw(self::$errOptionReqArgument, $arg->getValue());
+                throw new Exception(sprintf(self::$errOptionReqArgument, $arg->getValue()));
             }
-            $this->throw(self::$errGetOptMadeABooBoo);
+            throw new Exception(self::$errGetOptMadeABooBoo);
         }
-        return sizeof($opts) ? Options::fromArray($opts) : null;
+        return Options::fromArray($opts);
     }
 
     /**
-     * @param ArrayIterator<int,Arg> $it
-     * @param ?Commands $commands
+     * @param ArrayIterator<int,Argument> $it
+     * @param Commands $commands
      * @return ?Command
      * @throws Exception
      */
-    private function readCommand(ArrayIterator $it, ?Commands $commands): ?Command
+    private function readCommand(ArrayIterator $it, Commands $commands): ?Command
     {
-        if (!$commands) {
+        if ($commands->size() == 0) {
             return null;
         }
         if (!($arg = $it->current()) || !$arg->isOperand()) {
             return null;
         }
         if (!$cmd = $commands->getByName($arg->getValue())) {
-            $this->throw(self::$errUnsupportedCommand, $arg->getValue());
+            throw new Exception(sprintf(self::$errUnsupportedCommand, $arg->getValue()));
         }
         $it->next();
 
         return Command::fromParams(
             $cmd->getName(),
+            $cmd->getUsageArgs(),
             $cmd->getDescription(),
+            $this->readOptions($it, $cmd->getOptions()),
             $cmd->getHandler(),
-            $this->readOptions($it, $cmd->getOptions())
         );
     }
 
     /**
-     * @param ArrayIterator<int,Arg> $it
+     * @param ArrayIterator<int,Argument> $it
      * @return Operands|null
      */
     private function readOperands(ArrayIterator $it): ?Operands
@@ -137,7 +132,7 @@ class GetOpt
      * Put arguments into a more processable form.
      *
      * @param string[] $array
-     * @return Arg[]
+     * @return Argument[]
      */
     private function orderArguments(array $array): array
     {
@@ -146,7 +141,7 @@ class GetOpt
 
         foreach ($array as $arg) {
             if ($rest) {
-                $args[] = Arg::fromOperand($arg);
+                $args[] = Argument::fromOperand($arg);
                 continue;
             }
             if ($arg == "--") {
@@ -158,7 +153,7 @@ class GetOpt
             if (preg_match("/^--([a-z0-9]+[a-z0-9-]*[a-z0-9])(=\S*)?$/iS", $arg, $m)) {
                 $value = $m[1];
                 $preset = isset($m[2]) ? substr($m[2], 1) : null;
-                $args[] = Arg::fromOption($value, $preset);
+                $args[] = Argument::fromOption($value, $preset);
                 continue;
             }
 
@@ -168,20 +163,14 @@ class GetOpt
                 $preset = isset($m[2]) ? substr($m[2], 1) : null;
 
                 for ($i = 0, $n = sizeof($values); $i < $n; $i++) {
-                    $args[] = Arg::fromOption($values[$i], ($i === $n - 1) ? $preset : null);
+                    $args[] = Argument::fromOption($values[$i], ($i === $n - 1) ? $preset : null);
                 }
                 continue;
             }
 
             // Option argument, rest operand or broken.
-            $args[] = Arg::fromOperand($arg);
+            $args[] = Argument::fromOperand($arg);
         }
         return $args;
-    }
-
-    /** @throws Exception */
-    private function throw(string $format, string ...$values): void
-    {
-        throw new Exception(sprintf($format, ...$values));
     }
 }

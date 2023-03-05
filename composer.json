@@ -1,6 +1,6 @@
 {
     "name": "lengo/avron",
-    "description": "Apache Avro IDL transpiler",
+    "description": "Apache Avro IDL transpiler.",
     "license": "MIT",
     "authors": [
         {

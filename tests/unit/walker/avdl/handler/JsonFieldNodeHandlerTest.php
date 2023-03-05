@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\JsonFieldNode;
+use Avron\Ast\JsonFieldNode;
 
 /**
- * @covers \Avron\IDL\JsonFieldNodeHandler
- * @uses   \Avron\AST\JsonFieldNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\JsonFieldNodeHandler
+ * @uses   \Avron\Ast\JsonFieldNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class JsonFieldNodeHandlerTest extends HandlerTestCase

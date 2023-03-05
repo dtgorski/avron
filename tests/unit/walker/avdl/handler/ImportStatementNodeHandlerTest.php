@@ -2,20 +2,20 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\ImportStatementNode;
-use Avron\AST\ImportType;
+use Avron\Ast\ImportStatementNode;
+use Avron\Ast\ImportType;
 
 /**
- * @covers \Avron\IDL\ImportStatementNodeHandler
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\ImportStatementNode
- * @uses   \Avron\AST\ImportType
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Node
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\ImportStatementNodeHandler
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\ImportStatementNode
+ * @uses   \Avron\Ast\ImportType
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class ImportStatementNodeHandlerTest extends HandlerTestCase

@@ -2,14 +2,14 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\AST\ResultTypeNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
+ * @covers \Avron\Ast\ResultTypeNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
  */
 class ResultTypeNodeTest extends TestCase
 {

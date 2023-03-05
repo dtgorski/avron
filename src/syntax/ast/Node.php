@@ -2,10 +2,10 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
-use Avron\API\Visitable;
-use Avron\API\Visitor;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
 use RuntimeException;
 use Stringable;
 

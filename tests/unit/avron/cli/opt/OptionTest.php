@@ -2,12 +2,12 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\CLI\Option
+ * @covers \Avron\Cli\Option
  */
 class OptionTest extends TestCase
 {
@@ -22,8 +22,6 @@ class OptionTest extends TestCase
         $this->assertEquals("ARG_NONE", $option->get(Option::OPT_MODE));
         $this->assertEquals("args", $option->get(Option::OPT_ARGN));
         $this->assertEquals("", $option->get(Option::OPT_VALUE));
-
-        $this->assertIsCallable($option->get(Option::OPT_TEST));
     }
 
     public function testExistingOption()
@@ -33,7 +31,6 @@ class OptionTest extends TestCase
             Option::OPT_LONG => "foo",
             Option::OPT_DESC => "bar",
             Option::OPT_MODE => Option::MODE_ARG_SINGLE,
-            Option::OPT_TEST => fn(string $_): bool => true,
             Option::OPT_ARGN => "file",
         ]);
 
@@ -48,8 +45,6 @@ class OptionTest extends TestCase
         $this->assertEquals("ARG_SINGLE", $option->get(Option::OPT_MODE));
         $this->assertEquals("file", $option->get(Option::OPT_ARGN));
         $this->assertEquals("value", $option->get(Option::OPT_VALUE));
-
-        $this->assertIsCallable($option->get(Option::OPT_TEST));
     }
 
     public function testNumberOfKeysTested()
@@ -62,7 +57,7 @@ class OptionTest extends TestCase
             !str_starts_with($const, "OPT_") ?: $opts++;
             !str_starts_with($const, "ARG_") ?: $args++;
         }
-        $this->assertEquals(7, $opts);
+        $this->assertEquals(6, $opts);
         $this->assertEquals(3, $args);
     }
 }

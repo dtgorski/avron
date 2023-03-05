@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
@@ -14,7 +14,6 @@ class Option
     const OPT_LONG /* */ = "OPT_LONG";
     const OPT_DESC /* */ = "OPT_DESC";
     const OPT_MODE /* */ = "OPT_MODE";
-    const OPT_TEST /* */ = "OPT_TEST";
     const OPT_ARGN /* */ = "OPT_ARGN";
     const OPT_VALUE /**/ = "OPT_VALUE";
 
@@ -31,7 +30,6 @@ class Option
             self::OPT_LONG => "",
             self::OPT_DESC => "",
             self::OPT_MODE => self::MODE_ARG_NONE,
-            self::OPT_TEST => fn(string $_): bool => true,
             self::OPT_ARGN => "args",
             self::OPT_VALUE => "",
         ], $map));
@@ -44,7 +42,6 @@ class Option
             self::OPT_LONG => $option->get(self::OPT_LONG),
             self::OPT_DESC => $option->get(self::OPT_DESC),
             self::OPT_MODE => $option->get(self::OPT_MODE),
-            self::OPT_TEST => $option->get(self::OPT_TEST),
             self::OPT_ARGN => $option->get(self::OPT_ARGN),
             self::OPT_VALUE => $option->get(self::OPT_VALUE),
         ], $map));

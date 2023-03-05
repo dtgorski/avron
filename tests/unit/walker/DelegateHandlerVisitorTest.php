@@ -4,14 +4,14 @@
 
 namespace Avron\Walker;
 
-use Avron\API\NodeHandler;
-use Avron\AST\TestNode;
+use Avron\Api\NodeHandler;
+use Avron\Ast\TestNode;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Avron\Walker\DelegateHandlerVisitor
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
  */
 class DelegateHandlerVisitorTest extends TestCase
 {

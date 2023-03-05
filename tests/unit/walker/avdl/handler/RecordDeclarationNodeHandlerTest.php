@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\RecordDeclarationNode;
+use Avron\Ast\RecordDeclarationNode;
 
 /**
- * @covers \Avron\IDL\RecordDeclarationNodeHandler
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\RecordDeclarationNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\RecordDeclarationNodeHandler
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\RecordDeclarationNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class RecordDeclarationNodeHandlerTest extends HandlerTestCase

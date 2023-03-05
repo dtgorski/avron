@@ -4,7 +4,7 @@
 
 namespace Avron;
 
-use Avron\API\Writer;
+use Avron\Api\Writer;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

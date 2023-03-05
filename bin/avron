@@ -3,8 +3,8 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 02/2023
 
-use Avron\CLI\Bootstrap;
-use Avron\CLI\Manifest;
+use Avron\Cli\Bootstrap;
+use Avron\Cli\Manifest;
 
 setlocale(LC_ALL, "C");
 
@@ -23,7 +23,7 @@ $version = is_readable($path = sprintf("%s/../VERSION", __DIR__))
     ? trim(file_get_contents($path))
     : "0.0.0";
 
-$description = "Apache Avro IDL transpiler";
+$description = "Apache Avro IDL transpiler.";
 
 $manifest = Manifest::fromParams(
     basename($argv[0]),

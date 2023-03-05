@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
-use Avron\API\Visitable;
-use Avron\API\Visitor;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @covers \Avron\AST\Node
- * @uses   \Avron\AST\Properties
+ * @covers \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
  */
 class NodeTest extends TestCase
 {
@@ -121,7 +121,7 @@ class NodeTest extends TestCase
 
     public function testStringable(): void
     {
-        $this->assertSame("[Avron\AST\TestNode]", (string)new TestNode());
+        $this->assertSame("[Avron\Ast\TestNode]", (string)new TestNode());
     }
 }
 

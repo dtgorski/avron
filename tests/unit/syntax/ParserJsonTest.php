@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
 use Avron\AvronException;
 use Avron\AvronTestCase;
@@ -13,19 +13,19 @@ use Avron\Logger;
 /**
  * Majority of the JSONParser code is covered by the derived AVDLParser tests.
  *
- * @covers \Avron\AST\ParserJson
- * @uses   \Avron\AST\ByteStreamReader
- * @uses   \Avron\AST\CommentsReadCursor
- * @uses   \Avron\AST\CommentsSaveCursor
- * @uses   \Avron\AST\CommentsSkipCursor
- * @uses   \Avron\AST\FieldDeclarationNode
- * @uses   \Avron\AST\JsonFieldNode
- * @uses   \Avron\AST\Lexer
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\ParserAvdl
- * @uses   \Avron\AST\ParserBase
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Token
+ * @covers \Avron\Ast\ParserJson
+ * @uses   \Avron\Ast\ByteStreamReader
+ * @uses   \Avron\Ast\CommentsReadCursor
+ * @uses   \Avron\Ast\CommentsSaveCursor
+ * @uses   \Avron\Ast\CommentsSkipCursor
+ * @uses   \Avron\Ast\FieldDeclarationNode
+ * @uses   \Avron\Ast\JsonFieldNode
+ * @uses   \Avron\Ast\Lexer
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\ParserAvdl
+ * @uses   \Avron\Ast\ParserBase
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Token
  * @uses   \Avron\Avron
  * @uses   \Avron\Factory
  */

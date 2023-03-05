@@ -2,18 +2,18 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\TypeNode;
+use Avron\Ast\TypeNode;
 
 /**
- * @covers \Avron\IDL\TypeNodeHandler
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\TypeNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\TypeNodeHandler
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\TypeNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class TypeNodeHandlerTest extends HandlerTestCase

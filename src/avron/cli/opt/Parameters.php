@@ -2,38 +2,38 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class Arguments
+class Parameters
 {
     /**
-     * @param ?Options $globals
+     * @param ?Options $options
      * @param ?Command $command
      * @param ?Operands $operands
-     * @return Arguments
+     * @return Parameters
      */
     public static function fromParams(
-        ?Options $globals,
+        ?Options $options,
         ?Command $command,
         ?Operands $operands
-    ): Arguments {
-        return new Arguments($globals, $command, $operands);
+    ): Parameters {
+        return new Parameters($options, $command, $operands);
     }
 
     private function __construct(
-        private readonly ?Options $globals,
+        private readonly ?Options $options,
         private readonly ?Command $command,
         private readonly ?Operands $operands
     ) {
     }
 
-    public function getGlobals(): ?Options
+    public function getOptions(): ?Options
     {
-        return $this->globals;
+        return $this->options;
     }
 
     public function getCommand(): ?Command

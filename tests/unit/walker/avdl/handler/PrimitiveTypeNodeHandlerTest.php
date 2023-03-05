@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\PrimitiveTypeNode;
-use Avron\AST\PrimitiveType;
+use Avron\Ast\PrimitiveTypeNode;
+use Avron\Ast\PrimitiveType;
 
 /**
- * @covers \Avron\IDL\PrimitiveTypeNodeHandler
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\PrimitiveTypeNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\PrimitiveTypeNodeHandler
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\PrimitiveTypeNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class PrimitiveTypeNodeHandlerTest extends HandlerTestCase

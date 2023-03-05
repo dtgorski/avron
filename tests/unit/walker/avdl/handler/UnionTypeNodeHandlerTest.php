@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\UnionTypeNode;
+use Avron\Ast\UnionTypeNode;
 
 /**
- * @covers \Avron\IDL\UnionTypeNodeHandler
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\UnionTypeNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\UnionTypeNodeHandler
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\UnionTypeNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class UnionTypeNodeHandlerTest extends HandlerTestCase

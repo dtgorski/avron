@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\CLI\Options
- * @uses   \Avron\CLI\Option
+ * @covers \Avron\Cli\Options
+ * @uses   \Avron\Cli\Option
  */
 class OptionsTest extends TestCase
 {

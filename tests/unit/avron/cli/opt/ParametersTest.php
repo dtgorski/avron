@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\CLI\Arguments
- * @uses   \Avron\CLI\Command
- * @uses   \Avron\CLI\Operands
- * @uses   \Avron\CLI\Options
+ * @covers \Avron\Cli\Parameters
+ * @uses   \Avron\Cli\Command
+ * @uses   \Avron\Cli\Operands
+ * @uses   \Avron\Cli\Options
  */
-class ArgumentsTest extends TestCase
+class ParametersTest extends TestCase
 {
     public function testFromParams()
     {
@@ -20,9 +20,9 @@ class ArgumentsTest extends TestCase
         $command = $this->createMock(Command::class);
         $operands = $this->createMock(Operands::class);
 
-        $args = Arguments::fromParams($globals, $command, $operands);
+        $args = Parameters::fromParams($globals, $command, $operands);
 
-        $this->assertSame($globals, $args->getGlobals());
+        $this->assertSame($globals, $args->getOptions());
         $this->assertSame($command, $args->getCommand());
         $this->assertSame($operands, $args->getOperands());
     }

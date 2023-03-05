@@ -2,9 +2,9 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\API\Writer;
+use Avron\Api\Writer;
 use RuntimeException;
 
 /**

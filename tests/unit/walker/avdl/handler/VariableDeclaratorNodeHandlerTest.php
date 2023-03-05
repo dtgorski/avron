@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\VariableDeclaratorNode;
+use Avron\Ast\VariableDeclaratorNode;
 
 /**
- * @covers \Avron\IDL\VariableDeclaratorNodeHandler
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\VariableDeclaratorNode
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\VariableDeclaratorNodeHandler
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\VariableDeclaratorNode
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class VariableDeclaratorNodeHandlerTest extends HandlerTestCase

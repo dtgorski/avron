@@ -2,17 +2,17 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\NullableTypeNode;
+use Avron\Ast\NullableTypeNode;
 
 /**
- * @covers \Avron\IDL\NullableTypeNodeHandler
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\NullableTypeNode
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\IDL\HandlerAbstract
- * @uses   \Avron\IDL\TypeNodeHandler
+ * @covers \Avron\Idl\NullableTypeNodeHandler
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\NullableTypeNode
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Idl\HandlerAbstract
+ * @uses   \Avron\Idl\TypeNodeHandler
  * @uses   \Avron\BufferedWriter
  */
 class NullableTypeNodeHandlerTest extends HandlerTestCase

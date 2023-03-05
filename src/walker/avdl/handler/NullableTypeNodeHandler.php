@@ -2,11 +2,11 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\API\Visitable;
-use Avron\AST\NullableTypeNode;
-use Avron\AST\TypeNode;
+use Avron\Api\Visitable;
+use Avron\Ast\NullableTypeNode;
+use Avron\Ast\TypeNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

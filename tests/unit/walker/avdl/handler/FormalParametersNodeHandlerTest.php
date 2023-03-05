@@ -2,20 +2,20 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\AST\FormalParametersNode;
-use Avron\AST\MessageDeclarationNode;
+use Avron\Ast\FormalParametersNode;
+use Avron\Ast\MessageDeclarationNode;
 
 /**
- * @covers \Avron\IDL\FormalParametersNodeHandler
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\FormalParametersNode
- * @uses   \Avron\AST\MessageDeclarationNode
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\IDL\HandlerAbstract
+ * @covers \Avron\Idl\FormalParametersNodeHandler
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\FormalParametersNode
+ * @uses   \Avron\Ast\MessageDeclarationNode
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
  */
 class FormalParametersNodeHandlerTest extends HandlerTestCase

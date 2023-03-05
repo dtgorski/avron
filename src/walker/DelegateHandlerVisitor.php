@@ -4,9 +4,9 @@
 
 namespace Avron\Walker;
 
-use Avron\API\NodeHandler;
-use Avron\API\Visitable;
-use Avron\API\Visitor;
+use Avron\Api\NodeHandler;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

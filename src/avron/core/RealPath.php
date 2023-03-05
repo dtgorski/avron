@@ -4,7 +4,7 @@
 
 namespace Avron\Core;
 
-use Avron\API\SourceFile;
+use Avron\Api\SourceFile;
 use Avron\AvronException;
 
 /**

@@ -9,5 +9,6 @@ dev/
 tests/reports/
 vendor/
 
-# must be created in CI workflow
+# Must be created in CI/CD workflow.
+# Reflects current git revision/tag.
 VERSION

@@ -4,10 +4,10 @@
 
 namespace Avron\Core;
 
-use Avron\API\SourceFile;
-use Avron\API\Visitable;
-use Avron\API\Visitor;
-use Avron\AST\DeclarationNode;
+use Avron\Api\SourceFile;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
+use Avron\Ast\DeclarationNode;
 use Avron\AvronException;
 
 /**

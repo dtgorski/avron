@@ -6,9 +6,9 @@ namespace Avron\Core;
 
 use ArrayIterator;
 use IteratorAggregate;
-use Avron\API\SourceFile;
-use Avron\API\SourceMap;
-use Avron\API\Visitable;
+use Avron\Api\SourceFile;
+use Avron\Api\SourceMap;
+use Avron\Api\Visitable;
 use Traversable;
 
 /**

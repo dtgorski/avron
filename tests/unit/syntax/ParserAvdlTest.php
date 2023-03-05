@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\AST;
+namespace Avron\Ast;
 
 use Avron\AvronException;
 use Avron\AvronTestCase;
@@ -13,48 +13,48 @@ use Avron\Factory;
 use Avron\Logger;
 
 /**
- * @covers \Avron\AST\ParserBase
- * @covers \Avron\AST\ParserAvdl
- * @covers \Avron\AST\ParserJson
- * @uses   \Avron\AST\ByteStreamReader
- * @uses   \Avron\AST\Comment
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\Comments
- * @uses   \Avron\AST\CommentsReadCursor
- * @uses   \Avron\AST\CommentsReadQueue
- * @uses   \Avron\AST\CommentsSaveCursor
- * @uses   \Avron\AST\DecimalTypeNode
- * @uses   \Avron\AST\DeclarationNode
- * @uses   \Avron\AST\EnumConstantNode
- * @uses   \Avron\AST\EnumDeclarationNode
- * @uses   \Avron\AST\ErrorDeclarationNode
- * @uses   \Avron\AST\ErrorListNode
- * @uses   \Avron\AST\ErrorType
- * @uses   \Avron\AST\FieldDeclarationNode
- * @uses   \Avron\AST\FixedDeclarationNode
- * @uses   \Avron\AST\ImportStatementNode
- * @uses   \Avron\AST\ImportType
- * @uses   \Avron\AST\JsonArrayNode
- * @uses   \Avron\AST\JsonFieldNode
- * @uses   \Avron\AST\JsonObjectNode
- * @uses   \Avron\AST\JsonValueNode
- * @uses   \Avron\AST\Lexer
- * @uses   \Avron\AST\LogicalTypeNode
- * @uses   \Avron\AST\LogicalType
- * @uses   \Avron\AST\MessageDeclarationNode
- * @uses   \Avron\AST\NamedType
- * @uses   \Avron\AST\Node
- * @uses   \Avron\AST\PrimitiveTypeNode
- * @uses   \Avron\AST\PrimitiveType
- * @uses   \Avron\AST\Properties
- * @uses   \Avron\AST\Property
- * @uses   \Avron\AST\ProtocolDeclarationNode
- * @uses   \Avron\AST\RecordDeclarationNode
- * @uses   \Avron\AST\ReferenceTypeNode
- * @uses   \Avron\AST\ResultTypeNode
- * @uses   \Avron\AST\Token
- * @uses   \Avron\AST\TypeNode
- * @uses   \Avron\AST\VariableDeclaratorNode
+ * @covers \Avron\Ast\ParserBase
+ * @covers \Avron\Ast\ParserAvdl
+ * @covers \Avron\Ast\ParserJson
+ * @uses   \Avron\Ast\ByteStreamReader
+ * @uses   \Avron\Ast\Comment
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\Comments
+ * @uses   \Avron\Ast\CommentsReadCursor
+ * @uses   \Avron\Ast\CommentsReadQueue
+ * @uses   \Avron\Ast\CommentsSaveCursor
+ * @uses   \Avron\Ast\DecimalTypeNode
+ * @uses   \Avron\Ast\DeclarationNode
+ * @uses   \Avron\Ast\EnumConstantNode
+ * @uses   \Avron\Ast\EnumDeclarationNode
+ * @uses   \Avron\Ast\ErrorDeclarationNode
+ * @uses   \Avron\Ast\ErrorListNode
+ * @uses   \Avron\Ast\ErrorType
+ * @uses   \Avron\Ast\FieldDeclarationNode
+ * @uses   \Avron\Ast\FixedDeclarationNode
+ * @uses   \Avron\Ast\ImportStatementNode
+ * @uses   \Avron\Ast\ImportType
+ * @uses   \Avron\Ast\JsonArrayNode
+ * @uses   \Avron\Ast\JsonFieldNode
+ * @uses   \Avron\Ast\JsonObjectNode
+ * @uses   \Avron\Ast\JsonValueNode
+ * @uses   \Avron\Ast\Lexer
+ * @uses   \Avron\Ast\LogicalTypeNode
+ * @uses   \Avron\Ast\LogicalType
+ * @uses   \Avron\Ast\MessageDeclarationNode
+ * @uses   \Avron\Ast\NamedType
+ * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\PrimitiveTypeNode
+ * @uses   \Avron\Ast\PrimitiveType
+ * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\Property
+ * @uses   \Avron\Ast\ProtocolDeclarationNode
+ * @uses   \Avron\Ast\RecordDeclarationNode
+ * @uses   \Avron\Ast\ReferenceTypeNode
+ * @uses   \Avron\Ast\ResultTypeNode
+ * @uses   \Avron\Ast\Token
+ * @uses   \Avron\Ast\TypeNode
+ * @uses   \Avron\Ast\VariableDeclaratorNode
  * @uses   \Avron\Avron
  * @uses   \Avron\BufferedWriter
  * @uses   \Avron\Factory

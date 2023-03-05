@@ -4,12 +4,12 @@
 
 namespace Avron\Core;
 
-use Avron\API\SourceParser;
-use Avron\API\SourceMap;
-use Avron\API\Visitable;
-use Avron\API\Visitor;
-use Avron\AST\ImportStatementNode;
-use Avron\AST\ImportType;
+use Avron\Api\SourceParser;
+use Avron\Api\SourceMap;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
+use Avron\Ast\ImportStatementNode;
+use Avron\Ast\ImportType;
 use Avron\AvronException;
 
 /**

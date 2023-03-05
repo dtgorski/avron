@@ -11,26 +11,16 @@ use Avron\Logger;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class CommandHandlerVerify implements Handler
+class CommandHandlerVersion implements Handler
 {
-    private const NAME = "verify";
-    private const ARGS = "[OPTIONS...] FILE...";
-    private const DESC = "Verify Avro IDL syntax and integrity.";
+    private const NAME = "version";
+    private const ARGS = "";
+    private const DESC = "Print program version and exit.";
 
     /** @return Options */
     private static function options(): Options
     {
-        return Options::fromArray([
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "e",
-                Option::OPT_LONG /* */ => "exclude",
-                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
-                Option::OPT_ARGN /* */ => "regex",
-                Option::OPT_DESC /* */ =>
-                    "Skip files matching the path pattern. The pattern can be a PCRE regular expression. " .
-                    "This option can be repeated and aggregates to an OR filter."
-            ]),
-        ]);
+        return Options::fromArray([]);
     }
 
     public static function create(Config $config, Logger $logger): Command

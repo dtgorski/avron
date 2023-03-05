@@ -2,13 +2,13 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Avron\CLI\Commands
- * @uses   \Avron\CLI\Command
+ * @covers \Avron\Cli\Commands
+ * @uses   \Avron\Cli\Command
  */
 class CommandsTest extends TestCase
 {
@@ -20,8 +20,8 @@ class CommandsTest extends TestCase
         $handler2 = $this->createMock(Handler::class);
         $options2 = $this->createMock(Options::class);
 
-        $command1 = Command::fromParams("foo", "bar", $handler1, $options1);
-        $command2 = Command::fromParams("baz", "baf", $handler2, $options2);
+        $command1 = Command::fromParams("foo", "baz", "bar", $options1, $handler1);
+        $command2 = Command::fromParams("baz", "baz", "baf", $options2, $handler2);
 
         $commands = Commands::fromArray([$command1, $command2]);
 

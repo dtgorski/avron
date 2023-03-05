@@ -4,10 +4,10 @@
 
 namespace Avron\Diag;
 
-use Avron\API\Visitable;
-use Avron\API\Visitor;
-use Avron\API\Writer;
-use Avron\AST\Node;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
+use Avron\Api\Writer;
+use Avron\Ast\Node;
 use Avron\StandardWriter;
 
 /**

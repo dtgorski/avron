@@ -2,16 +2,16 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\IDL;
+namespace Avron\Idl;
 
-use Avron\API\NodeHandler;
-use Avron\API\Visitable;
-use Avron\AST\Comment;
-use Avron\AST\Comments;
-use Avron\AST\DeclarationNode;
-use Avron\AST\FieldDeclarationNode;
-use Avron\AST\Properties;
-use Avron\AST\ProtocolDeclarationNode;
+use Avron\Api\NodeHandler;
+use Avron\Api\Visitable;
+use Avron\Ast\Comment;
+use Avron\Ast\Comments;
+use Avron\Ast\DeclarationNode;
+use Avron\Ast\FieldDeclarationNode;
+use Avron\Ast\Properties;
+use Avron\Ast\ProtocolDeclarationNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.

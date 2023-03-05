@@ -2,7 +2,7 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\CLI;
+namespace Avron\Cli;
 
 use Avron\Config;
 use Avron\Factory;
@@ -15,6 +15,7 @@ use Avron\Logger;
 class CommandHandlerCompile implements Handler
 {
     private const NAME = "compile";
+    private const ARGS = "[OPTION...] FILE...";
     private const DESC = "Compile Avro IDL to target representation.";
 
     /** @return Options */
@@ -22,37 +23,38 @@ class CommandHandlerCompile implements Handler
     {
         return Options::fromArray([
             Option::fromMap([
+                Option::OPT_SHORT /**/ => "h",
+                Option::OPT_LONG /* */ => "help",
+                Option::OPT_DESC /* */ =>
+                    "Display this usage help."
+            ]),
+            Option::fromMap([
                 Option::OPT_SHORT /**/ => "d",
                 Option::OPT_LONG /* */ => "dry-run",
                 Option::OPT_DESC /* */ =>
-                    "Do not perform writes. Reasonable for diagnosis with --verbose."
+                    "Does not perform writes. Reasonable for diagnosis with --verbose."
             ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "e",
-                Option::OPT_LONG /* */ => "exclude",
-                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
-                Option::OPT_ARGN /* */ => "regex",
-                Option::OPT_TEST /* */ => fn(string $v) => $v[0] != "-",
-                Option::OPT_DESC /* */ =>
-                    "Skip files matching the path pattern. The pattern can be a PCRE regular expression. " .
-                    "This option can be repeated and aggregates to an OR filter."
-            ]),
-
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "f",
-                Option::OPT_LONG /* */ => "force",
-                Option::OPT_DESC /* */ =>
-                    "This utility does not overwrite existing files unless you activate the --force option. " .
-                    "If --dry-run is active, this option has no effect."
-            ]),
-
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "e",
+//                Option::OPT_LONG /* */ => "exclude",
+//                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
+//                Option::OPT_ARGN /* */ => "regex",
+//                Option::OPT_DESC /* */ =>
+//                    "Skip files matching the path pattern. The pattern can be a PCRE regular expression. " .
+//                    "This option can be repeated and aggregates to an OR filter."
+//            ]),
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "f",
+//                Option::OPT_LONG /* */ => "force",
+//                Option::OPT_DESC /* */ =>
+//                    "This utility does not overwrite existing files unless you activate the --force option. " .
+//                    "If --dry-run is active, this option has no effect."
+//            ]),
             Option::fromMap([
                 Option::OPT_SHORT /**/ => "o",
                 Option::OPT_LONG /* */ => "output",
                 Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
                 Option::OPT_ARGN /* */ => "dir",
-                Option::OPT_TEST /* */ => fn(string $v) => $v[0] != "-",
                 Option::OPT_DESC /* */ =>
                     "Denotes the output directory for the transpilation target. Existing files " .
                     "are not overwritten unless you specify the --force option. In general, it is " .
@@ -60,7 +62,6 @@ class CommandHandlerCompile implements Handler
                     "If you do not provide this option, the application will enter the dry-run " .
                     "mode and files will not be created nor modified."
             ]),
-
             Option::fromMap([
                 Option::OPT_SHORT /**/ => "v",
                 Option::OPT_LONG /* */ => "verbose",
@@ -72,7 +73,13 @@ class CommandHandlerCompile implements Handler
 
     public static function create(Config $config, Logger $logger): Command
     {
-        return Command::fromParams(self::NAME, self::DESC, new self($config, $logger), self::options());
+        return Command::fromParams(
+            self::NAME,
+            self::ARGS,
+            self::DESC,
+            self::options(),
+            new self($config, $logger)
+        );
     }
 
     private function __construct(
@@ -88,7 +95,7 @@ class CommandHandlerCompile implements Handler
         $config->set(Config::OUTPUT_DIRECTORY, $options->getByName("output") ?? "");
         $config->set(Config::VERBOSITY_LEVEL, $options->getByName("verbose") ?? 0);
     }
-//
+
 //    /** @throws Exception */
     public function execute(Operands $operands): void
     {

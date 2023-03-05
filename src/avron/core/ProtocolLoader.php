@@ -4,9 +4,9 @@
 
 namespace Avron\Core;
 
-use Avron\API\SourceLoader;
-use Avron\API\SourceParser;
-use Avron\API\SourceMap;
+use Avron\Api\SourceLoader;
+use Avron\Api\SourceParser;
+use Avron\Api\SourceMap;
 use Avron\AvronException;
 
 /**

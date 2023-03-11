@@ -5,6 +5,7 @@
 namespace Avron\Ast;
 
 use Avron\AvronException;
+use Avron\Core\VisitableNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
@@ -13,10 +14,10 @@ use Avron\AvronException;
 class ParserJson extends ParserBase
 {
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    public function parseJson(): Node
+    public function parseJson(): VisitableNode
     {
         // @formatter:off
         // phpcs:disable
@@ -39,48 +40,48 @@ class ParserJson extends ParserBase
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonString(): Node
+    protected function parseJsonString(): VisitableNode
     {
         return new JsonValueNode($this->consume(Token::STRING)->getLoad());
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonNumber(): Node
+    protected function parseJsonNumber(): VisitableNode
     {
         return new JsonValueNode((float)$this->consume(Token::NUMBER)->getLoad());
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonBool(): Node
+    protected function parseJsonBool(): VisitableNode
     {
         $token = $this->consume(Token::IDENT, "true", "false");
         return new JsonValueNode($token->getLoad() === "true");
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonNull(): Node
+    protected function parseJsonNull(): VisitableNode
     {
         $this->consume(Token::IDENT, "null");
         return new JsonValueNode(null);
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonArray(): Node
+    protected function parseJsonArray(): VisitableNode
     {
         $node = new JsonArrayNode();
         $this->consume(Token::LBRACK);
@@ -98,10 +99,10 @@ class ParserJson extends ParserBase
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonObject(): Node
+    protected function parseJsonObject(): VisitableNode
     {
         $node = new JsonObjectNode();
         $this->consume(Token::LBRACE);
@@ -119,10 +120,10 @@ class ParserJson extends ParserBase
     }
 
     /**
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseJsonField(): Node
+    protected function parseJsonField(): VisitableNode
     {
         $node = new JsonFieldNode($this->consume(Token::STRING)->getLoad());
         $this->consume(Token::COLON);

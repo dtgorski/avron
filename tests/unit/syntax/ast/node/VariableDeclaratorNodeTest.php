@@ -8,10 +8,11 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Avron\Ast\VariableDeclaratorNode
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
-class VariableDeclarationNodeTest extends TestCase
+class VariableDeclaratorNodeTest extends TestCase
 {
     public function testGetName(): void
     {

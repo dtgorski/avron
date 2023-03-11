@@ -14,19 +14,21 @@ use Avron\Logger;
  * Majority of the JSONParser code is covered by the derived AVDLParser tests.
  *
  * @covers \Avron\Ast\ParserJson
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\ByteStreamReader
  * @uses   \Avron\Ast\CommentsReadCursor
  * @uses   \Avron\Ast\CommentsSaveCursor
  * @uses   \Avron\Ast\CommentsSkipCursor
  * @uses   \Avron\Ast\FieldDeclarationNode
  * @uses   \Avron\Ast\JsonFieldNode
+ * @uses   \Avron\Ast\JsonObjectNode
  * @uses   \Avron\Ast\Lexer
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\ParserAvdl
  * @uses   \Avron\Ast\ParserBase
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\Token
  * @uses   \Avron\Avron
+ * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Factory
  */
 class ParserJsonTest extends AvronTestCase

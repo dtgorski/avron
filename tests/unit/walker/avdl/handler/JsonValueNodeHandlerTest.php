@@ -8,11 +8,12 @@ use Avron\Ast\JsonValueNode;
 
 /**
  * @covers \Avron\Idl\JsonValueNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\JsonValueNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class JsonValueNodeHandlerTest extends HandlerTestCase
 {
@@ -41,12 +42,12 @@ class JsonValueNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new JsonValueNode(42));
         $node->addNode(new JsonValueNode(42));
 
         $handler = new JsonValueNodeHandler($ctx);
-        $handler->handleVisit($node->getChildNodeAt(1));
+        $handler->handleVisit($node->nodeAt(1));
 
         $this->assertEquals(", 42", $writer->getBuffer());
     }

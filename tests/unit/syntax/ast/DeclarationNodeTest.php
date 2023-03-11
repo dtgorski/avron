@@ -13,9 +13,10 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Api\SourceFile
  * @uses   \Avron\Ast\Comment
  * @uses   \Avron\Ast\Comments
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Core\NodeNamespace
+ * @uses   \Avron\Core\VisitableNode
  */
 class DeclarationNodeTest extends TestCase
 {

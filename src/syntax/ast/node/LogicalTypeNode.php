@@ -8,11 +8,13 @@ namespace Avron\Ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class LogicalTypeNode extends Node
+class LogicalTypeNode extends AstNode
 {
-    public function __construct(private readonly LogicalType $type)
-    {
-        parent::__construct();
+    public function __construct(
+        private readonly LogicalType $type,
+        ?Properties $properties = null
+    ) {
+        parent::__construct($properties);
     }
 
     public function getType(): LogicalType

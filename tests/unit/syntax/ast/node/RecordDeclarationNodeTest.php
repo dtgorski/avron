@@ -10,8 +10,9 @@ use PHPUnit\Framework\TestCase;
  * @covers \Avron\Ast\RecordDeclarationNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
 class RecordDeclarationNodeTest extends TestCase
 {

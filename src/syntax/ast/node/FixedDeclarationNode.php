@@ -12,9 +12,10 @@ class FixedDeclarationNode extends DeclarationNode
 {
     public function __construct(
         private readonly string $name,
-        private readonly int $value
+        private readonly int $value,
+        ?Properties $properties = null
     ) {
-        parent::__construct();
+        parent::__construct($properties);
     }
 
     public function getName(): string

@@ -8,11 +8,12 @@ use Avron\Ast\MapTypeNode;
 
 /**
  * @covers \Avron\Idl\MapTypeNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\MapTypeNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class MapTypeNodeHandlerTest extends HandlerTestCase
 {

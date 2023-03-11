@@ -23,7 +23,7 @@ class JsonValueNodeHandler extends HandlerAbstract
         /** @var JsonValueNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
-        if ($visitable->getPrevSibling()) {
+        if ($visitable->prevNode()) {
             $this->write(", ");
         }
         $val = $visitable->getValue();

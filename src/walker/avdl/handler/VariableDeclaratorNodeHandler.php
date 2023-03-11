@@ -27,7 +27,7 @@ class VariableDeclaratorNodeHandler extends HandlerAbstract
         $this->writePropertiesSingleLine($visitable->getProperties());
         $this->write($visitable->getName());
 
-        if ($visitable->getChildCount()) {
+        if ($visitable->nodeCount()) {
             $this->write(" = ");
         }
 
@@ -39,7 +39,7 @@ class VariableDeclaratorNodeHandler extends HandlerAbstract
         /** @var VariableDeclaratorNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);
 
-        if ($visitable->getNextSibling()) {
+        if ($visitable->nextNode()) {
             $this->write(",");
         }
     }

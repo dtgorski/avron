@@ -23,7 +23,7 @@ class FormalParameterNodeHandler extends HandlerAbstract
         /** @var FormalParameterNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
-        if ($visitable->getPrevSibling()) {
+        if ($visitable->prevNode()) {
             $this->write(", ");
         }
 

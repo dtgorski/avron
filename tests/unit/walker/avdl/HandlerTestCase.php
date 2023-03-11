@@ -4,8 +4,8 @@
 
 namespace Avron\Idl;
 
+use Avron\Ast\AstNode;
 use Avron\Ast\DeclarationNode;
-use Avron\Ast\Node;
 use Avron\BufferedWriter;
 use PHPUnit\Framework\TestCase;
 
@@ -20,9 +20,9 @@ class HandlerTestCase extends TestCase
         return [$ctx, $writer];
     }
 
-    protected function createAnonymousNode(): Node
+    protected function createAstNode(): AstNode
     {
-        return new class extends Node {
+        return new class extends AstNode {
         };
     }
 

@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Avron\Ast\ReferenceTypeNode
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
 class ReferenceTypeNodeTest extends TestCase
 {

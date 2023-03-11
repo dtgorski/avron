@@ -11,8 +11,9 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\ImportType
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
 class ImportStatementNodeTest extends TestCase
 {

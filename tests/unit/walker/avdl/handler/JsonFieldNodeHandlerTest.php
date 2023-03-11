@@ -8,11 +8,12 @@ use Avron\Ast\JsonFieldNode;
 
 /**
  * @covers \Avron\Idl\JsonFieldNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\JsonFieldNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class JsonFieldNodeHandlerTest extends HandlerTestCase
 {
@@ -40,12 +41,12 @@ class JsonFieldNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new JsonFieldNode("name"));
         $node->addNode(new JsonFieldNode("name"));
 
         $handler = new JsonFieldNodeHandler($ctx);
-        $handler->handleVisit($node->getChildNodeAt(1));
+        $handler->handleVisit($node->nodeAt(1));
 
         $this->assertEquals(', "name":', $writer->getBuffer());
     }

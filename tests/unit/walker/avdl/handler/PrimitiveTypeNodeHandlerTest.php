@@ -9,11 +9,12 @@ use Avron\Ast\PrimitiveType;
 
 /**
  * @covers \Avron\Idl\PrimitiveTypeNodeHandler
- * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\PrimitiveTypeNode
- * @uses   \Avron\Idl\HandlerAbstract
+ * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class PrimitiveTypeNodeHandlerTest extends HandlerTestCase
 {

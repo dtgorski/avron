@@ -10,10 +10,13 @@ namespace Avron\Ast;
  */
 class ErrorDeclarationNode extends DeclarationNode
 {
-    public function __construct(private readonly string $name)
-    {
-        parent::__construct();
+    public function __construct(
+        private readonly string $name,
+        ?Properties $properties = null
+    ) {
+        parent::__construct($properties);
     }
+
 
     public function getName(): string
     {

@@ -8,10 +8,9 @@ namespace Avron\Ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class ErrorListNode extends Node
+class ErrorListNode extends AstNode
 {
-    public function __construct(private readonly ErrorType $type)
-    {
+    public function __construct(private readonly ErrorType $type) {
         parent::__construct();
     }
 

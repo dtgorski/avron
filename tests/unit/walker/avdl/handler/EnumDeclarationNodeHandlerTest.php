@@ -8,13 +8,14 @@ use Avron\Ast\EnumDeclarationNode;
 
 /**
  * @covers \Avron\Idl\EnumDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\EnumDeclarationNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class EnumDeclarationNodeHandlerTest extends HandlerTestCase
 {

@@ -16,6 +16,7 @@ use Avron\Logger;
  * @covers \Avron\Ast\ParserBase
  * @covers \Avron\Ast\ParserAvdl
  * @covers \Avron\Ast\ParserJson
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\ByteStreamReader
  * @uses   \Avron\Ast\Comment
  * @uses   \Avron\Ast\Comments
@@ -39,13 +40,12 @@ use Avron\Logger;
  * @uses   \Avron\Ast\JsonObjectNode
  * @uses   \Avron\Ast\JsonValueNode
  * @uses   \Avron\Ast\Lexer
- * @uses   \Avron\Ast\LogicalTypeNode
  * @uses   \Avron\Ast\LogicalType
+ * @uses   \Avron\Ast\LogicalTypeNode
  * @uses   \Avron\Ast\MessageDeclarationNode
  * @uses   \Avron\Ast\NamedType
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Ast\PrimitiveTypeNode
  * @uses   \Avron\Ast\PrimitiveType
+ * @uses   \Avron\Ast\PrimitiveTypeNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\Property
  * @uses   \Avron\Ast\ProtocolDeclarationNode
@@ -56,10 +56,11 @@ use Avron\Logger;
  * @uses   \Avron\Ast\TypeNode
  * @uses   \Avron\Ast\VariableDeclaratorNode
  * @uses   \Avron\Avron
- * @uses   \Avron\BufferedWriter
- * @uses   \Avron\Factory
- * @uses   \Avron\Diag\DumpAstVisitor
  * @uses   \Avron\AvronException
+ * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Diag\DumpAstVisitor
+ * @uses   \Avron\Factory
  */
 class ParserAvdlTest extends AvronTestCase
 {

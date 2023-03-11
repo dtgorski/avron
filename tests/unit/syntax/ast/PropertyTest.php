@@ -31,7 +31,7 @@ class PropertyTest extends TestCase
     {
         $prop = new Property("foo", 4.2);
         $this->assertEquals("foo", $prop->getName());
-        $this->assertEquals(4.2, $prop->getValue());
+        $this->assertSame(4.2, $prop->getValue());
         $this->assertEquals('{"foo":4.2}', json_encode($prop));
     }
 

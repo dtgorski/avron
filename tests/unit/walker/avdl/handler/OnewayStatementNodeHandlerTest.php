@@ -8,13 +8,14 @@ use Avron\Ast\OnewayStatementNode;
 
 /**
  * @covers \Avron\Idl\OnewayStatementNodeHandler
- * @covers \Avron\Ast\OnewayStatementNode
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
+ * @uses   \Avron\Ast\OnewayStatementNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
-class OnewayLiteralNodeHandlerTest extends HandlerTestCase
+class OnewayStatementNodeHandlerTest extends HandlerTestCase
 {
     public function testCanHandle(): void
     {

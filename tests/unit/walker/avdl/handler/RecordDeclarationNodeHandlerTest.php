@@ -8,13 +8,14 @@ use Avron\Ast\RecordDeclarationNode;
 
 /**
  * @covers \Avron\Idl\RecordDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\RecordDeclarationNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class RecordDeclarationNodeHandlerTest extends HandlerTestCase
 {

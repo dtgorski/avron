@@ -8,11 +8,12 @@ use Avron\Ast\DecimalTypeNode;
 
 /**
  * @covers \Avron\Idl\DecimalTypeNodeHandler
- * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\DecimalTypeNode
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
+ * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class DecimalTypeNodeHandlerTest extends HandlerTestCase
 {

@@ -8,13 +8,14 @@ use Avron\Ast\TypeNode;
 
 /**
  * @covers \Avron\Idl\TypeNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\TypeNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class TypeNodeHandlerTest extends HandlerTestCase
 {
@@ -65,12 +66,12 @@ class TypeNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new TypeNode());
         $node->addNode(new TypeNode());
 
         $handler = new TypeNodeHandler($ctx);
-        $handler->handleLeave($node->getChildNodeAt(0));
+        $handler->handleLeave($node->nodeAt(0));
 
         $this->assertEquals(", ", $writer->getBuffer());
     }

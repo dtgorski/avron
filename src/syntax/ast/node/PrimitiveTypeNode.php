@@ -8,11 +8,14 @@ namespace Avron\Ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class PrimitiveTypeNode extends Node
+class PrimitiveTypeNode extends AstNode
 {
-    public function __construct(private readonly PrimitiveType $type)
+    public function __construct(
+        private readonly PrimitiveType $type,
+        ?Properties $properties = null
+    )
     {
-        parent::__construct();
+        parent::__construct($properties);
     }
 
     public function getType(): PrimitiveType

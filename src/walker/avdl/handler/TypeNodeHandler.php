@@ -25,8 +25,8 @@ class TypeNodeHandler extends HandlerAbstract
         /** @var TypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
-        if ($visitable->getParent() instanceof DeclarationNode) {
-            if (!$visitable->getChildNodeAt(0) instanceof OnewayStatementNode) {
+        if ($visitable->parentNode() instanceof DeclarationNode) {
+            if (!$visitable->nodeAt(0) instanceof OnewayStatementNode) {
                 $this->write($this->indent());
             }
         } else {
@@ -40,7 +40,7 @@ class TypeNodeHandler extends HandlerAbstract
         /** @var TypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);
 
-        if ($visitable->getNextSibling() instanceof TypeNode) {
+        if ($visitable->nextNode() instanceof TypeNode) {
             $this->write(", ");
         }
     }

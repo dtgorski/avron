@@ -8,11 +8,12 @@ use Avron\Ast\VariableDeclaratorNode;
 
 /**
  * @covers \Avron\Idl\VariableDeclaratorNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\VariableDeclaratorNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class VariableDeclaratorNodeHandlerTest extends HandlerTestCase
 {
@@ -41,7 +42,7 @@ class VariableDeclaratorNodeHandlerTest extends HandlerTestCase
         list($ctx, $writer) = $this->createContextAndWriter();
 
         $node = new VariableDeclaratorNode("name");
-        $node->addNode($this->createAnonymousNode());
+        $node->addNode($this->createAstNode());
 
         $handler = new VariableDeclaratorNodeHandler($ctx);
         $handler->handleVisit($node);
@@ -63,12 +64,12 @@ class VariableDeclaratorNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new VariableDeclaratorNode(""));
         $node->addNode(new VariableDeclaratorNode(""));
 
         $handler = new VariableDeclaratorNodeHandler($ctx);
-        $handler->handleLeave($node->getChildNodeAt(0));
+        $handler->handleLeave($node->nodeAt(0));
 
         $this->assertEquals(",", $writer->getBuffer());
     }

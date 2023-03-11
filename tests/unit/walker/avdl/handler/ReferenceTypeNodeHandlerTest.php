@@ -8,11 +8,12 @@ use Avron\Ast\ReferenceTypeNode;
 
 /**
  * @covers \Avron\Idl\ReferenceTypeNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\ReferenceTypeNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class ReferenceTypeNodeHandlerTest extends HandlerTestCase
 {

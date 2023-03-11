@@ -8,12 +8,13 @@ use Avron\Ast\FormalParameterNode;
 
 /**
  * @covers \Avron\Idl\FormalParameterNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\FormalParameterNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class FormalParameterNodeHandlerTest extends HandlerTestCase
 {
@@ -41,12 +42,12 @@ class FormalParameterNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new FormalParameterNode());
         $node->addNode(new FormalParameterNode());
 
         $handler = new FormalParameterNodeHandler($ctx);
-        $handler->handleVisit($node->getChildNodeAt(1));
+        $handler->handleVisit($node->nodeAt(1));
 
         $this->assertEquals(", ", $writer->getBuffer());
     }

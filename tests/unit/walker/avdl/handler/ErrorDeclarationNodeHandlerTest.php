@@ -8,13 +8,14 @@ use Avron\Ast\ErrorDeclarationNode;
 
 /**
  * @covers \Avron\Idl\ErrorDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\ErrorDeclarationNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class ErrorDeclarationNodeHandlerTest extends HandlerTestCase
 {

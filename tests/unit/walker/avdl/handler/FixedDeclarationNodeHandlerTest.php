@@ -8,13 +8,14 @@ use Avron\Ast\FixedDeclarationNode;
 
 /**
  * @covers \Avron\Idl\FixedDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\FixedDeclarationNode
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class FixedDeclarationNodeHandlerTest extends HandlerTestCase
 {

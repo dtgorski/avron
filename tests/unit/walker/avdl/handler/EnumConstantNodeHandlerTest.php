@@ -8,11 +8,13 @@ use Avron\Ast\EnumConstantNode;
 
 /**
  * @covers \Avron\Idl\EnumConstantNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\EnumConstantNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class EnumConstantNodeHandlerTest extends HandlerTestCase
 {
@@ -40,18 +42,18 @@ class EnumConstantNodeHandlerTest extends HandlerTestCase
     {
         list($ctx, $writer) = $this->createContextAndWriter();
 
-        $node = $this->createAnonymousNode();
+        $node = $this->createAstNode();
         $node->addNode(new EnumConstantNode("foo"));
         $node->addNode(new EnumConstantNode("bar"));
 
         $handler = new EnumConstantNodeHandler($ctx);
 
-        $handler->handleVisit($node->getChildNodeAt(0));
-        $handler->handleLeave($node->getChildNodeAt(0));
+        $handler->handleVisit($node->nodeAt(0));
+        $handler->handleLeave($node->nodeAt(0));
         $this->assertEquals("foo,\n", $writer->getBuffer());
 
-        $handler->handleVisit($node->getChildNodeAt(1));
-        $handler->handleLeave($node->getChildNodeAt(1));
+        $handler->handleVisit($node->nodeAt(1));
+        $handler->handleLeave($node->nodeAt(1));
         $this->assertEquals("foo,\nbar\n", $writer->getBuffer());
     }
 

@@ -10,8 +10,9 @@ use PHPUnit\Framework\TestCase;
  * @covers \Avron\Ast\JsonObjectNode
  * @uses   \Avron\Ast\JsonFieldNode
  * @uses   \Avron\Ast\JsonValueNode
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
 class JsonObjectNodeTest extends TestCase
 {

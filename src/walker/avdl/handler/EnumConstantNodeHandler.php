@@ -32,7 +32,7 @@ class EnumConstantNodeHandler extends HandlerAbstract
         /** @var EnumConstantNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);
 
-        if ($visitable->getNextSibling()) {
+        if ($visitable->nextNode()) {
             $this->write(",");
         }
         $this->write("\n");

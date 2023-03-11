@@ -8,13 +8,14 @@ use Avron\Ast\MessageDeclarationNode;
 
 /**
  * @covers \Avron\Idl\MessageDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
- * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\MessageDeclarationNode
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
+ * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class MessageDeclarationNodeHandlerTest extends HandlerTestCase
 {

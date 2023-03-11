@@ -11,17 +11,16 @@ use Avron\Core\NodeNamespace;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-abstract class DeclarationNode extends Node
+abstract class DeclarationNode extends AstNode
 {
     private ?NodeNamespace $namespace = null;
-
     private ?SourceFile $sourceFile = null;
 
     private Comments $comments;
 
-    public function __construct()
+    public function __construct(?Properties $properties = null)
     {
-        parent::__construct();
+        parent::__construct($properties);
         $this->comments = Comments::fromArray([]);
     }
 

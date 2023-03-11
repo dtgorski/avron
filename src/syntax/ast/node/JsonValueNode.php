@@ -10,7 +10,7 @@ use JsonSerializable;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class JsonValueNode extends Node implements JsonSerializable
+class JsonValueNode extends AstNode implements JsonSerializable
 {
     public function __construct(private readonly bool|null|float|string $value)
     {

@@ -8,13 +8,14 @@ use Avron\Ast\FieldDeclarationNode;
 
 /**
  * @covers \Avron\Idl\FieldDeclarationNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\FieldDeclarationNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class FieldDeclarationNodeHandlerTest extends HandlerTestCase
 {

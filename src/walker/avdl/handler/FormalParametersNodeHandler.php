@@ -25,7 +25,7 @@ class FormalParametersNodeHandler extends HandlerAbstract
         parent::handleVisit($visitable);
 
         /** @var MessageDeclarationNode $message calms static analysis down. */
-        $message = $visitable->getParent();
+        $message = $visitable->parentNode();
 
         $this->write(" ", $message->getName(), "(");
 

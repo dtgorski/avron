@@ -12,9 +12,10 @@ class EnumDeclarationNode extends DeclarationNode
 {
     public function __construct(
         private readonly string $name,
-        private readonly string $default
+        private readonly string $default,
+        ?Properties $properties = null
     ) {
-        parent::__construct();
+        parent::__construct($properties);
     }
 
     public function getName(): string

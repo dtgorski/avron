@@ -8,9 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Avron\Ast\ErrorListNode
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\ErrorType
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
 class ErrorListNodeTest extends TestCase
 {

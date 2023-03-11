@@ -10,10 +10,10 @@ use JsonSerializable;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class JsonArrayNode extends Node implements JsonSerializable
+class JsonArrayNode extends AstNode implements JsonSerializable
 {
     public function jsonSerialize(): array
     {
-        return $this->getChildNodes();
+        return $this->childNodes();
     }
 }

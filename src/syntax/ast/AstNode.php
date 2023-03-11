@@ -4,18 +4,24 @@
 
 namespace Avron\Ast;
 
+use Avron\Core\VisitableNode;
+
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class EnumConstantNode extends AstNode
+abstract class AstNode extends VisitableNode
 {
-    public function __construct(private readonly string $name) {
+    private Properties $properties;
+
+    public function __construct(?Properties $properties = null)
+    {
+        $this->properties = $properties ?: Properties::fromArray([]);
         parent::__construct();
     }
 
-    public function getName(): string
+    public function getProperties(): Properties
     {
-        return $this->name;
+        return $this->properties;
     }
 }

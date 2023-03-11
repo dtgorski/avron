@@ -5,6 +5,7 @@
 namespace Avron\Ast;
 
 use Avron\AvronException;
+use Avron\Core\VisitableNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
@@ -15,32 +16,33 @@ class ParserAvdl extends ParserJson
     /**
      * ProtocolDeclaration <EOF>
      *
-     * @return Node
+     * @return AstNode
      * @throws AvronException
      */
-    public function parseProtocol(): Node
+    public function parseProtocol(): AstNode
     {
         $node = $this->parseProtocolDeclaration();
         $this->consume(Token::EOF);
+
+        /** @var AstNode */
         return $node;
     }
 
     /**
      * ( Property )* "protocol" Identifier ProtocolBody
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseProtocolDeclaration(): Node
+    protected function parseProtocolDeclaration(): VisitableNode
     {
-        $props = $this->parseProperties();
+        $properties = $this->parseProperties();
 
         $this->consumeWithHint(Token::IDENT, self::hintProtocolKeyword, "protocol");
         $name = $this->parseAnyIdentifierWithHint(self::hintProtocolIdentifier);
 
-        $node = new ProtocolDeclarationNode($name);
+        $node = new ProtocolDeclarationNode($name, $properties);
         $node->setComments($this->fromCommentQueue());
-        $node->setProperties($props);
 
         return $node->addNode(...$this->parseProtocolBody());
     }
@@ -48,7 +50,7 @@ class ParserAvdl extends ParserJson
     /**
      * "{" ( Imports | Declarations )*  "}"
      *
-     * @return Node[]
+     * @return VisitableNode[]
      * @throws AvronException
      */
     protected function parseProtocolBody(): array
@@ -71,10 +73,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( ImportIdl | ImportProtocol | ImportSchema )*
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseImportStatement(): Node
+    protected function parseImportStatement(): VisitableNode
     {
         $types = ImportType::names();
         $this->consume(Token::IDENT, "import");
@@ -88,33 +90,30 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* ( NamedDeclaration | MessageDeclaration ) )*
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseDeclaration(): Node
+    protected function parseDeclaration(): VisitableNode
     {
-        $props = $this->parseProperties();
+        $properties = $this->parseProperties();
 
-        if ($this->expect(Token::IDENT, ...NamedType::names())) {
-            $node = $this->parseNamedDeclaration();
-        } else {
-            $node = $this->parseMessageDeclaration();
-        }
-        return $node->setProperties($props);
+        return $this->expect(Token::IDENT, ...NamedType::names())
+            ? $this->parseNamedDeclaration($properties)
+            : $this->parseMessageDeclaration($properties);
     }
 
     /**
      * ResultType Identifier FormalParameters ( "oneway" | "throws" ErrorList )? ";"
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseMessageDeclaration(): Node
+    protected function parseMessageDeclaration(Properties $properties): VisitableNode
     {
         $type = $this->parseResultType();
-        $node = new MessageDeclarationNode($this->parseAnyIdentifier());
-        $node->addNode($type);
-        $node->addNode($this->parseFormalParameters());
+        $node = new MessageDeclarationNode($this->parseAnyIdentifier(), $properties);
+        $node->addNode($type, $this->parseFormalParameters());
         $node->setComments($this->fromCommentQueue());
 
         if ($this->expect(Token::IDENT, "throws")) {
@@ -129,10 +128,10 @@ class ParserAvdl extends ParserJson
     /**
      *    ( "(" ( FormalParameter ( "," FormalParameter )* )? ")" )
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseFormalParameters(): Node
+    protected function parseFormalParameters(): VisitableNode
     {
         $node = new FormalParametersNode();
         $this->consume(Token::LPAREN);
@@ -151,10 +150,10 @@ class ParserAvdl extends ParserJson
     /**
      * Type VariableDeclarator
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseFormalParameter(): Node
+    protected function parseFormalParameter(): VisitableNode
     {
         $node = new FormalParameterNode();
         $node->addNode($this->parseType());
@@ -165,18 +164,18 @@ class ParserAvdl extends ParserJson
     /**
      * ReferenceType ( "," ReferenceType )*
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseErrorList(): Node
+    protected function parseErrorList(): VisitableNode
     {
         $token = $this->consume(Token::IDENT, ...ErrorType::names());
         $node = new ErrorListNode(ErrorType::from($token->getLoad()));
-        $node->addNode((new TypeNode())->addNode($this->parseReferenceType()));
+        $node->addNode((new TypeNode())->addNode($this->parseReferenceType(Properties::fromArray([]))));
 
         while ($this->expect(Token::COMMA)) {
             $this->consume(Token::COMMA);
-            $node->addNode((new TypeNode())->addNode($this->parseReferenceType()));
+            $node->addNode((new TypeNode())->addNode($this->parseReferenceType(Properties::fromArray([]))));
         }
         return $node;
     }
@@ -184,10 +183,10 @@ class ParserAvdl extends ParserJson
     /**
      * "oneway"
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseOnewayStatement(): Node
+    protected function parseOnewayStatement(): VisitableNode
     {
         $this->consume(Token::IDENT, "oneway");
         return (new TypeNode())->addNode(new OnewayStatementNode());
@@ -196,36 +195,38 @@ class ParserAvdl extends ParserJson
     /**
      * ( RecordDeclaration | ErrorDeclaration | EnumDeclaration | FixedDeclaration )
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseNamedDeclaration(): Node
+    protected function parseNamedDeclaration(Properties $properties): VisitableNode
     {
         if ($this->expect(Token::IDENT, "error")) {
-            return $this->parseErrorDeclaration();
+            return $this->parseErrorDeclaration($properties);
         }
         if ($this->expect(Token::IDENT, "enum")) {
-            return $this->parseEnumDeclaration();
+            return $this->parseEnumDeclaration($properties);
         }
         if ($this->expect(Token::IDENT, "fixed")) {
-            return $this->parseFixedDeclaration();
+            return $this->parseFixedDeclaration($properties);
         }
-        return $this->parseRecordDeclaration();
+        return $this->parseRecordDeclaration($properties);
     }
 
     /**
      * "fixed" Identifier "(" <INTEGER> ")" ";"
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseFixedDeclaration(): Node
+    protected function parseFixedDeclaration(Properties $properties): VisitableNode
     {
         $this->consume(Token::IDENT, "fixed");
         $name = $this->parseAnyIdentifier();
         $this->consume(Token::LPAREN);
         $value = $this->consume(Token::NUMBER)->getLoad();
-        $node = new FixedDeclarationNode($name, (int)$value);
+        $node = new FixedDeclarationNode($name, (int)$value, $properties);
         $node->setComments($this->fromCommentQueue());
         $this->consume(Token::RPAREN);
         $this->parseSemicolon();
@@ -235,13 +236,13 @@ class ParserAvdl extends ParserJson
     /**
      * "record" Identifier "{" (FieldDeclaration)* "}"
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseRecordDeclaration(): Node
+    protected function parseRecordDeclaration(Properties $properties): VisitableNode
     {
         $this->consume(Token::IDENT, "record");
-        $node = new RecordDeclarationNode($this->parseAnyIdentifier());
+        $node = new RecordDeclarationNode($this->parseAnyIdentifier(), $properties);
         $node->setComments($this->fromCommentQueue());
         $this->consume(Token::LBRACE);
 
@@ -255,13 +256,14 @@ class ParserAvdl extends ParserJson
     /**
      * "error" Identifier "{" (FieldDeclaration)* "}"
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseErrorDeclaration(): Node
+    protected function parseErrorDeclaration(Properties $properties): VisitableNode
     {
         $this->consume(Token::IDENT, "error");
-        $node = new ErrorDeclarationNode($this->parseAnyIdentifier());
+        $node = new ErrorDeclarationNode($this->parseAnyIdentifier(), $properties);
         $node->setComments($this->fromCommentQueue());
         $this->consume(Token::LBRACE);
 
@@ -275,10 +277,11 @@ class ParserAvdl extends ParserJson
     /**
      * "enum" Identifier "{" EnumBody "}" ( <EQ> Identifier )
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseEnumDeclaration(): Node
+    protected function parseEnumDeclaration(Properties $properties): VisitableNode
     {
         $default = "";
         $this->consume(Token::IDENT, "enum");
@@ -293,7 +296,7 @@ class ParserAvdl extends ParserJson
             $this->parseSemicolon();
         }
 
-        $node = new EnumDeclarationNode($ident, $default);
+        $node = new EnumDeclarationNode($ident, $default, $properties);
         $node->setComments($this->fromCommentQueue());
         return $node->addNode(...$body);
     }
@@ -301,7 +304,7 @@ class ParserAvdl extends ParserJson
     /**
      * ( Identifier ( "," Identifier )* )?
      *
-     * @return Node[]
+     * @return VisitableNode[]
      * @throws AvronException
      */
     protected function parseEnumBody(): array
@@ -321,18 +324,17 @@ class ParserAvdl extends ParserJson
     /**
      * ( ( Property )* Type VariableDeclarator ( "," VariableDeclarator )* ";" )*
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseFieldDeclaration(): Node
+    protected function parseFieldDeclaration(): VisitableNode
     {
         $props = $this->parseProperties();
 
-        $node = new FieldDeclarationNode();
+        $node = new FieldDeclarationNode($props);
         $node->addNode($this->parseType());
         $node->addNode($this->parseVariableDeclarator());
         $node->setComments($this->fromCommentQueue());
-        $node->setProperties($props);
 
         while ($this->expect(Token::COMMA)) {
             $this->consume(Token::COMMA);
@@ -345,28 +347,28 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* Identifier ( <EQ> JSONValue )?
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseVariableDeclarator(): Node
+    protected function parseVariableDeclarator(): VisitableNode
     {
         $props = $this->parseProperties();
-        $node = new VariableDeclaratorNode($this->parseAnyIdentifier());
+        $node = new VariableDeclaratorNode($this->parseAnyIdentifier(), $props);
 
         if ($this->expect(Token::EQ)) {
             $this->consume(Token::EQ);
             $node->addNode(parent::parseJson());
         }
-        return $node->setProperties($props);
+        return $node;
     }
 
     /**
      * "void" | Type
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseResultType(): Node
+    protected function parseResultType(): VisitableNode
     {
         if ($this->expect(Token::IDENT, "void")) {
             $this->consume(Token::IDENT);
@@ -378,42 +380,44 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* ( ReferenceType | PrimitiveType | UnionType | ArrayType | MapType | DecimalType ) "?"?
      *
-     * @return Node
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseType(): Node
+    protected function parseType(): VisitableNode
     {
-        $props = $this->parseProperties();
+        $properties = $this->parseProperties();
 
-        $node = $this->parsePrimitiveType();
-        $node = $node ?? $this->parseUnionType();
-        $node = $node ?? $this->parseArrayType();
-        $node = $node ?? $this->parseMapType();
-        $node = $node ?? $this->parseDecimalType();
-        $node = $node ?? $this->parseReferenceType();
+        $node = $this->parsePrimitiveType($properties);
+        $node = $node ?? $this->parseUnionType($properties);
+        $node = $node ?? $this->parseArrayType($properties);
+        $node = $node ?? $this->parseMapType($properties);
+        $node = $node ?? $this->parseDecimalType($properties);
+        $node = $node ?? $this->parseReferenceType($properties);
 
+        // FIXME: check properties
         if ($this->expect(Token::QMARK)) {
             $this->consume(Token::QMARK);
             $type = new NullableTypeNode();
         } else {
             $type = new TypeNode();
         }
-        return $type->setProperties($props)->addNode($node);
+        return $type->addNode($node);
     }
 
     /**
      * "boolean" | "bytes" | "int" | "string" | "float" | ...
      *
-     * @return ?Node
+     * @param Properties $properties
+     * @return VisitableNode|null
      * @throws AvronException
      */
-    protected function parsePrimitiveType(): ?Node
+    protected function parsePrimitiveType(Properties $properties): VisitableNode|null
     {
         if ($this->expect(Token::IDENT, ...LogicalType::names())) {
-            return new LogicalTypeNode(LogicalType::from($this->parseIdentifier()));
+            return new LogicalTypeNode(LogicalType::from($this->parseIdentifier()), $properties);
         }
         if ($this->expect(Token::IDENT, ...PrimitiveType::names())) {
-            return new PrimitiveTypeNode(PrimitiveType::from($this->parseIdentifier()));
+            return new PrimitiveTypeNode(PrimitiveType::from($this->parseIdentifier()), $properties);
         }
         return null;
     }
@@ -421,10 +425,11 @@ class ParserAvdl extends ParserJson
     /**
      * "decimal" "(" <INTEGER>, <INTEGER> ")"
      *
-     * @return ?Node
+     * @param Properties $properties
+     * @return VisitableNode|null
      * @throws AvronException
      */
-    protected function parseDecimalType(): ?Node
+    protected function parseDecimalType(Properties $properties): VisitableNode|null
     {
         if (!$this->expect(Token::IDENT, "decimal")) {
             return null;
@@ -444,23 +449,24 @@ class ParserAvdl extends ParserJson
         if ($scale < 0 || $scale > $precision) {
             $this->throwException($scaleToken, "unexpected invalid decimal type scale");
         }
-        return new DecimalTypeNode($precision, $scale);
+        return new DecimalTypeNode($precision, $scale, $properties);
     }
 
     /**
      * "array" "<" Type ">"
      *
-     * @return ?Node
+     * @param Properties $properties
+     * @return VisitableNode|null
      * @throws AvronException
      */
-    protected function parseArrayType(): ?Node
+    protected function parseArrayType(Properties $properties): VisitableNode|null
     {
         if (!$this->expect(Token::IDENT, "array")) {
             return null;
         }
         $this->consume(Token::IDENT);
         $this->consume(Token::LT);
-        $node = (new ArrayTypeNode())->addNode($this->parseType());
+        $node = (new ArrayTypeNode($properties))->addNode($this->parseType());
         $this->consume(Token::GT);
         return $node;
     }
@@ -468,17 +474,18 @@ class ParserAvdl extends ParserJson
     /**
      * "map" "<" Type ">"
      *
-     * @return ?Node
+     * @param Properties $properties
+     * @return VisitableNode|null
      * @throws AvronException
      */
-    protected function parseMapType(): ?Node
+    protected function parseMapType(Properties $properties): VisitableNode|null
     {
         if (!$this->expect(Token::IDENT, "map")) {
             return null;
         }
         $this->consume(Token::IDENT);
         $this->consume(Token::LT);
-        $node = (new MapTypeNode())->addNode($this->parseType());
+        $node = (new MapTypeNode($properties))->addNode($this->parseType());
         $this->consume(Token::GT);
         return $node;
     }
@@ -486,17 +493,18 @@ class ParserAvdl extends ParserJson
     /**
      * "union" "{" Type ( "," Type )* "}"
      *
-     * @return ?Node
+     * @param Properties $properties
+     * @return VisitableNode|null
      * @throws AvronException
      */
-    protected function parseUnionType(): ?Node
+    protected function parseUnionType(Properties $properties): VisitableNode|null
     {
         if (!$this->expect(Token::IDENT, "union")) {
             return null;
         }
         $this->consume(Token::IDENT);
         $this->consume(Token::LBRACE);
-        $node = (new UnionTypeNode())->addNode($this->parseType());
+        $node = (new UnionTypeNode($properties))->addNode($this->parseType());
 
         while ($this->expect(Token::COMMA)) {
             $this->consume(Token::COMMA);
@@ -509,17 +517,18 @@ class ParserAvdl extends ParserJson
     /**
      * ( Identifier ( "." Identifier )* )
      *
-     * @return Node
+     * @param Properties $properties
+     * @return VisitableNode
      * @throws AvronException
      */
-    protected function parseReferenceType(): Node
+    protected function parseReferenceType(Properties $properties): VisitableNode
     {
         $ident = $this->parseAnyIdentifierWithHint(self::hintReferenceIdentifier);
         while ($this->expect(Token::DOT)) {
             $this->consume(Token::DOT);
             $ident .= "." . $this->parseAnyIdentifierWithHint(self::hintReferenceIdentifier);
         }
-        return new ReferenceTypeNode($ident);
+        return new ReferenceTypeNode($ident, $properties);
     }
 
     /**

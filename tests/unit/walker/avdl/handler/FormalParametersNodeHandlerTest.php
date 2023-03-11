@@ -9,14 +9,15 @@ use Avron\Ast\MessageDeclarationNode;
 
 /**
  * @covers \Avron\Idl\FormalParametersNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\FormalParametersNode
  * @uses   \Avron\Ast\MessageDeclarationNode
- * @uses   \Avron\Ast\Node
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class FormalParametersNodeHandlerTest extends HandlerTestCase
 {

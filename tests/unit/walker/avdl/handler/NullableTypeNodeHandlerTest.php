@@ -8,12 +8,13 @@ use Avron\Ast\NullableTypeNode;
 
 /**
  * @covers \Avron\Idl\NullableTypeNodeHandler
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\NullableTypeNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\Idl\TypeNodeHandler
- * @uses   \Avron\BufferedWriter
  */
 class NullableTypeNodeHandlerTest extends HandlerTestCase
 {

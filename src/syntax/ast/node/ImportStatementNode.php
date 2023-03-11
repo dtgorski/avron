@@ -8,11 +8,11 @@ namespace Avron\Ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class ImportStatementNode extends Node
+class ImportStatementNode extends AstNode
 {
     public function __construct(
         private readonly ImportType $type,
-        private readonly string $path
+        private readonly string $path,
     ) {
         parent::__construct();
     }

@@ -9,14 +9,15 @@ use Avron\Ast\ImportType;
 
 /**
  * @covers \Avron\Idl\ImportStatementNodeHandler
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\ImportStatementNode
  * @uses   \Avron\Ast\ImportType
  * @uses   \Avron\Ast\Properties
- * @uses   \Avron\Ast\Node
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class ImportStatementNodeHandlerTest extends HandlerTestCase
 {

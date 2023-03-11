@@ -8,11 +8,12 @@ use Avron\Ast\UnionTypeNode;
 
 /**
  * @covers \Avron\Idl\UnionTypeNodeHandler
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\UnionTypeNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class UnionTypeNodeHandlerTest extends HandlerTestCase
 {

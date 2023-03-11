@@ -23,7 +23,7 @@ class JsonFieldNodeHandler extends HandlerAbstract
         /** @var JsonFieldNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
-        if ($visitable->getPrevSibling()) {
+        if ($visitable->prevNode()) {
             $this->write(", ");
         }
         $this->write('"', $visitable->getName(), '":');

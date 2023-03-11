@@ -33,8 +33,8 @@ class ByteStreamReaderTest extends AvronTestCase
             new CommentsReadQueue()
         );
 
-        $this->assertEquals(1, $cursor->peek()->getLine());
-        $this->assertEquals(0, $cursor->peek()->getColumn());
+        $this->assertSame(1, $cursor->peek()->getLine());
+        $this->assertSame(0, $cursor->peek()->getColumn());
         $this->assertTrue($cursor->peek()->is(Token::EOF));
 
         $this->closeStream($stream);

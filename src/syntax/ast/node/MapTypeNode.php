@@ -8,6 +8,6 @@ namespace Avron\Ast;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class MapTypeNode extends Node
+class MapTypeNode extends AstNode
 {
 }

@@ -8,11 +8,12 @@ use Avron\Ast\ResultTypeNode;
 
 /**
  * @covers \Avron\Idl\ResultTypeNodeHandler
- * @uses   \Avron\Ast\Node
+ * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\ResultTypeNode
- * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Idl\HandlerAbstract
  */
 class ResultTypeNodeHandlerTest extends HandlerTestCase
 {

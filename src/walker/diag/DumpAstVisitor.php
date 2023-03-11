@@ -7,7 +7,7 @@ namespace Avron\Diag;
 use Avron\Api\Visitable;
 use Avron\Api\Visitor;
 use Avron\Api\Writer;
-use Avron\Ast\Node;
+use Avron\Ast\AstNode;
 use Avron\StandardWriter;
 
 /**
@@ -20,9 +20,9 @@ class DumpAstVisitor implements Visitor
     {
     }
 
-    public function visit(Visitable|Node $node): bool
+    public function visit(Visitable|AstNode $node): bool
     {
-        /** @var Node $node calms static analysis down. */
+        /** @var AstNode $node calms static analysis down. */
         $parts = explode("\\", get_class($node));
         $edges = $this->edges($node);
         $name = $parts[sizeof($parts) - 1];
@@ -32,17 +32,17 @@ class DumpAstVisitor implements Visitor
         return true;
     }
 
-    public function leave(Visitable|Node $node): void
+    public function leave(Visitable|AstNode $node): void
     {
     }
 
-    private function edges(Node $node): string
+    private function edges(AstNode $node): string
     {
-        $edge = $node->getParent()
-            ? ($node->getNextSibling() ? "├── " : "└── ")
+        $edge = $node->parentNode()
+            ? ($node->nextNode() ? "├── " : "└── ")
             : "";
-        while ($node = $node->getParent()) {
-            $edge = ($node->getNextSibling() ? "│   " : "    ") . $edge;
+        while ($node = $node->parentNode()) {
+            $edge = ($node->nextNode() ? "│   " : "    ") . $edge;
         }
         return $edge;
     }

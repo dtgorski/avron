@@ -23,7 +23,7 @@ class ImportStatementNodeHandler extends HandlerAbstract
         /** @var ImportStatementNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
-        if (!$visitable->getPrevSibling() instanceof ImportStatementNode) {
+        if (!$visitable->prevNode() instanceof ImportStatementNode) {
             $this->write("\n");
         }
 

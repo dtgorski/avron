@@ -10,13 +10,14 @@ use InvalidArgumentException;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class DecimalTypeNode extends Node
+class DecimalTypeNode extends AstNode
 {
     public function __construct(
         private readonly int $precision,
-        private readonly int $scale
+        private readonly int $scale,
+        ?Properties $properties = null
     ) {
-        parent::__construct();
+        parent::__construct($properties);
 
         if ($precision < 1) {
             throw new InvalidArgumentException("unexpected invalid decimal type precision");

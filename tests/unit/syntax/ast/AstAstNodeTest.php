@@ -10,10 +10,11 @@ use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
- * @covers \Avron\Ast\Node
+ * @covers \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\VisitableNode
  */
-class NodeTest extends TestCase
+class AstNodeTest extends TestCase
 {
     public function testAccept(): void
     {
@@ -56,53 +57,53 @@ class NodeTest extends TestCase
             );
 
         // getParent()
-        $this->assertSame($A, $B->getParent());
-        $this->assertSame($B, $C->getParent());
+        $this->assertSame($A, $B->parentNode());
+        $this->assertSame($B, $C->parentNode());
 
         // getChildCount()
-        $this->assertEquals(3, $A->getChildCount());
-        $this->assertEquals(1, $B->getChildCount());
-        $this->assertEquals(2, $D->getChildCount());
-        $this->assertEquals(3, $G->getChildCount());
+        $this->assertSame(3, $A->nodeCount());
+        $this->assertSame(1, $B->nodeCount());
+        $this->assertSame(2, $D->nodeCount());
+        $this->assertSame(3, $G->nodeCount());
 
         // getChildIndex()
-        $this->assertEquals(-1, $A->getChildIndex());
-        $this->assertEquals(0, $B->getChildIndex());
-        $this->assertEquals(1, $D->getChildIndex());
-        $this->assertEquals(0, $C->getChildIndex());
-        $this->assertEquals(0, $E->getChildIndex());
-        $this->assertEquals(1, $F->getChildIndex());
-        $this->assertEquals(0, $H->getChildIndex());
-        $this->assertEquals(1, $I->getChildIndex());
-        $this->assertEquals(2, $J->getChildIndex());
+        $this->assertEquals(-1, $A->nodeIndex());
+        $this->assertSame(0, $B->nodeIndex());
+        $this->assertSame(1, $D->nodeIndex());
+        $this->assertSame(0, $C->nodeIndex());
+        $this->assertSame(0, $E->nodeIndex());
+        $this->assertSame(1, $F->nodeIndex());
+        $this->assertSame(0, $H->nodeIndex());
+        $this->assertSame(1, $I->nodeIndex());
+        $this->assertSame(2, $J->nodeIndex());
 
         // getPrevSibling()
-        $this->assertSame(null, $A->getPrevSibling());
-        $this->assertSame(null, $B->getPrevSibling());
-        $this->assertSame(null, $C->getPrevSibling());
-        $this->assertSame(null, $E->getPrevSibling());
-        $this->assertSame(null, $H->getPrevSibling());
-        $this->assertSame($E, $F->getPrevSibling());
-        $this->assertSame($H, $I->getPrevSibling());
-        $this->assertSame($I, $J->getPrevSibling());
+        $this->assertSame(null, $A->prevNode());
+        $this->assertSame(null, $B->prevNode());
+        $this->assertSame(null, $C->prevNode());
+        $this->assertSame(null, $E->prevNode());
+        $this->assertSame(null, $H->prevNode());
+        $this->assertSame($E, $F->prevNode());
+        $this->assertSame($H, $I->prevNode());
+        $this->assertSame($I, $J->prevNode());
 
         // getNextSibling()
-        $this->assertSame(null, $A->getNextSibling());
-        $this->assertSame(null, $C->getNextSibling());
-        $this->assertSame(null, $F->getNextSibling());
-        $this->assertSame(null, $J->getNextSibling());
-        $this->assertSame($I, $H->getNextSibling());
-        $this->assertSame($J, $I->getNextSibling());
-        $this->assertSame($D, $B->getNextSibling());
-        $this->assertSame($G, $D->getNextSibling());
+        $this->assertSame(null, $A->nextNode());
+        $this->assertSame(null, $C->nextNode());
+        $this->assertSame(null, $F->nextNode());
+        $this->assertSame(null, $J->nextNode());
+        $this->assertSame($I, $H->nextNode());
+        $this->assertSame($J, $I->nextNode());
+        $this->assertSame($D, $B->nextNode());
+        $this->assertSame($G, $D->nextNode());
     }
 
     public function testAddingNullNodes(): void
     {
         $node = new TestNode();
-        $this->assertSame(0, $node->getChildCount());
+        $this->assertSame(0, $node->nodeCount());
         $node->addNode(null);
-        $this->assertSame(0, $node->getChildCount());
+        $this->assertSame(0, $node->nodeCount());
     }
 
     public function testAddingNodesWithParents(): void
@@ -112,21 +113,10 @@ class NodeTest extends TestCase
         $other = new TestNode();
         $other->addNode($child);
     }
-
-    public function testGetProperties(): void
-    {
-        $props = Properties::fromArray([]);
-        $this->assertSame($props, (new TestNode())->setProperties($props)->getProperties());
-    }
-
-    public function testStringable(): void
-    {
-        $this->assertSame("[Avron\Ast\TestNode]", (string)new TestNode());
-    }
 }
 
 // phpcs:ignore
-class TestNode extends Node
+class TestNode extends AstNode
 {
     public function __construct(readonly string $name = "")
     {

@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Avron\Ast\LogicalTypeNode
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  */
 class LogicalTypeNodeTest extends TestCase

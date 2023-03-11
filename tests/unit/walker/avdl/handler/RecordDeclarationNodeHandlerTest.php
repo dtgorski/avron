@@ -14,6 +14,7 @@ use Avron\Ast\RecordDeclarationNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\RecordDeclarationNode
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

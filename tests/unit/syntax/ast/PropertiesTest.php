@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Avron\Ast\Properties
  * @uses   \Avron\Ast\Property
+ * @uses   \Avron\Core\ArrayList
  */
 class PropertiesTest extends TestCase
 {

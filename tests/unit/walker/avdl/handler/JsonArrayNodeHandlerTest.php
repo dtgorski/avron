@@ -12,6 +12,7 @@ use Avron\Ast\JsonArrayNode;
  * @uses   \Avron\Ast\JsonArrayNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

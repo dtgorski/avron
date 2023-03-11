@@ -28,6 +28,7 @@ use Avron\Logger;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\Token
  * @uses   \Avron\Avron
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Factory
  */

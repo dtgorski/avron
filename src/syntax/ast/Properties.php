@@ -4,14 +4,14 @@
 
 namespace Avron\Ast;
 
-use Traversable;
+use Avron\Core\ArrayList;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<Property>
+ * @extends  ArrayList<Property>
  */
-class Properties implements \IteratorAggregate, \JsonSerializable
+class Properties extends ArrayList implements \JsonSerializable
 {
     /** @param Property[] $properties */
     public static function fromArray(array $properties): Properties
@@ -19,12 +19,7 @@ class Properties implements \IteratorAggregate, \JsonSerializable
         return new Properties($properties);
     }
 
-    /** @param Property[] $properties */
-    private function __construct(private readonly array $properties)
-    {
-    }
-
-    public function getByName(string $name): ?Property
+    public function getByName(string $name): Property|null
     {
         foreach ($this->asArray() as $property) {
             if ($name === $property->getName()) {
@@ -32,22 +27,6 @@ class Properties implements \IteratorAggregate, \JsonSerializable
             }
         }
         return null;
-    }
-
-    /** @return Property[] */
-    public function asArray(): array
-    {
-        return $this->properties;
-    }
-
-    public function size(): int
-    {
-        return sizeof($this->asArray());
-    }
-
-    public function getIterator(): Traversable
-    {
-        return new \ArrayIterator($this->asArray());
     }
 
     public function jsonSerialize(): object

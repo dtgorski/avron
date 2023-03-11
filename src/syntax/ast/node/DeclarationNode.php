@@ -18,13 +18,13 @@ abstract class DeclarationNode extends AstNode
 
     private Comments $comments;
 
-    public function __construct(?Properties $properties = null)
+    public function __construct(Properties $properties = null)
     {
         parent::__construct($properties);
         $this->comments = Comments::fromArray([]);
     }
 
-    public function getNamespace(): ?NodeNamespace
+    public function getNamespace(): NodeNamespace|null
     {
         return $this->namespace;
     }
@@ -35,7 +35,7 @@ abstract class DeclarationNode extends AstNode
         return $this;
     }
 
-    public function getSourceFile(): ?SourceFile
+    public function getSourceFile(): SourceFile|null
     {
         return $this->sourceFile;
     }

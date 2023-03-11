@@ -12,6 +12,7 @@ use Avron\Ast\UnionTypeNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\UnionTypeNode
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

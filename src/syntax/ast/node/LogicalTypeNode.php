@@ -12,7 +12,7 @@ class LogicalTypeNode extends AstNode
 {
     public function __construct(
         private readonly LogicalType $type,
-        ?Properties $properties = null
+        Properties $properties = null
     ) {
         parent::__construct($properties);
     }

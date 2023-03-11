@@ -12,6 +12,7 @@ use Avron\Ast\ResultTypeNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\ResultTypeNode
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

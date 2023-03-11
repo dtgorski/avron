@@ -13,7 +13,7 @@ class EnumDeclarationNode extends DeclarationNode
     public function __construct(
         private readonly string $name,
         private readonly string $default,
-        ?Properties $properties = null
+        Properties $properties = null
     ) {
         parent::__construct($properties);
     }

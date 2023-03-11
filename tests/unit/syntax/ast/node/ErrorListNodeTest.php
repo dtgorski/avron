@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\ErrorType
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  */
 class ErrorListNodeTest extends TestCase

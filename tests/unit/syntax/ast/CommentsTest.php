@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Avron\Ast\Comments
  * @uses   \Avron\Ast\Comment
+ * @uses   \Avron\Core\ArrayList
  */
 class CommentsTest extends TestCase
 {

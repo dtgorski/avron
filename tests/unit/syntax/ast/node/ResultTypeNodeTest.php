@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \Avron\Ast\ResultTypeNode
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  */
 class ResultTypeNodeTest extends TestCase

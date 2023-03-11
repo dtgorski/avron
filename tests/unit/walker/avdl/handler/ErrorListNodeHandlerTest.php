@@ -13,6 +13,7 @@ use Avron\Ast\ErrorType;
  * @uses   \Avron\Ast\ErrorListNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

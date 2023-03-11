@@ -15,7 +15,7 @@ class DecimalTypeNode extends AstNode
     public function __construct(
         private readonly int $precision,
         private readonly int $scale,
-        ?Properties $properties = null
+        Properties $properties = null
     ) {
         parent::__construct($properties);
 

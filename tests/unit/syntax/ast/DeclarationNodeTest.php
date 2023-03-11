@@ -15,6 +15,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\Comments
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\NodeNamespace
  * @uses   \Avron\Core\VisitableNode
  */

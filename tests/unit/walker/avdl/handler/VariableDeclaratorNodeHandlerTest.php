@@ -12,6 +12,7 @@ use Avron\Ast\VariableDeclaratorNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\VariableDeclaratorNode
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

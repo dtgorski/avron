@@ -12,7 +12,7 @@ use Avron\Ast\EnumConstantNode;
  * @uses   \Avron\Ast\EnumConstantNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

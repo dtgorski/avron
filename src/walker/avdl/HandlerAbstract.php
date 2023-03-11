@@ -98,17 +98,17 @@ abstract class HandlerAbstract implements NodeHandler
         $this->write($this->indent(), "/** ", $comment->getText(), " */\n");
     }
 
-    protected function writePropertiesMultiLine(Properties $props): void
+    protected function writePropertiesMultiLine(Properties $properties): void
     {
-        foreach ($props as $prop) {
-            $this->write($this->indent(), "@", $prop->getName(), "(", json_encode($prop->getValue()), ")\n");
+        foreach ($properties as $property) {
+            $this->write($this->indent(), "@", $property->getName(), "(", json_encode($property->getValue()), ")\n");
         }
     }
 
-    protected function writePropertiesSingleLine(Properties $props): void
+    protected function writePropertiesSingleLine(Properties $properties): void
     {
-        foreach ($props as $prop) {
-            $this->write("@", $prop->getName(), "(", json_encode($prop->getValue()), ") ");
+        foreach ($properties as $property) {
+            $this->write("@", $property->getName(), "(", json_encode($property->getValue()), ") ");
         }
     }
 

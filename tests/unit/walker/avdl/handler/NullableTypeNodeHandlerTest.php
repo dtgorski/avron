@@ -12,6 +12,7 @@ use Avron\Ast\NullableTypeNode;
  * @uses   \Avron\Ast\NullableTypeNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  * @uses   \Avron\Idl\TypeNodeHandler

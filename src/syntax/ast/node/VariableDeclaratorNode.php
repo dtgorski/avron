@@ -12,7 +12,7 @@ class VariableDeclaratorNode extends AstNode
 {
     public function __construct(
         private readonly string $name,
-        ?Properties $properties = null
+        Properties $properties = null
     ) {
         parent::__construct($properties);
     }

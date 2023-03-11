@@ -12,6 +12,7 @@ use Avron\Ast\ReferenceTypeNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Ast\ReferenceTypeNode
  * @uses   \Avron\BufferedWriter
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  * @uses   \Avron\Idl\HandlerAbstract
  */

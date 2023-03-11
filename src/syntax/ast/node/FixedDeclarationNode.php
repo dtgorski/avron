@@ -13,7 +13,7 @@ class FixedDeclarationNode extends DeclarationNode
     public function __construct(
         private readonly string $name,
         private readonly int $value,
-        ?Properties $properties = null
+        Properties $properties = null
     ) {
         parent::__construct($properties);
     }

@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\ImportType
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  */
 class ImportStatementNodeTest extends TestCase

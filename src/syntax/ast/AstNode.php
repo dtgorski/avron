@@ -14,7 +14,7 @@ abstract class AstNode extends VisitableNode
 {
     private Properties $properties;
 
-    public function __construct(?Properties $properties = null)
+    public function __construct(Properties $properties = null)
     {
         $this->properties = $properties ?: Properties::fromArray([]);
         parent::__construct();

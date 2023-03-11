@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\DeclarationNode
  * @uses   \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
+ * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\VisitableNode
  */
 class ProtocolDeclarationNodeTest extends TestCase

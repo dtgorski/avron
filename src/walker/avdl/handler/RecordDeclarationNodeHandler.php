@@ -18,7 +18,7 @@ class RecordDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof RecordDeclarationNode;
     }
 
-    public function handleVisit(Visitable|RecordDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var RecordDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -29,7 +29,7 @@ class RecordDeclarationNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|RecordDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         $this->stepOut();
 

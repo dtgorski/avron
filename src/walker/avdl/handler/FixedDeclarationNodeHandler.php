@@ -18,7 +18,7 @@ class FixedDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof FixedDeclarationNode;
     }
 
-    public function handleVisit(Visitable|FixedDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var FixedDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

@@ -11,14 +11,13 @@ use Avron\Logger;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class CommandCompile extends AbstractCommand
+class CommandCompile extends Command
 {
-    private const NAME = "avron";
-    private const ARGS = "[OPTION...] [COMMAND [OPTION...] FILE...]";
-    private const DESC = "Apache Avro IDL transpiler.";
+    private const NAME = "compile";
+    private const ARGS = "TARGET [OPTION...] FILE...";
+    private const DESC = "Compile Avro IDL to source code.";
 
-    /** @return Options */
-    private static function options(): Options
+    public function supported(): Options
     {
         return Options::fromArray([
             Option::fromMap([
@@ -42,12 +41,24 @@ class CommandCompile extends AbstractCommand
         ]);
     }
 
+    public static function create(Config $config, Logger $logger): CommandCompile
+    {
+        return new CommandCompile($config, $logger);
+    }
+
+
+    private function __construct(
+        private readonly Config $config,
+        private readonly Logger $logger
+    ) {
+        parent::__construct();
+    }
+
     public function configure(Options $options): void
     {
     }
 
     public function execute(Operands $operands): void
     {
-        // fall through
     }
 }

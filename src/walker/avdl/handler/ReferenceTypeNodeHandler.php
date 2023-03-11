@@ -18,7 +18,7 @@ class ReferenceTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof ReferenceTypeNode;
     }
 
-    public function handleVisit(Visitable|ReferenceTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ReferenceTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

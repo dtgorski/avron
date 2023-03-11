@@ -18,7 +18,7 @@ class ProtocolDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof ProtocolDeclarationNode;
     }
 
-    public function handleVisit(Visitable|ProtocolDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ProtocolDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -29,7 +29,7 @@ class ProtocolDeclarationNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|ProtocolDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         $this->stepOut();
 

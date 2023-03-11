@@ -13,8 +13,7 @@ class PrimitiveTypeNode extends AstNode
     public function __construct(
         private readonly PrimitiveType $type,
         Properties $properties = null
-    )
-    {
+    ) {
         parent::__construct($properties);
     }
 

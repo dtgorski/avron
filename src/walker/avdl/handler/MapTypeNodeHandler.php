@@ -18,7 +18,7 @@ class MapTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof MapTypeNode;
     }
 
-    public function handleVisit(Visitable|MapTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var MapTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -28,7 +28,7 @@ class MapTypeNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|MapTypeNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var MapTypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

@@ -18,7 +18,7 @@ class ErrorDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof ErrorDeclarationNode;
     }
 
-    public function handleVisit(Visitable|ErrorDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ErrorDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -29,7 +29,7 @@ class ErrorDeclarationNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|ErrorDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         $this->stepOut();
 

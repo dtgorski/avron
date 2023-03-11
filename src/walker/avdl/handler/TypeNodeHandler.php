@@ -20,7 +20,7 @@ class TypeNodeHandler extends HandlerAbstract
         return $visitable instanceof TypeNode;
     }
 
-    public function handleVisit(Visitable|TypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var TypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -35,7 +35,7 @@ class TypeNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|TypeNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var TypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

@@ -30,10 +30,10 @@ abstract class HandlerAbstract implements NodeHandler
      * Does not write out:
      *  - Inline schema properties
      *
-     * @param Visitable|DeclarationNode $visitable
+     * @param Visitable $visitable
      * @return bool
      */
-    public function handleVisit(Visitable|DeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         if (!$visitable instanceof DeclarationNode) {
             return true;
@@ -54,7 +54,7 @@ abstract class HandlerAbstract implements NodeHandler
         return true;
     }
 
-    public function handleLeave(Visitable|DeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
     }
 

@@ -4,10 +4,10 @@
 
 namespace Avron\Diag;
 
+use Avron\Api\TreeNode;
 use Avron\Api\Visitable;
 use Avron\Api\Visitor;
 use Avron\Api\Writer;
-use Avron\Ast\AstNode;
 use Avron\StandardWriter;
 
 /**
@@ -20,9 +20,9 @@ class DumpAstVisitor implements Visitor
     {
     }
 
-    public function visit(Visitable|AstNode $node): bool
+    public function visit(Visitable $node): bool
     {
-        /** @var AstNode $node calms static analysis down. */
+        /** @var TreeNode $node calms static analysis down. */
         $parts = explode("\\", get_class($node));
         $edges = $this->edges($node);
         $name = $parts[sizeof($parts) - 1];
@@ -32,11 +32,11 @@ class DumpAstVisitor implements Visitor
         return true;
     }
 
-    public function leave(Visitable|AstNode $node): void
+    public function leave(Visitable $node): void
     {
     }
 
-    private function edges(AstNode $node): string
+    private function edges(TreeNode $node): string
     {
         $edge = $node->parentNode()
             ? ($node->nextNode() ? "├── " : "└── ")

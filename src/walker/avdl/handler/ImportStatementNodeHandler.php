@@ -18,7 +18,7 @@ class ImportStatementNodeHandler extends HandlerAbstract
         return $visitable instanceof ImportStatementNode;
     }
 
-    public function handleVisit(Visitable|ImportStatementNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ImportStatementNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

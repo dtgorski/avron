@@ -130,7 +130,7 @@ class TestVisitor implements Visitor
 {
     public string $thread = "";
 
-    public function visit(Visitable|TestNode $node): bool
+    public function visit(Visitable $node): bool
     {
         $this->thread .= $node->name;
         return true;

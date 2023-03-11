@@ -4,16 +4,18 @@
 
 namespace Avron\Cli;
 
-use Exception;
+use Avron\Core\ArrayList;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
+ * @extends  ArrayList<Argument>
  */
-interface Handler
+class Arguments extends ArrayList
 {
-    public function configure(Options $options): void;
-
-    /** @throws Exception */
-    public function execute(Operands $operands): void;
+    /** @param Argument[] $arguments */
+    public static function fromArray(array $arguments): Arguments
+    {
+        return new Arguments($arguments);
+    }
 }

@@ -18,7 +18,7 @@ class JsonValueNodeHandler extends HandlerAbstract
         return $visitable instanceof JsonValueNode;
     }
 
-    public function handleVisit(Visitable|JsonValueNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var JsonValueNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

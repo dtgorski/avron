@@ -18,7 +18,7 @@ class EnumConstantNodeHandler extends HandlerAbstract
         return $visitable instanceof EnumConstantNode;
     }
 
-    public function handleVisit(Visitable|EnumConstantNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var EnumConstantNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -27,7 +27,7 @@ class EnumConstantNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|EnumConstantNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var EnumConstantNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

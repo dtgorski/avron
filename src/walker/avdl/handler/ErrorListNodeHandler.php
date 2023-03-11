@@ -18,7 +18,7 @@ class ErrorListNodeHandler extends HandlerAbstract
         return $visitable instanceof ErrorListNode;
     }
 
-    public function handleVisit(Visitable|ErrorListNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ErrorListNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

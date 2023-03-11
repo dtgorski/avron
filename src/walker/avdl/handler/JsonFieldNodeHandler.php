@@ -18,7 +18,7 @@ class JsonFieldNodeHandler extends HandlerAbstract
         return $visitable instanceof JsonFieldNode;
     }
 
-    public function handleVisit(Visitable|JsonFieldNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var JsonFieldNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

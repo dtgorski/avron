@@ -18,7 +18,7 @@ class EnumDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof EnumDeclarationNode;
     }
 
-    public function handleVisit(Visitable|EnumDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var EnumDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -29,7 +29,7 @@ class EnumDeclarationNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|EnumDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         $this->stepOut();
 

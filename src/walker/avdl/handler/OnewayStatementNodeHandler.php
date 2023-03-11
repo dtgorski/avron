@@ -18,7 +18,7 @@ class OnewayStatementNodeHandler extends HandlerAbstract
         return $visitable instanceof OnewayStatementNode;
     }
 
-    public function handleVisit(Visitable|OnewayStatementNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var OnewayStatementNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

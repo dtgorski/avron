@@ -19,7 +19,7 @@ class FormalParametersNodeHandler extends HandlerAbstract
         return $visitable instanceof FormalParametersNode;
     }
 
-    public function handleVisit(Visitable|FormalParametersNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var FormalParametersNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -32,7 +32,7 @@ class FormalParametersNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|FormalParametersNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var FormalParametersNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

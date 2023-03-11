@@ -10,7 +10,8 @@ namespace Avron\Ast;
  */
 class EnumConstantNode extends AstNode
 {
-    public function __construct(private readonly string $name) {
+    public function __construct(private readonly string $name)
+    {
         parent::__construct();
     }
 

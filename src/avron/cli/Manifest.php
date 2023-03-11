@@ -10,18 +10,14 @@ namespace Avron\Cli;
  */
 class Manifest
 {
-    public static function fromParams(
-        string $name,
-        string $version,
-        string $description,
-    ): Manifest {
-        return new Manifest($name, $version, $description);
+    public static function fromParams(string $name, string $version): Manifest
+    {
+        return new Manifest($name, $version);
     }
 
     private function __construct(
         private readonly string $name,
-        private readonly string $version,
-        private readonly string $description
+        private readonly string $version
     ) {
     }
 
@@ -33,10 +29,5 @@ class Manifest
     public function getVersion(): string
     {
         return $this->version;
-    }
-
-    public function getDescription(): string
-    {
-        return $this->description;
     }
 }

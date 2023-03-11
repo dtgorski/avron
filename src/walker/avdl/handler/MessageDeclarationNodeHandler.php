@@ -18,7 +18,7 @@ class MessageDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof MessageDeclarationNode;
     }
 
-    public function handleVisit(Visitable|MessageDeclarationNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var MessageDeclarationNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -28,7 +28,7 @@ class MessageDeclarationNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|MessageDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var MessageDeclarationNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

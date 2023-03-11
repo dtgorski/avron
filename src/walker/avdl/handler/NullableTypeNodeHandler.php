@@ -19,7 +19,7 @@ class NullableTypeNodeHandler extends TypeNodeHandler
         return $visitable instanceof NullableTypeNode;
     }
 
-    public function handleLeave(Visitable|TypeNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var TypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

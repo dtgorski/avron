@@ -13,11 +13,6 @@ use stdClass;
  */
 class JsonObjectNode extends AstNode implements JsonSerializable
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     public function jsonSerialize(): object
     {
         $obj = new stdClass();

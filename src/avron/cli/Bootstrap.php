@@ -4,8 +4,9 @@
 
 namespace Avron\Cli;
 
-use Avron\AvronException;
+use Avron\avron\cli\cmd\Main;
 use Avron\Config;
+use Avron\Diag\DumpAstVisitor;
 use Avron\Logger;
 use Avron\StandardWriter;
 
@@ -19,19 +20,16 @@ class Bootstrap
 {
     /**
      * @param Manifest $manifest
-     * @param resource $stdin
      * @param resource $stdout
      * @param resource $stderr
-     * @param string[] $argv
+     * @param string[] $args
      */
     public function __construct(
         private readonly Manifest $manifest,
-        private readonly mixed $stdin,
         private readonly mixed $stdout,
         private readonly mixed $stderr,
-        private readonly array $argv,
+        private readonly array $args,
     ) {
-        $_ = $this->stdin;
     }
 
     public function run(): void
@@ -43,43 +41,52 @@ class Bootstrap
             new StandardWriter($this->stderr)
         );
 
-        $mainHandler = OptionsHandlerMain::create($config, $logger);
+        $cmd = Main::create($config, $logger)->addNode(
+            CommandCompile::create($config, $logger)->addNode(
+                TaskCompilePHP8::create($config, $logger)
+            ),
+            CommandVerify::create($config, $logger)
+        );
 
-        $commands = Commands::fromArray([
-            CommandHandlerCompile::create($config, $logger),
-        ]);
+        $cmd->accept(new DumpAstVisitor());
 
         try {
-            $getOpt = new GetOpt($this->argv, $mainHandler->getOptions(), $commands);
-            $params = $getOpt->createParameters();
+            $args = Classifier::parseArguments($this->args);
 
-            if ($params->getOptions()) {
-                print_r($params);
-            }
+            $proc = new Processor($cmd, $args);
+            $proc->process();
+//            $params = $getOpt->createParameters();
+//
+//            if ($params->getOptions()) {
+//                print_r($params);
+//            }
 
 //            $command->configure($selectedOptions);
 //            $command->execute($commandOperands);
 
+            $cmd->accept(new Usage());
+
         } catch (\Avron\Cli\Exception $e) {
-            foreach (explode("\n", trim($e->getMessage())) as $line) {
-                $logger->error($line);
-            }
-            $usage = new Usage($this->argv[0], $this->manifest);
-            $usage->renderUsage($mainHandler->getOptions(), $commands);
+            $this->error($logger, $e->getMessage());
+            //  $usage = new Usage($this->manifest);
+            //$usage->renderUsage($command, $commands);
             exit(1);
 
         } catch (\Avron\AvronException $e) {
-            foreach (explode("\n", trim($e->getError())) as $line) {
-                $logger->error($line);
-            }
+            $this->error($logger, $e->getError());
             exit(1);
 
         } catch (\Exception $e) {
-            $logger->error($e->getMessage());
-            foreach (explode("\n", $e->getTraceAsString()) as $line) {
-                $logger->error($line);
-            }
+            $this->error($logger, $e->getMessage());
+            $this->error($logger, $e->getTraceAsString());
             exit(1);
+        }
+    }
+
+    private function error(Logger $logger, string $msg): void
+    {
+        foreach (explode("\n", trim($msg)) as $line) {
+            $logger->error($line);
         }
     }
 }

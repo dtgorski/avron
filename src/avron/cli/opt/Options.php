@@ -4,16 +4,14 @@
 
 namespace Avron\Cli;
 
-use ArrayIterator;
-use IteratorAggregate;
-use Traversable;
+use Avron\Core\ArrayList;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
- * @template-implements \IteratorAggregate<Option>
+ * @extends  ArrayList<Option>
  */
-class Options implements IteratorAggregate
+class Options extends ArrayList
 {
     /** @param Option[] $options */
     public static function fromArray(array $options): Options
@@ -23,37 +21,16 @@ class Options implements IteratorAggregate
         return new Options($options);
     }
 
-    /** @param Option[] $options */
-    private function __construct(private readonly array $options)
+    public function getByName(string $name): Option|null
     {
-    }
-
-    public function getByName(string $name): ?Option
-    {
-        foreach ($this->options as $opt) {
-            if ($name === $opt->get(Option::OPT_SHORT)) {
-                return $opt;
+        foreach ($this->asArray() as $option) {
+            if ($name === $option->get(Option::OPT_SHORT)) {
+                return $option;
             }
-            if ($name === $opt->get(Option::OPT_LONG)) {
-                return $opt;
+            if ($name === $option->get(Option::OPT_LONG)) {
+                return $option;
             }
         }
         return null;
-    }
-
-    /** @return Option[] */
-    public function asArray(): array
-    {
-        return $this->options;
-    }
-
-    public function size(): int
-    {
-        return sizeof($this->asArray());
-    }
-
-    public function getIterator(): Traversable
-    {
-        return new ArrayIterator($this->asArray());
     }
 }

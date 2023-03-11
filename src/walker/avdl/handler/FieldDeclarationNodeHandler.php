@@ -19,7 +19,7 @@ class FieldDeclarationNodeHandler extends HandlerAbstract
         return $visitable instanceof FieldDeclarationNode;
     }
 
-    public function handleLeave(Visitable|FieldDeclarationNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var ErrorListNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

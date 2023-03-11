@@ -18,7 +18,7 @@ class PrimitiveTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof PrimitiveTypeNode;
     }
 
-    public function handleVisit(Visitable|PrimitiveTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var PrimitiveTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

@@ -18,7 +18,7 @@ class LogicalTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof LogicalTypeNode;
     }
 
-    public function handleVisit(Visitable|LogicalTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var LogicalTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

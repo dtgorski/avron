@@ -10,7 +10,8 @@ namespace Avron\Ast;
  */
 class ErrorListNode extends AstNode
 {
-    public function __construct(private readonly ErrorType $type) {
+    public function __construct(private readonly ErrorType $type)
+    {
         parent::__construct();
     }
 

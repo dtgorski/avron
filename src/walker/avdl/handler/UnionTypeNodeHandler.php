@@ -18,7 +18,7 @@ class UnionTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof UnionTypeNode;
     }
 
-    public function handleVisit(Visitable|UnionTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var UnionTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -28,7 +28,7 @@ class UnionTypeNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|UnionTypeNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var UnionTypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

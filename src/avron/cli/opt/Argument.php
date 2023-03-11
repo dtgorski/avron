@@ -10,14 +10,14 @@ namespace Avron\Cli;
  */
 class Argument
 {
-    public const OPTION = "option";
-    public const OPERAND = "operand";
+    const OPTION = "option";
+    const OPERAND = "operand";
 
     /**
      * @param string $value
-     * @param string|null $preset The value that followed the "=" sign, if any.
-     *                    This is required to distinguish between "-x foo" and
-     *                    "-x=foo" in case -x must not have an extra argument.
+     * @param ?string $preset The value that followed the "=" sign, if any.
+     *                This is required to distinguish between "-x foo" and
+     *                "-x=foo" in case -x must not have an extra argument.
      * @return Argument
      */
     public static function fromOption(string $value, ?string $preset = null): Argument
@@ -57,7 +57,7 @@ class Argument
         return $this->value;
     }
 
-    public function getPreset(): ?string
+    public function getPreset(): string|null
     {
         return $this->preset;
     }

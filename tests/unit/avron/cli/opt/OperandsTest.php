@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Avron\Cli\Operands
+ * @uses   \Avron\Core\ArrayList
  */
 class OperandsTest extends TestCase
 {

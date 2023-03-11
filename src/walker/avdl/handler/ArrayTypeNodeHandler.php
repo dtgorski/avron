@@ -18,21 +18,16 @@ class ArrayTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof ArrayTypeNode;
     }
 
-    public function handleVisit(Visitable|ArrayTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
-        /** @var ArrayTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
-
         $this->write("array<");
-
         return true;
     }
 
-    public function handleLeave(Visitable|ArrayTypeNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
-        /** @var ArrayTypeNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);
-
         $this->write(">");
     }
 }

@@ -18,7 +18,7 @@ class FormalParameterNodeHandler extends HandlerAbstract
         return $visitable instanceof FormalParameterNode;
     }
 
-    public function handleVisit(Visitable|FormalParameterNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var FormalParameterNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

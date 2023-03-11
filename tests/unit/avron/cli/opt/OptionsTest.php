@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \Avron\Cli\Options
  * @uses   \Avron\Cli\Option
+ * @uses   \Avron\Core\ArrayList
  */
 class OptionsTest extends TestCase
 {

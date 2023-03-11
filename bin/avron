@@ -5,6 +5,10 @@
 
 use Avron\Cli\Bootstrap;
 use Avron\Cli\Manifest;
+use Avron\Config;
+use Avron\Diag\DumpAstVisitor;
+use Avron\Logger;
+use Avron\StandardWriter;
 
 setlocale(LC_ALL, "C");
 
@@ -25,10 +29,6 @@ $version = is_readable($path = sprintf("%s/../VERSION", __DIR__))
 
 $description = "Apache Avro IDL transpiler.";
 
-$manifest = Manifest::fromParams(
-    basename($argv[0]),
-    $version,
-    $description
-);
+$manifest = Manifest::fromParams(basename($argv[0]), $version);
 
-(new Bootstrap($manifest, STDIN, STDOUT, STDERR, $argv))->run();
+(new Bootstrap($manifest, STDOUT, STDERR, array_splice($argv, 1)))->run();

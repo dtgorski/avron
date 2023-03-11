@@ -13,10 +13,9 @@ class ManifestTest extends TestCase
 {
     public function testFromParams()
     {
-        $man = Manifest::fromParams("foo", "bar", "baz");
+        $man = Manifest::fromParams("foo", "bar");
 
         $this->assertEquals("foo", $man->getName());
         $this->assertEquals("bar", $man->getVersion());
-        $this->assertEquals("baz", $man->getDescription());
     }
 }

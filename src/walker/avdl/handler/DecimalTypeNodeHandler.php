@@ -18,11 +18,11 @@ class DecimalTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof DecimalTypeNode;
     }
 
-    public function handleVisit(Visitable|DecimalTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
-        /** @var DecimalTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
 
+        /** @var DecimalTypeNode $visitable calms static analysis down. */
         $this->writePropertiesSingleLine($visitable->getProperties());
         $this->write("decimal(", $visitable->getPrecision(), ", ", $visitable->getScale(), ")");
 

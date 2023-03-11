@@ -18,7 +18,7 @@ class JsonArrayNodeHandler extends HandlerAbstract
         return $visitable instanceof JsonArrayNode;
     }
 
-    public function handleVisit(Visitable|JsonArrayNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var JsonArrayNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);
@@ -31,7 +31,7 @@ class JsonArrayNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable|JsonArrayNode $visitable): void
+    public function handleLeave(Visitable $visitable): void
     {
         /** @var JsonArrayNode $visitable calms static analysis down. */
         parent::handleLeave($visitable);

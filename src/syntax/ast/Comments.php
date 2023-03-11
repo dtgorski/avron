@@ -11,8 +11,8 @@ use Avron\Core\ArrayList;
  *           Semantic versioning consent does not apply here. Use at own risk.
  * @extends  ArrayList<Comment>
  */
-class Comments extends ArrayList {
-
+class Comments extends ArrayList
+{
     /** @param Comment[] $comments */
     public static function fromArray(array $comments): Comments
     {

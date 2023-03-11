@@ -2,20 +2,26 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\Cli;
+namespace Avron\avron\cli\cmd;
+
+use Avron\Cli\Command;
+use Avron\Cli\Operands;
+use Avron\Cli\Option;
+use Avron\Cli\Options;
+use Avron\Config;
+use Avron\Logger;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class CommandAvron extends AbstractCommand
+class Main extends Command
 {
-    private const NAME = "avron";
+    private const NAME = "";
     private const ARGS = "[OPTION...] [COMMAND [OPTION...] FILE...]";
     private const DESC = "Apache Avro IDL transpiler.";
 
-    /** @return Options */
-    private static function options(): Options
+    public function supported(): Options
     {
         return Options::fromArray([
             Option::fromMap([
@@ -39,22 +45,17 @@ class CommandAvron extends AbstractCommand
         ]);
     }
 
-//    public static function create(Config $config, Logger $logger): CommandAvron
-//    {
-//        return Command::fromParams(
-//            self::NAME,
-//            self::ARGS,
-//            self::DESC,
-//            self::options(),
-//            new self($config, $logger)
-//        );
-//    }
-//
-//    private function __construct(
-//        private readonly Config $config,
-//        private readonly Logger $logger
-//    ) {
-//    }
+    public static function create(Config $config, Logger $logger): Main
+    {
+        return new Main($config, $logger);
+    }
+
+    private function __construct(
+        private readonly Config $config,
+        private readonly Logger $logger
+    ) {
+        parent::__construct();
+    }
 
     public function configure(Options $options): void
     {

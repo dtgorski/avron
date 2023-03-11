@@ -2,6 +2,7 @@ makefile
 docs/
 dev/
 
+_*
 .*
 !.github
 !.gitignore

@@ -18,7 +18,7 @@ class ResultTypeNodeHandler extends HandlerAbstract
         return $visitable instanceof ResultTypeNode;
     }
 
-    public function handleVisit(Visitable|ResultTypeNode $visitable): bool
+    public function handleVisit(Visitable $visitable): bool
     {
         /** @var ResultTypeNode $visitable calms static analysis down. */
         parent::handleVisit($visitable);

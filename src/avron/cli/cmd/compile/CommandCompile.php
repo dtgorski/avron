@@ -5,6 +5,7 @@
 namespace Avron\Cli;
 
 use Avron\Config;
+use Avron\Factory;
 use Avron\Logger;
 
 /**
@@ -13,52 +14,70 @@ use Avron\Logger;
  */
 class CommandCompile extends Command
 {
-    private const NAME = "compile";
-    private const ARGS = "TARGET [OPTION...] FILE...";
-    private const DESC = "Compile Avro IDL to source code.";
-
-    public function supported(): Options
+    public static function create(Config $config, Logger $logger): Command
     {
-        return Options::fromArray([
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "h",
-                Option::OPT_LONG /* */ => "help",
-                Option::OPT_DESC /* */ =>
-                    "Display this usage help.",
-            ]),
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "d",
-                Option::OPT_LONG /* */ => "dry-run",
-                Option::OPT_DESC /* */ =>
-                    "Does not perform writes. Reasonable for diagnosis with --verbose."
-            ]),
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "v",
-                Option::OPT_LONG /* */ => "verbose",
-                Option::OPT_DESC /* */ =>
-                    "Increases output verbosity level for diagnostic purposes."
-            ]),
-        ]);
+        return new self($config, $logger);
     }
-
-    public static function create(Config $config, Logger $logger): CommandCompile
-    {
-        return new CommandCompile($config, $logger);
-    }
-
 
     private function __construct(
         private readonly Config $config,
         private readonly Logger $logger
     ) {
-        parent::__construct();
+        parent::__construct(self::NAME, self::PARA, self::DESC);
+    }
+
+    private const NAME = "compile";
+    private const PARA = "TARGET [OPTION...] FILE...";
+    private const DESC = "Compile Avro IDL to source code.";
+
+    public function options(): Options
+    {
+        return Options::fromArray([
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "h",
+//                Option::OPT_LONG /* */ => "help",
+//                Option::OPT_DESC /* */ =>
+//                    "Display this usage help.",
+//            ]),
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "d",
+//                Option::OPT_LONG /* */ => "dry-run",
+//                Option::OPT_DESC /* */ =>
+//                    "Does not perform writes. Reasonable for diagnosis with --verbose."
+//            ]),
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "v",
+//                Option::OPT_LONG /* */ => "verbose",
+//                Option::OPT_DESC /* */ =>
+//                    "Increases output verbosity level for diagnostic purposes."
+//            ]),
+            Option::fromMap([
+                Option::OPT_SHORT /**/ => "o",
+                Option::OPT_LONG /* */ => "output",
+                Option::OPT_MODE /* */ => Option::MODE_ARG_SINGLE,
+                Option::OPT_ARGN /* */ => "dir",
+                Option::OPT_DESC /* */ =>
+                    "Designates the directory for the compilation target. Directory must exist. " .
+                    "Existing files will not be overwritten. Default is /dev/null."
+            ]),
+        ]);
     }
 
     public function configure(Options $options): void
     {
+        $config = $this->config;
+        $config->set(Config::PERFORM_DRY_RUN, $options->getByName("dry-run") || !$options->getByName("output"));
+        $config->set(Config::OUTPUT_DIRECTORY, $options->getByName("output") ?? "");
+        $config->set(Config::VERBOSITY_LEVEL, $options->getByName("verbose") ?? 0);
     }
 
     public function execute(Operands $operands): void
     {
+        $factory = new Factory($this->config, $this->logger);
+        $sourceMap = $factory->createProtocolLoader()->load(...$operands->asArray());
+//
+////        foreach ($sourceMap as $visitable) {
+////            $visitable->accept($factory->createAvdlPrinter());
+////        }
     }
 }

@@ -4,31 +4,49 @@
 
 namespace Avron\Cli;
 
-use ArrayIterator;
-use Avron\Api\TreeNode;
+use Avron\Api\Visitable;
+use Avron\Api\Visitor;
 use Exception;
+use Traversable;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class Processor
+class Processor implements Visitor
 {
-    public function __construct(
-        private readonly TreeNode $node,
-        private readonly Arguments $arguments
-    ) {
+    private Traversable $it;
+
+    public function __construct(private readonly Arguments $arguments)
+    {
     }
 
     /**
+     * @param Command $handler Handler tree reflecting the command hierarchy.
      * @throws Exception
-     * @throws \Exception
      */
-    public function process(): void
+    public function process(Command $handler): void
     {
-        /** @var ArrayIterator<int,Argument> $it */
-        $it = $this->arguments->getIterator();
+        $this->it = $this->arguments->getIterator();
+        $handler->accept($this);
+    }
 
-        echo "process";
+    public function visit(Visitable $visitable): bool
+    {
+        if (!$visitable instanceof Command) {
+            return true;
+        }
+        $options = $visitable->options();
+
+        echo "enter  ", get_class($visitable), "\n";
+        return true;
+    }
+
+    public function leave(Visitable $visitable): void
+    {
+        if (!$visitable instanceof Command) {
+            return;
+        }
+        echo "leave ", get_class($visitable), "\n";
     }
 }

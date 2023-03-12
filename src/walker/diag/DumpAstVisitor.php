@@ -4,7 +4,7 @@
 
 namespace Avron\Diag;
 
-use Avron\Api\TreeNode;
+use Avron\Api\Node;
 use Avron\Api\Visitable;
 use Avron\Api\Visitor;
 use Avron\Api\Writer;
@@ -16,15 +16,15 @@ use Avron\StandardWriter;
  */
 class DumpAstVisitor implements Visitor
 {
-    public function __construct(private readonly Writer $writer = new StandardWriter(STDIN))
+    public function __construct(private readonly Writer $writer = new StandardWriter(STDOUT))
     {
     }
 
-    public function visit(Visitable $node): bool
+    public function visit(Visitable $visitable): bool
     {
-        /** @var TreeNode $node calms static analysis down. */
-        $parts = explode("\\", get_class($node));
-        $edges = $this->edges($node);
+        /** @var Node $visitable calms static analysis down. */
+        $parts = explode("\\", get_class($visitable));
+        $edges = $this->edges($visitable);
         $name = $parts[sizeof($parts) - 1];
 
         $this->writer->write($edges, $name, "\n");
@@ -32,11 +32,11 @@ class DumpAstVisitor implements Visitor
         return true;
     }
 
-    public function leave(Visitable $node): void
+    public function leave(Visitable $visitable): void
     {
     }
 
-    private function edges(TreeNode $node): string
+    private function edges(Node $node): string
     {
         $edge = $node->parentNode()
             ? ($node->nextNode() ? "├── " : "└── ")

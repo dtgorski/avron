@@ -2,12 +2,8 @@
 
 // MIT License · Daniel T. Gorski <dtg [at] lengo [dot] org> · 03/2023
 
-namespace Avron\avron\cli\cmd;
+namespace Avron\Cli;
 
-use Avron\Cli\Command;
-use Avron\Cli\Operands;
-use Avron\Cli\Option;
-use Avron\Cli\Options;
 use Avron\Config;
 use Avron\Logger;
 
@@ -15,13 +11,25 @@ use Avron\Logger;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-class Main extends Command
+class CommandMain extends Command
 {
-    private const NAME = "";
-    private const ARGS = "[OPTION...] [COMMAND [OPTION...] FILE...]";
+    public static function create(Config $config, Logger $logger): Command
+    {
+        return new self($config, $logger);
+    }
+
+    private function __construct(
+        private readonly Config $config,
+        private readonly Logger $logger
+    ) {
+        parent::__construct(self::NAME, self::PARA, self::DESC);
+    }
+
+    private const NAME = "avron";
+    private const PARA = "[OPTION...] [COMMAND [OPTION...] FILE...]";
     private const DESC = "Apache Avro IDL transpiler.";
 
-    public function supported(): Options
+    public function options(): Options
     {
         return Options::fromArray([
             Option::fromMap([
@@ -34,7 +42,7 @@ class Main extends Command
                 Option::OPT_SHORT /**/ => "d",
                 Option::OPT_LONG /* */ => "dry-run",
                 Option::OPT_DESC /* */ =>
-                    "Does not perform writes. Reasonable for diagnosis with --verbose."
+                    "No writes. Reasonable for diagnosis with --verbose."
             ]),
             Option::fromMap([
                 Option::OPT_SHORT /**/ => "v",
@@ -43,18 +51,6 @@ class Main extends Command
                     "Increases output verbosity level for diagnostic purposes."
             ]),
         ]);
-    }
-
-    public static function create(Config $config, Logger $logger): Main
-    {
-        return new Main($config, $logger);
-    }
-
-    private function __construct(
-        private readonly Config $config,
-        private readonly Logger $logger
-    ) {
-        parent::__construct();
     }
 
     public function configure(Options $options): void

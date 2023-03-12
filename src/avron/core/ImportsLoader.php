@@ -28,23 +28,25 @@ class ImportsLoader implements Visitor
     }
 
     /** @throws AvronException */
-    public function visit(Visitable $node): bool
+    public function visit(Visitable $visitable): bool
     {
-        if (!$node instanceof ImportStatementNode) {
+        if (!$visitable instanceof ImportStatementNode) {
             return true;
         }
         // FIXME: implement protocol and schema imports.
-        if ($node->getType() !== ImportType::idl) {
-            throw new AvronException(sprintf("unsupported import type '%s'", $node->getType()->value));
+        if ($visitable->getType() !== ImportType::idl) {
+            throw new AvronException(
+                sprintf("unsupported import type '%s'", $visitable->getType()->value)
+            );
         }
 
-        $sourceFile = RealPath::fromString(sprintf("%s/%s", $this->dir, $node->getPath()));
+        $sourceFile = RealPath::fromString(sprintf("%s/%s", $this->dir, $visitable->getPath()));
         $this->sourceParser->parse($this->sourceMap, $sourceFile);
 
         return false;
     }
 
-    public function leave(Visitable $node): void
+    public function leave(Visitable $visitable): void
     {
     }
 }

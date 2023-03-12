@@ -13,11 +13,23 @@ use Avron\Logger;
  */
 class CommandVerify extends Command
 {
-    private const NAME = "verify";
-    private const ARGS = "";
-    private const DESC = "";
+    public static function create(Config $config, Logger $logger): Command
+    {
+        return new self($config, $logger);
+    }
 
-    public function supported(): Options
+    private function __construct(
+        private readonly Config $config,
+        private readonly Logger $logger
+    ) {
+        parent::__construct(self::NAME, self::PARA, self::DESC);
+    }
+
+    private const NAME = "verify";
+    private const PARA = "[OPTIONS...] FILE...";
+    private const DESC = "Verify Avro IDL syntax and integrity.";
+
+    public function options(): Options
     {
         return Options::fromArray([
 //            Option::fromMap([
@@ -39,19 +51,6 @@ class CommandVerify extends Command
 //                    "Increases output verbosity level for diagnostic purposes."
 //            ]),
         ]);
-    }
-
-    public static function create(Config $config, Logger $logger): CommandVerify
-    {
-        return new CommandVerify($config, $logger);
-    }
-
-
-    private function __construct(
-        private readonly Config $config,
-        private readonly Logger $logger
-    ) {
-        parent::__construct();
     }
 
     public function configure(Options $options): void

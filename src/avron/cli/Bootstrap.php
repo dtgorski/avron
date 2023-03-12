@@ -4,7 +4,6 @@
 
 namespace Avron\Cli;
 
-use Avron\avron\cli\cmd\Main;
 use Avron\Config;
 use Avron\Diag\DumpAstVisitor;
 use Avron\Logger;
@@ -41,20 +40,35 @@ class Bootstrap
             new StandardWriter($this->stderr)
         );
 
-        $cmd = Main::create($config, $logger)->addNode(
-            CommandCompile::create($config, $logger)->addNode(
-                TaskCompilePHP8::create($config, $logger)
-            ),
-            CommandVerify::create($config, $logger)
-        );
+        $commandTree = CommandMain::create($config, $logger);
 
-        $cmd->accept(new DumpAstVisitor());
+        $commandTree->addNode(
+            CommandCompile::create($config, $logger)->addNode(
+                TaskCompilePHP8::create($config, $logger),
+                TaskCompileGo::create($config, $logger),
+            ),
+            CommandVerify::create($config, $logger),
+        );
+//print_r($commandTree);
+//        $commandTree->accept(new DumpAstVisitor());
 
         try {
-            $args = Classifier::parseArguments($this->args);
+            $arguments = Classifier::parseArguments($this->args);
 
-            $proc = new Processor($cmd, $args);
-            $proc->process();
+//            $p = new Processor($arguments);
+//            $p->process($tree);
+
+            $r = new Renderer();
+            $u = new Usage($this->manifest, $r);
+            $u->render($commandTree);
+            echo "\n-------------------------------------------------------\n";
+            $r = new Renderer();
+            $u = new Usage($this->manifest, $r);
+            $u->render($commandTree->childNodes()[0]);
+            echo "\n-------------------------------------------------------\n";
+            $r = new Renderer();
+            $u = new Usage($this->manifest, $r);
+            $u->render($commandTree->childNodes()[0]->childNodes()[0]);
 //            $params = $getOpt->createParameters();
 //
 //            if ($params->getOptions()) {
@@ -64,7 +78,7 @@ class Bootstrap
 //            $command->configure($selectedOptions);
 //            $command->execute($commandOperands);
 
-            $cmd->accept(new Usage());
+#            $tree->accept(new Usage());
 
         } catch (\Avron\Cli\Exception $e) {
             $this->error($logger, $e->getMessage());

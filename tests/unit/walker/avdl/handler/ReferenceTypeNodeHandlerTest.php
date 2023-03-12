@@ -13,7 +13,7 @@ use Avron\Ast\ReferenceTypeNode;
  * @uses   \Avron\Ast\ReferenceTypeNode
  * @uses   \Avron\BufferedWriter
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  * @uses   \Avron\Idl\HandlerAbstract
  */
 class ReferenceTypeNodeHandlerTest extends HandlerTestCase

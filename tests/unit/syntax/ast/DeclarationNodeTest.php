@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Core\ArrayList
  * @uses   \Avron\Core\NodeNamespace
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  */
 class DeclarationNodeTest extends TestCase
 {

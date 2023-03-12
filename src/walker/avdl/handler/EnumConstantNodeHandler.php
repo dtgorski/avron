@@ -24,6 +24,7 @@ class EnumConstantNodeHandler extends HandlerAbstract
         parent::handleVisit($visitable);
 
         $this->write($this->indent(), $visitable->getName());
+
         return true;
     }
 
@@ -35,6 +36,7 @@ class EnumConstantNodeHandler extends HandlerAbstract
         if ($visitable->nextNode()) {
             $this->write(",");
         }
+
         $this->write("\n");
     }
 }

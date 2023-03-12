@@ -9,24 +9,19 @@ use IteratorAggregate;
 use Traversable;
 
 /**
- * @template T
- *
- * @internal This declaration is internal and is NOT PART of any official API.
- *           Semantic versioning consent does not apply here. Use at own risk.
+ * @template   T
+ * @internal   This declaration is internal and is NOT PART of any official API.
+ *             Semantic versioning consent does not apply here. Use at own risk.
  * @implements \IteratorAggregate<T>
  */
 class ArrayList implements IteratorAggregate
 {
-    /**
-     * @param T[] $elements
-     */
+    /** @param T[] $elements */
     protected function __construct(private readonly array $elements)
     {
     }
 
-    /**
-     * @return T[]
-     */
+    /** @return T[] */
     public function asArray(): array
     {
         return $this->elements;

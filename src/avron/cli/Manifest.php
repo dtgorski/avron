@@ -12,7 +12,7 @@ class Manifest
 {
     public static function fromParams(string $name, string $version): Manifest
     {
-        return new Manifest($name, $version);
+        return new self($name, $version);
     }
 
     private function __construct(

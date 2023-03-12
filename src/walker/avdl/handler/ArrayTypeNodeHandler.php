@@ -21,6 +21,7 @@ class ArrayTypeNodeHandler extends HandlerAbstract
     public function handleVisit(Visitable $visitable): bool
     {
         parent::handleVisit($visitable);
+
         $this->write("array<");
         return true;
     }

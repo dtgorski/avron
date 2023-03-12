@@ -13,7 +13,7 @@ use RuntimeException;
  * @covers \Avron\Ast\AstNode
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  */
 class AstNodeTest extends TestCase
 {
@@ -130,13 +130,13 @@ class TestVisitor implements Visitor
 {
     public string $thread = "";
 
-    public function visit(Visitable $node): bool
+    public function visit(Visitable $visitable): bool
     {
-        $this->thread .= $node->name;
+        $this->thread .= $visitable->name;
         return true;
     }
 
-    public function leave(Visitable $node): void
+    public function leave(Visitable $visitable): void
     {
     }
 }

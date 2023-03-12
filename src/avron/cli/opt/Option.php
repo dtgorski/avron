@@ -17,15 +17,13 @@ class Option
     const OPT_ARGN /* */ = "OPT_ARGN";
     const OPT_VALUE /**/ = "OPT_VALUE";
 
-    // Utility Syntax Guidelines advise against optional option arguments.
-    // <https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02>
     const MODE_ARG_NONE /*    */ = "ARG_NONE";
     const MODE_ARG_SINGLE /*  */ = "ARG_SINGLE";
     const MODE_ARG_MULTIPLE /**/ = "ARG_MULTIPLE";
 
     public static function fromMap(array $map): Option
     {
-        return new Option(array_merge([
+        return new self(array_merge([
             self::OPT_SHORT => "",
             self::OPT_LONG => "",
             self::OPT_DESC => "",
@@ -37,7 +35,7 @@ class Option
 
     public static function fromOption(Option $option, array $map): Option
     {
-        return new Option(array_merge([
+        return new self(array_merge([
             self::OPT_SHORT => $option->get(self::OPT_SHORT),
             self::OPT_LONG => $option->get(self::OPT_LONG),
             self::OPT_DESC => $option->get(self::OPT_DESC),

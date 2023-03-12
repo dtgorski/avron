@@ -16,6 +16,6 @@ class Comments extends ArrayList
     /** @param Comment[] $comments */
     public static function fromArray(array $comments): Comments
     {
-        return new Comments($comments);
+        return new self($comments);
     }
 }

@@ -10,21 +10,21 @@ use RuntimeException;
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-interface TreeNode extends Visitable
+interface Node extends Visitable
 {
     /** @throws RuntimeException when node already has a parent. */
-    public function addNode(TreeNode|null ...$nodes): TreeNode;
+    public function addNode(Node|null ...$nodes): Node;
 
-    public function parentNode(): TreeNode|null;
+    public function parentNode(): Node|null;
 
-    /** @return TreeNode[] */
+    /** @return Node[] */
     public function childNodes(): array;
 
-    public function prevNode(): TreeNode|null;
+    public function prevNode(): Node|null;
 
-    public function nextNode(): TreeNode|null;
+    public function nextNode(): Node|null;
 
-    public function nodeAt(int $i): TreeNode|null;
+    public function nodeAt(int $i): Node|null;
 
     public function nodeIndex(): int;
 

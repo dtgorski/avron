@@ -16,6 +16,6 @@ class Arguments extends ArrayList
     /** @param Argument[] $arguments */
     public static function fromArray(array $arguments): Arguments
     {
-        return new Arguments($arguments);
+        return new self($arguments);
     }
 }

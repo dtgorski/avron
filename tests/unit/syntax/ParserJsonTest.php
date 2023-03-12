@@ -29,7 +29,7 @@ use Avron\Logger;
  * @uses   \Avron\Ast\Token
  * @uses   \Avron\Avron
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  * @uses   \Avron\Factory
  */
 class ParserJsonTest extends AvronTestCase

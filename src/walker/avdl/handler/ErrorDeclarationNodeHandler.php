@@ -24,6 +24,7 @@ class ErrorDeclarationNodeHandler extends HandlerAbstract
         parent::handleVisit($visitable);
 
         $this->write($this->indent(), "error ", $visitable->getName(), " {\n");
+
         $this->stepIn();
 
         return true;

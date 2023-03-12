@@ -25,26 +25,26 @@ class DeclarationFinalizer implements Visitor
     }
 
     /** @throws AvronException */
-    public function visit(Visitable $node): bool
+    public function visit(Visitable $visitable): bool
     {
-        if (!$node instanceof DeclarationNode) {
+        if (!$visitable instanceof DeclarationNode) {
             return true;
         }
 
         // When schema property "namespace" is explicitly set.
-        if ($namespace = $node->getProperties()->getByName("namespace")) {
-            $node->setNamespace(NodeNamespace::fromString((string)$namespace->getValue()));
+        if ($namespace = $visitable->getProperties()->getByName("namespace")) {
+            $visitable->setNamespace(NodeNamespace::fromString((string)$namespace->getValue()));
         } else {
-            $node->setNamespace($this->namespace);
+            $visitable->setNamespace($this->namespace);
         }
 
         // Set source file.
-        $node->setSourceFile($this->sourceFile);
+        $visitable->setSourceFile($this->sourceFile);
 
         return true;
     }
 
-    public function leave(Visitable $node): void
+    public function leave(Visitable $visitable): void
     {
     }
 }

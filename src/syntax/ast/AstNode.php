@@ -4,13 +4,13 @@
 
 namespace Avron\Ast;
 
-use Avron\Core\VisitableNode;
+use Avron\Core\TreeNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
  *           Semantic versioning consent does not apply here. Use at own risk.
  */
-abstract class AstNode extends VisitableNode
+abstract class AstNode extends TreeNode
 {
     private Properties $properties;
 

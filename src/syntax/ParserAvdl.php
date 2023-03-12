@@ -4,8 +4,8 @@
 
 namespace Avron\Ast;
 
+use Avron\Api\Node;
 use Avron\AvronException;
-use Avron\Core\VisitableNode;
 
 /**
  * @internal This declaration is internal and is NOT PART of any official API.
@@ -31,10 +31,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* "protocol" Identifier ProtocolBody
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseProtocolDeclaration(): VisitableNode
+    protected function parseProtocolDeclaration(): Node
     {
         $properties = $this->parseProperties();
 
@@ -50,7 +50,7 @@ class ParserAvdl extends ParserJson
     /**
      * "{" ( Imports | Declarations )*  "}"
      *
-     * @return VisitableNode[]
+     * @return Node[]
      * @throws AvronException
      */
     protected function parseProtocolBody(): array
@@ -73,10 +73,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( ImportIdl | ImportProtocol | ImportSchema )*
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseImportStatement(): VisitableNode
+    protected function parseImportStatement(): Node
     {
         $types = ImportType::names();
         $this->consume(Token::IDENT, "import");
@@ -90,10 +90,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* ( NamedDeclaration | MessageDeclaration ) )*
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseDeclaration(): VisitableNode
+    protected function parseDeclaration(): Node
     {
         $properties = $this->parseProperties();
 
@@ -106,10 +106,10 @@ class ParserAvdl extends ParserJson
      * ResultType Identifier FormalParameters ( "oneway" | "throws" ErrorList )? ";"
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseMessageDeclaration(Properties $properties): VisitableNode
+    protected function parseMessageDeclaration(Properties $properties): Node
     {
         $type = $this->parseResultType();
         $node = new MessageDeclarationNode($this->parseAnyIdentifier(), $properties);
@@ -128,10 +128,10 @@ class ParserAvdl extends ParserJson
     /**
      *    ( "(" ( FormalParameter ( "," FormalParameter )* )? ")" )
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseFormalParameters(): VisitableNode
+    protected function parseFormalParameters(): Node
     {
         $node = new FormalParametersNode();
         $this->consume(Token::LPAREN);
@@ -150,10 +150,10 @@ class ParserAvdl extends ParserJson
     /**
      * Type VariableDeclarator
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseFormalParameter(): VisitableNode
+    protected function parseFormalParameter(): Node
     {
         $node = new FormalParameterNode();
         $node->addNode($this->parseType());
@@ -164,10 +164,10 @@ class ParserAvdl extends ParserJson
     /**
      * ReferenceType ( "," ReferenceType )*
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseErrorList(): VisitableNode
+    protected function parseErrorList(): Node
     {
         $token = $this->consume(Token::IDENT, ...ErrorType::names());
         $node = new ErrorListNode(ErrorType::from($token->getLoad()));
@@ -183,10 +183,10 @@ class ParserAvdl extends ParserJson
     /**
      * "oneway"
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseOnewayStatement(): VisitableNode
+    protected function parseOnewayStatement(): Node
     {
         $this->consume(Token::IDENT, "oneway");
         return (new TypeNode())->addNode(new OnewayStatementNode());
@@ -196,10 +196,10 @@ class ParserAvdl extends ParserJson
      * ( RecordDeclaration | ErrorDeclaration | EnumDeclaration | FixedDeclaration )
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseNamedDeclaration(Properties $properties): VisitableNode
+    protected function parseNamedDeclaration(Properties $properties): Node
     {
         if ($this->expect(Token::IDENT, "error")) {
             return $this->parseErrorDeclaration($properties);
@@ -217,10 +217,10 @@ class ParserAvdl extends ParserJson
      * "fixed" Identifier "(" <INTEGER> ")" ";"
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseFixedDeclaration(Properties $properties): VisitableNode
+    protected function parseFixedDeclaration(Properties $properties): Node
     {
         $this->consume(Token::IDENT, "fixed");
         $name = $this->parseAnyIdentifier();
@@ -236,10 +236,11 @@ class ParserAvdl extends ParserJson
     /**
      * "record" Identifier "{" (FieldDeclaration)* "}"
      *
-     * @return VisitableNode
+     * @param Properties $properties
+     * @return Node
      * @throws AvronException
      */
-    protected function parseRecordDeclaration(Properties $properties): VisitableNode
+    protected function parseRecordDeclaration(Properties $properties): Node
     {
         $this->consume(Token::IDENT, "record");
         $node = new RecordDeclarationNode($this->parseAnyIdentifier(), $properties);
@@ -257,10 +258,10 @@ class ParserAvdl extends ParserJson
      * "error" Identifier "{" (FieldDeclaration)* "}"
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseErrorDeclaration(Properties $properties): VisitableNode
+    protected function parseErrorDeclaration(Properties $properties): Node
     {
         $this->consume(Token::IDENT, "error");
         $node = new ErrorDeclarationNode($this->parseAnyIdentifier(), $properties);
@@ -278,10 +279,10 @@ class ParserAvdl extends ParserJson
      * "enum" Identifier "{" EnumBody "}" ( <EQ> Identifier )
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseEnumDeclaration(Properties $properties): VisitableNode
+    protected function parseEnumDeclaration(Properties $properties): Node
     {
         $default = "";
         $this->consume(Token::IDENT, "enum");
@@ -298,13 +299,14 @@ class ParserAvdl extends ParserJson
 
         $node = new EnumDeclarationNode($ident, $default, $properties);
         $node->setComments($this->fromCommentQueue());
+
         return $node->addNode(...$body);
     }
 
     /**
      * ( Identifier ( "," Identifier )* )?
      *
-     * @return VisitableNode[]
+     * @return Node[]
      * @throws AvronException
      */
     protected function parseEnumBody(): array
@@ -324,10 +326,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( ( Property )* Type VariableDeclarator ( "," VariableDeclarator )* ";" )*
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseFieldDeclaration(): VisitableNode
+    protected function parseFieldDeclaration(): Node
     {
         $props = $this->parseProperties();
 
@@ -347,10 +349,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* Identifier ( <EQ> JSONValue )?
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseVariableDeclarator(): VisitableNode
+    protected function parseVariableDeclarator(): Node
     {
         $props = $this->parseProperties();
         $node = new VariableDeclaratorNode($this->parseAnyIdentifier(), $props);
@@ -365,10 +367,10 @@ class ParserAvdl extends ParserJson
     /**
      * "void" | Type
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseResultType(): VisitableNode
+    protected function parseResultType(): Node
     {
         if ($this->expect(Token::IDENT, "void")) {
             $this->consume(Token::IDENT);
@@ -380,10 +382,10 @@ class ParserAvdl extends ParserJson
     /**
      * ( Property )* ( ReferenceType | PrimitiveType | UnionType | ArrayType | MapType | DecimalType ) "?"?
      *
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseType(): VisitableNode
+    protected function parseType(): Node
     {
         $properties = $this->parseProperties();
 
@@ -408,10 +410,10 @@ class ParserAvdl extends ParserJson
      * "boolean" | "bytes" | "int" | "string" | "float" | ...
      *
      * @param Properties $properties
-     * @return VisitableNode|null
+     * @return Node|null
      * @throws AvronException
      */
-    protected function parsePrimitiveType(Properties $properties): VisitableNode|null
+    protected function parsePrimitiveType(Properties $properties): Node|null
     {
         if ($this->expect(Token::IDENT, ...LogicalType::names())) {
             return new LogicalTypeNode(LogicalType::from($this->parseIdentifier()), $properties);
@@ -426,10 +428,10 @@ class ParserAvdl extends ParserJson
      * "decimal" "(" <INTEGER>, <INTEGER> ")"
      *
      * @param Properties $properties
-     * @return VisitableNode|null
+     * @return Node|null
      * @throws AvronException
      */
-    protected function parseDecimalType(Properties $properties): VisitableNode|null
+    protected function parseDecimalType(Properties $properties): Node|null
     {
         if (!$this->expect(Token::IDENT, "decimal")) {
             return null;
@@ -456,10 +458,10 @@ class ParserAvdl extends ParserJson
      * "array" "<" Type ">"
      *
      * @param Properties $properties
-     * @return VisitableNode|null
+     * @return Node|null
      * @throws AvronException
      */
-    protected function parseArrayType(Properties $properties): VisitableNode|null
+    protected function parseArrayType(Properties $properties): Node|null
     {
         if (!$this->expect(Token::IDENT, "array")) {
             return null;
@@ -475,10 +477,10 @@ class ParserAvdl extends ParserJson
      * "map" "<" Type ">"
      *
      * @param Properties $properties
-     * @return VisitableNode|null
+     * @return Node|null
      * @throws AvronException
      */
-    protected function parseMapType(Properties $properties): VisitableNode|null
+    protected function parseMapType(Properties $properties): Node|null
     {
         if (!$this->expect(Token::IDENT, "map")) {
             return null;
@@ -494,10 +496,10 @@ class ParserAvdl extends ParserJson
      * "union" "{" Type ( "," Type )* "}"
      *
      * @param Properties $properties
-     * @return VisitableNode|null
+     * @return Node|null
      * @throws AvronException
      */
-    protected function parseUnionType(Properties $properties): VisitableNode|null
+    protected function parseUnionType(Properties $properties): Node|null
     {
         if (!$this->expect(Token::IDENT, "union")) {
             return null;
@@ -518,10 +520,10 @@ class ParserAvdl extends ParserJson
      * ( Identifier ( "." Identifier )* )
      *
      * @param Properties $properties
-     * @return VisitableNode
+     * @return Node
      * @throws AvronException
      */
-    protected function parseReferenceType(Properties $properties): VisitableNode
+    protected function parseReferenceType(Properties $properties): Node
     {
         $ident = $this->parseAnyIdentifierWithHint(self::hintReferenceIdentifier);
         while ($this->expect(Token::DOT)) {

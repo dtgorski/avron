@@ -59,7 +59,7 @@ use Avron\Logger;
  * @uses   \Avron\AvronException
  * @uses   \Avron\BufferedWriter
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  * @uses   \Avron\Diag\DumpAstVisitor
  * @uses   \Avron\Factory
  */

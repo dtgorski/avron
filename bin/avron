@@ -5,10 +5,6 @@
 
 use Avron\Cli\Bootstrap;
 use Avron\Cli\Manifest;
-use Avron\Config;
-use Avron\Diag\DumpAstVisitor;
-use Avron\Logger;
-use Avron\StandardWriter;
 
 setlocale(LC_ALL, "C");
 

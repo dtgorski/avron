@@ -24,7 +24,7 @@ class Config
 
     public static function fromArray(array $config): Config
     {
-        return new Config(array_merge([
+        return new self(array_merge([
             self::COMPILER_TARGET => "avdl",
             self::EXCLUDE_PATTERNS => [],
             self::OUTPUT_DIRECTORY => "",

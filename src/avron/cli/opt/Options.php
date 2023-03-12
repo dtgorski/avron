@@ -18,7 +18,7 @@ class Options extends ArrayList
     {
         // TODO: check uniqueness of short & long options
         // TODO: merge multiarg options to array value
-        return new Options($options);
+        return new self($options);
     }
 
     public function getByName(string $name): Option|null

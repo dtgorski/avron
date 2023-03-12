@@ -13,45 +13,44 @@ use Avron\Logger;
  */
 class TaskCompileGo extends Command
 {
-    private const NAME = "go";
-    private const ARGS = "[OPTION...] FILE...";
-    private const DESC = "Compile Avro IDL to Go source code.";
-
-    public function supported(): Options
+    public static function create(Config $config, Logger $logger): Command
     {
-        return Options::fromArray([
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "h",
-                Option::OPT_LONG /* */ => "help",
-                Option::OPT_DESC /* */ =>
-                    "Display this usage help.",
-            ]),
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "d",
-                Option::OPT_LONG /* */ => "dry-run",
-                Option::OPT_DESC /* */ =>
-                    "Does not perform writes. Reasonable for diagnosis with --verbose."
-            ]),
-            Option::fromMap([
-                Option::OPT_SHORT /**/ => "v",
-                Option::OPT_LONG /* */ => "verbose",
-                Option::OPT_DESC /* */ =>
-                    "Increases output verbosity level for diagnostic purposes."
-            ]),
-        ]);
+        return new self($config, $logger);
     }
-
-    public static function create(Config $config, Logger $logger): TaskCompileGo
-    {
-        return new TaskCompileGo($config, $logger);
-    }
-
 
     private function __construct(
         private readonly Config $config,
         private readonly Logger $logger
     ) {
-        parent::__construct();
+        parent::__construct(self::NAME, self::PARA, self::DESC);
+    }
+
+    private const NAME = "go";
+    private const PARA = "[OPTION...] FILE...";
+    private const DESC = "Compile Avro IDL to Go source code.";
+
+    public function options(): Options
+    {
+        return Options::fromArray([
+            Option::fromMap([
+                Option::OPT_SHORT /**/ => "x",
+                Option::OPT_LONG /* */ => "xelp",
+                Option::OPT_DESC /* */ =>
+                    "Display this usage help.",
+            ]),
+            Option::fromMap([
+                Option::OPT_SHORT /**/ => "f",
+                Option::OPT_LONG /* */ => "fry-run",
+                Option::OPT_DESC /* */ =>
+                    "Does not perform writes. Reasonable for diagnosis with --verbose."
+            ]),
+//            Option::fromMap([
+//                Option::OPT_SHORT /**/ => "v",
+//                Option::OPT_LONG /* */ => "verbose",
+//                Option::OPT_DESC /* */ =>
+//                    "Increases output verbosity level for diagnostic purposes."
+//            ]),
+        ]);
     }
 
     public function configure(Options $options): void

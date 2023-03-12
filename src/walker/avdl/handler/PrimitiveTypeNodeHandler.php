@@ -24,6 +24,7 @@ class PrimitiveTypeNodeHandler extends HandlerAbstract
         parent::handleVisit($visitable);
 
         $this->writePropertiesSingleLine($visitable->getProperties());
+
         $this->write($visitable->getType()->name);
 
         return false;

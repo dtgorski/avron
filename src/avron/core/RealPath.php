@@ -16,7 +16,7 @@ class RealPath implements SourceFile
     /** @throws AvronException */
     public static function fromString(string $sourceFile): SourceFile
     {
-        return new RealPath($sourceFile);
+        return new self($sourceFile);
     }
 
     /** @throws AvronException */

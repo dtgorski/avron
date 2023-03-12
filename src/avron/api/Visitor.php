@@ -10,7 +10,7 @@ namespace Avron\Api;
  */
 interface Visitor
 {
-    public function visit(Visitable $node): bool;
+    public function visit(Visitable $visitable): bool;
 
-    public function leave(Visitable $node): void;
+    public function leave(Visitable $visitable): void;
 }

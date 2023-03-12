@@ -26,6 +26,7 @@ class EnumDeclarationNodeHandler extends HandlerAbstract
         $this->write($this->indent(), "enum ", $visitable->getName(), " {\n");
 
         $this->stepIn();
+
         return true;
     }
 

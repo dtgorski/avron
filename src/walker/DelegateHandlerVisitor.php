@@ -19,21 +19,21 @@ class DelegateHandlerVisitor implements Visitor
     {
     }
 
-    public function visit(Visitable $node): bool
+    public function visit(Visitable $visitable): bool
     {
         foreach ($this->handlers as $handler) {
-            if ($handler->canHandle($node)) {
-                return $handler->handleVisit($node);
+            if ($handler->canHandle($visitable)) {
+                return $handler->handleVisit($visitable);
             }
         }
         return true;
     }
 
-    public function leave(Visitable $node): void
+    public function leave(Visitable $visitable): void
     {
         foreach ($this->handlers as $handler) {
-            if ($handler->canHandle($node)) {
-                $handler->handleLeave($node);
+            if ($handler->canHandle($visitable)) {
+                $handler->handleLeave($visitable);
                 break;
             }
         }

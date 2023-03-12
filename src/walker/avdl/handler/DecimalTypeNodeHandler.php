@@ -24,6 +24,7 @@ class DecimalTypeNodeHandler extends HandlerAbstract
 
         /** @var DecimalTypeNode $visitable calms static analysis down. */
         $this->writePropertiesSingleLine($visitable->getProperties());
+
         $this->write("decimal(", $visitable->getPrecision(), ", ", $visitable->getScale(), ")");
 
         return false;

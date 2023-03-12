@@ -15,7 +15,7 @@ use Avron\Ast\ErrorDeclarationNode;
  * @uses   \Avron\Ast\Properties
  * @uses   \Avron\BufferedWriter
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  * @uses   \Avron\Idl\HandlerAbstract
  */
 class ErrorDeclarationNodeHandlerTest extends HandlerTestCase

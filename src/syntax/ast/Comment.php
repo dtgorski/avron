@@ -10,10 +10,6 @@ namespace Avron\Ast;
  */
 class Comment
 {
-    public function __construct(private readonly string $text)
-    {
-    }
-
     public static function fromToken(Token $token): Comment
     {
         $text = $token->getLoad();
@@ -24,7 +20,11 @@ class Comment
         $text = preg_replace("/^\s+/m", "", $text);
         $text = preg_replace("/^\*\s/m", "", $text);
 
-        return new Comment($text);
+        return new self($text);
+    }
+
+    public function __construct(private readonly string $text)
+    {
     }
 
     public function getText(): string

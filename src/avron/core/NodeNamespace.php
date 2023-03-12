@@ -18,7 +18,7 @@ class NodeNamespace implements \Stringable
     /** @throws AvronException */
     public static function fromString(string $namespace): NodeNamespace
     {
-        return new NodeNamespace($namespace);
+        return new self($namespace);
     }
 
     /** @throws AvronException */

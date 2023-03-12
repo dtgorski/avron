@@ -22,12 +22,12 @@ class Argument
      */
     public static function fromOption(string $value, ?string $preset = null): Argument
     {
-        return new Argument(self::OPTION, $value, $preset);
+        return new self(self::OPTION, $value, $preset);
     }
 
     public static function fromOperand(string $value): Argument
     {
-        return new Argument(self::OPERAND, $value);
+        return new self(self::OPERAND, $value);
     }
 
     private function __construct(

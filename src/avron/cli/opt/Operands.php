@@ -16,6 +16,6 @@ class Operands extends ArrayList
     /** @param string[] $operands */
     public static function fromArray(array $operands): Operands
     {
-        return new Operands($operands);
+        return new self($operands);
     }
 }

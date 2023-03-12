@@ -13,7 +13,7 @@ use Avron\Ast\VariableDeclaratorNode;
  * @uses   \Avron\Ast\VariableDeclaratorNode
  * @uses   \Avron\BufferedWriter
  * @uses   \Avron\Core\ArrayList
- * @uses   \Avron\Core\VisitableNode
+ * @uses   \Avron\Core\TreeNode
  * @uses   \Avron\Idl\HandlerAbstract
  */
 class VariableDeclaratorNodeHandlerTest extends HandlerTestCase

@@ -24,6 +24,7 @@ class ReferenceTypeNodeHandler extends HandlerAbstract
         parent::handleVisit($visitable);
 
         $this->writePropertiesSingleLine($visitable->getProperties());
+
         $this->write($visitable->getName());
 
         return true;

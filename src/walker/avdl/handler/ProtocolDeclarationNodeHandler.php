@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ProtocolDeclarationNode;
 
 /**
@@ -13,28 +13,28 @@ use Avron\Ast\ProtocolDeclarationNode;
  */
 class ProtocolDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ProtocolDeclarationNode;
+        return $node instanceof ProtocolDeclarationNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ProtocolDeclarationNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ProtocolDeclarationNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write("protocol ", $visitable->getName(), " {\n");
+        $this->write("protocol ", $node->getName(), " {\n");
 
         $this->stepIn();
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
         $this->stepOut();
 
-        /** @var ProtocolDeclarationNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var ProtocolDeclarationNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write($this->indent(), "}\n");
     }

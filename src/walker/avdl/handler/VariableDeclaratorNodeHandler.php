@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\VariableDeclaratorNode;
 
 /**
@@ -13,33 +13,33 @@ use Avron\Ast\VariableDeclaratorNode;
  */
 class VariableDeclaratorNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof VariableDeclaratorNode;
+        return $node instanceof VariableDeclaratorNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var VariableDeclaratorNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var VariableDeclaratorNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
         $this->write(" ");
-        $this->writePropertiesSingleLine($visitable->getProperties());
-        $this->write($visitable->getName());
+        $this->writePropertiesSingleLine($node->getProperties());
+        $this->write($node->getName());
 
-        if ($visitable->nodeCount()) {
+        if ($node->nodeCount()) {
             $this->write(" = ");
         }
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var VariableDeclaratorNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var VariableDeclaratorNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
-        if ($visitable->nextNode()) {
+        if ($node->nextNode()) {
             $this->write(",");
         }
     }

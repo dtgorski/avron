@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\DeclarationNode;
 use Avron\Ast\OnewayStatementNode;
 use Avron\Ast\TypeNode;
@@ -15,32 +15,32 @@ use Avron\Ast\TypeNode;
  */
 class TypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof TypeNode;
+        return $node instanceof TypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var TypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var TypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->parentNode() instanceof DeclarationNode) {
-            if (!$visitable->nodeAt(0) instanceof OnewayStatementNode) {
+        if ($node->parentNode() instanceof DeclarationNode) {
+            if (!$node->nodeAt(0) instanceof OnewayStatementNode) {
                 $this->write($this->indent());
             }
         } else {
-            $this->writePropertiesSingleLine($visitable->getProperties());
+            $this->writePropertiesSingleLine($node->getProperties());
         }
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var TypeNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var TypeNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
-        if ($visitable->nextNode() instanceof TypeNode) {
+        if ($node->nextNode() instanceof TypeNode) {
             $this->write(", ");
         }
     }

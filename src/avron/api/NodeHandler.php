@@ -10,9 +10,9 @@ namespace Avron\Api;
  */
 interface NodeHandler
 {
-    public function canHandle(Visitable $visitable): bool;
+    public function canHandle(Node $node): bool;
 
-    public function handleVisit(Visitable $visitable): bool;
+    public function handleVisit(Node $node): bool;
 
-    public function handleLeave(Visitable $visitable): void;
+    public function handleLeave(Node $node): void;
 }

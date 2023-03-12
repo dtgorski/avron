@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\MessageDeclarationNode;
 
 /**
@@ -13,25 +13,25 @@ use Avron\Ast\MessageDeclarationNode;
  */
 class MessageDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof MessageDeclarationNode;
+        return $node instanceof MessageDeclarationNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var MessageDeclarationNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var MessageDeclarationNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
         $this->write($this->indent());
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var MessageDeclarationNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var MessageDeclarationNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write(";\n");
     }

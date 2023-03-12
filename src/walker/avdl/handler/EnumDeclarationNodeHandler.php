@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\EnumDeclarationNode;
 
 /**
@@ -13,32 +13,32 @@ use Avron\Ast\EnumDeclarationNode;
  */
 class EnumDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof EnumDeclarationNode;
+        return $node instanceof EnumDeclarationNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var EnumDeclarationNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var EnumDeclarationNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write($this->indent(), "enum ", $visitable->getName(), " {\n");
+        $this->write($this->indent(), "enum ", $node->getName(), " {\n");
 
         $this->stepIn();
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
         $this->stepOut();
 
-        /** @var EnumDeclarationNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var EnumDeclarationNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
-        if ($visitable->getDefault() != "") {
-            $this->write($this->indent(), "} = ", $visitable->getDefault(), ";\n");
+        if ($node->getDefault() != "") {
+            $this->write($this->indent(), "} = ", $node->getDefault(), ";\n");
         } else {
             $this->write($this->indent(), "}\n");
         }

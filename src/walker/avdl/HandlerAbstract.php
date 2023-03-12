@@ -4,8 +4,8 @@
 
 namespace Avron\Idl;
 
+use Avron\Api\Node;
 use Avron\Api\NodeHandler;
-use Avron\Api\Visitable;
 use Avron\Ast\Comment;
 use Avron\Ast\Comments;
 use Avron\Ast\DeclarationNode;
@@ -30,31 +30,31 @@ abstract class HandlerAbstract implements NodeHandler
      * Does not write out:
      *  - Inline schema properties
      *
-     * @param Visitable $visitable
+     * @param Node $node
      * @return bool
      */
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        if (!$visitable instanceof DeclarationNode) {
+        if (!$node instanceof DeclarationNode) {
             return true;
         }
 
-        $isProtoNode = $visitable instanceof ProtocolDeclarationNode;
-        $isFieldNode = $visitable instanceof FieldDeclarationNode;
-        $hasComments = $visitable->getComments()->size() > 0;
-        $hasProperties = $visitable->getProperties()->size() > 0;
+        $isProtoNode = $node instanceof ProtocolDeclarationNode;
+        $isFieldNode = $node instanceof FieldDeclarationNode;
+        $hasComments = $node->getComments()->size() > 0;
+        $hasProperties = $node->getProperties()->size() > 0;
 
         if (!$isFieldNode || $hasComments || $hasProperties) {
             $this->write($isProtoNode ? "" : "\n");
         }
 
-        $this->writeComments($visitable->getComments());
-        $this->writePropertiesMultiLine($visitable->getProperties());
+        $this->writeComments($node->getComments());
+        $this->writePropertiesMultiLine($node->getProperties());
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
     }
 

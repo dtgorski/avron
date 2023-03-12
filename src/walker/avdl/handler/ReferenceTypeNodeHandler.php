@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ReferenceTypeNode;
 
 /**
@@ -13,19 +13,19 @@ use Avron\Ast\ReferenceTypeNode;
  */
 class ReferenceTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ReferenceTypeNode;
+        return $node instanceof ReferenceTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ReferenceTypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ReferenceTypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->writePropertiesSingleLine($visitable->getProperties());
+        $this->writePropertiesSingleLine($node->getProperties());
 
-        $this->write($visitable->getName());
+        $this->write($node->getName());
 
         return true;
     }

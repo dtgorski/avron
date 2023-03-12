@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\JsonFieldNode;
 
 /**
@@ -13,20 +13,20 @@ use Avron\Ast\JsonFieldNode;
  */
 class JsonFieldNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof JsonFieldNode;
+        return $node instanceof JsonFieldNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var JsonFieldNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var JsonFieldNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->prevNode()) {
+        if ($node->prevNode()) {
             $this->write(", ");
         }
-        $this->write('"', $visitable->getName(), '":');
+        $this->write('"', $node->getName(), '":');
 
         return true;
     }

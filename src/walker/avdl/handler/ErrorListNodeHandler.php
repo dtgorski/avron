@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ErrorListNode;
 
 /**
@@ -13,17 +13,17 @@ use Avron\Ast\ErrorListNode;
  */
 class ErrorListNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ErrorListNode;
+        return $node instanceof ErrorListNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ErrorListNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ErrorListNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write(" ", $visitable->getType()->name, " ");
+        $this->write(" ", $node->getType()->name, " ");
 
         return true;
     }

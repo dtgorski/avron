@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\JsonValueNode;
 
 /**
@@ -13,20 +13,20 @@ use Avron\Ast\JsonValueNode;
  */
 class JsonValueNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof JsonValueNode;
+        return $node instanceof JsonValueNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var JsonValueNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var JsonValueNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->prevNode()) {
+        if ($node->prevNode()) {
             $this->write(", ");
         }
-        $val = $visitable->getValue();
+        $val = $node->getValue();
 
         switch (true) {
             case is_float($val):

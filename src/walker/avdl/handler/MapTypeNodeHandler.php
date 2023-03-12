@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\MapTypeNode;
 
 /**
@@ -13,25 +13,25 @@ use Avron\Ast\MapTypeNode;
  */
 class MapTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof MapTypeNode;
+        return $node instanceof MapTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var MapTypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var MapTypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
         $this->write("map<");
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var MapTypeNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var MapTypeNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write(">");
     }

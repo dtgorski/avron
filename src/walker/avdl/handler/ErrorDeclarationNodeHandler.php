@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ErrorDeclarationNode;
 
 /**
@@ -13,29 +13,29 @@ use Avron\Ast\ErrorDeclarationNode;
  */
 class ErrorDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ErrorDeclarationNode;
+        return $node instanceof ErrorDeclarationNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ErrorDeclarationNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ErrorDeclarationNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write($this->indent(), "error ", $visitable->getName(), " {\n");
+        $this->write($this->indent(), "error ", $node->getName(), " {\n");
 
         $this->stepIn();
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
         $this->stepOut();
 
-        /** @var ErrorDeclarationNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var ErrorDeclarationNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write($this->indent(), "}\n");
     }

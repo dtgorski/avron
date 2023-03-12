@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\FixedDeclarationNode;
 
 /**
@@ -13,17 +13,17 @@ use Avron\Ast\FixedDeclarationNode;
  */
 class FixedDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof FixedDeclarationNode;
+        return $node instanceof FixedDeclarationNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var FixedDeclarationNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var FixedDeclarationNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write($this->indent(), "fixed ", $visitable->getName(), "(", $visitable->getValue(), ");\n");
+        $this->write($this->indent(), "fixed ", $node->getName(), "(", $node->getValue(), ");\n");
 
         return false;
     }

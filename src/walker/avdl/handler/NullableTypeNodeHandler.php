@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\NullableTypeNode;
 use Avron\Ast\TypeNode;
 
@@ -14,15 +14,15 @@ use Avron\Ast\TypeNode;
  */
 class NullableTypeNodeHandler extends TypeNodeHandler
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof NullableTypeNode;
+        return $node instanceof NullableTypeNode;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var TypeNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var TypeNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write("?");
     }

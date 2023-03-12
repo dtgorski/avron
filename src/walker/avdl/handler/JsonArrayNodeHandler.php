@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\JsonArrayNode;
 
 /**
@@ -13,17 +13,17 @@ use Avron\Ast\JsonArrayNode;
  */
 class JsonArrayNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof JsonArrayNode;
+        return $node instanceof JsonArrayNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var JsonArrayNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var JsonArrayNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->prevNode()) {
+        if ($node->prevNode()) {
             $this->write(", ");
         }
         $this->write("[");
@@ -31,10 +31,10 @@ class JsonArrayNodeHandler extends HandlerAbstract
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var JsonArrayNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var JsonArrayNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write("]");
     }

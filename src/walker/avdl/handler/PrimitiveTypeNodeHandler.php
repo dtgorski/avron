@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\PrimitiveTypeNode;
 
 /**
@@ -13,19 +13,19 @@ use Avron\Ast\PrimitiveTypeNode;
  */
 class PrimitiveTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof PrimitiveTypeNode;
+        return $node instanceof PrimitiveTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var PrimitiveTypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var PrimitiveTypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->writePropertiesSingleLine($visitable->getProperties());
+        $this->writePropertiesSingleLine($node->getProperties());
 
-        $this->write($visitable->getType()->name);
+        $this->write($node->getType()->name);
 
         return false;
     }

@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ArrayTypeNode;
 
 /**
@@ -13,22 +13,22 @@ use Avron\Ast\ArrayTypeNode;
  */
 class ArrayTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ArrayTypeNode;
+        return $node instanceof ArrayTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        parent::handleVisit($visitable);
+        parent::handleVisit($node);
 
         $this->write("array<");
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        parent::handleLeave($visitable);
+        parent::handleLeave($node);
         $this->write(">");
     }
 }

@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ErrorListNode;
 use Avron\Ast\FieldDeclarationNode;
 
@@ -14,15 +14,15 @@ use Avron\Ast\FieldDeclarationNode;
  */
 class FieldDeclarationNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof FieldDeclarationNode;
+        return $node instanceof FieldDeclarationNode;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var ErrorListNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var ErrorListNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
         $this->write(";\n");
     }

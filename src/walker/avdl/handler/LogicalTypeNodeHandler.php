@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\LogicalTypeNode;
 
 /**
@@ -13,18 +13,18 @@ use Avron\Ast\LogicalTypeNode;
  */
 class LogicalTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof LogicalTypeNode;
+        return $node instanceof LogicalTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var LogicalTypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var LogicalTypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->writePropertiesSingleLine($visitable->getProperties());
-        $this->write($visitable->getType()->name);
+        $this->writePropertiesSingleLine($node->getProperties());
+        $this->write($node->getType()->name);
 
         return false;
     }

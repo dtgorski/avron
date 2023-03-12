@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\FormalParameterNode;
 
 /**
@@ -13,17 +13,17 @@ use Avron\Ast\FormalParameterNode;
  */
 class FormalParameterNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof FormalParameterNode;
+        return $node instanceof FormalParameterNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var FormalParameterNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var FormalParameterNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->prevNode()) {
+        if ($node->prevNode()) {
             $this->write(", ");
         }
 

@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ImportStatementNode;
 
 /**
@@ -13,22 +13,22 @@ use Avron\Ast\ImportStatementNode;
  */
 class ImportStatementNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ImportStatementNode;
+        return $node instanceof ImportStatementNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ImportStatementNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ImportStatementNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if (!$visitable->prevNode() instanceof ImportStatementNode) {
+        if (!$node->prevNode() instanceof ImportStatementNode) {
             $this->write("\n");
         }
 
-        $name = $visitable->getType()->value;
-        $path = $visitable->getPath();
+        $name = $node->getType()->value;
+        $path = $node->getPath();
         $this->write($this->indent(), "import ", $name, " \"", $path, "\";\n");
 
         return false;

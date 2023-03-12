@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\ResultTypeNode;
 
 /**
@@ -13,17 +13,17 @@ use Avron\Ast\ResultTypeNode;
  */
 class ResultTypeNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof ResultTypeNode;
+        return $node instanceof ResultTypeNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var ResultTypeNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var ResultTypeNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        if ($visitable->isVoid()) {
+        if ($node->isVoid()) {
             $this->write("void");
             return false;
         }

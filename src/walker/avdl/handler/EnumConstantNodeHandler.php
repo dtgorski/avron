@@ -4,7 +4,7 @@
 
 namespace Avron\Idl;
 
-use Avron\Api\Visitable;
+use Avron\Api\Node;
 use Avron\Ast\EnumConstantNode;
 
 /**
@@ -13,27 +13,27 @@ use Avron\Ast\EnumConstantNode;
  */
 class EnumConstantNodeHandler extends HandlerAbstract
 {
-    public function canHandle(Visitable $visitable): bool
+    public function canHandle(Node $node): bool
     {
-        return $visitable instanceof EnumConstantNode;
+        return $node instanceof EnumConstantNode;
     }
 
-    public function handleVisit(Visitable $visitable): bool
+    public function handleVisit(Node $node): bool
     {
-        /** @var EnumConstantNode $visitable calms static analysis down. */
-        parent::handleVisit($visitable);
+        /** @var EnumConstantNode $node calms static analysis down. */
+        parent::handleVisit($node);
 
-        $this->write($this->indent(), $visitable->getName());
+        $this->write($this->indent(), $node->getName());
 
         return true;
     }
 
-    public function handleLeave(Visitable $visitable): void
+    public function handleLeave(Node $node): void
     {
-        /** @var EnumConstantNode $visitable calms static analysis down. */
-        parent::handleLeave($visitable);
+        /** @var EnumConstantNode $node calms static analysis down. */
+        parent::handleLeave($node);
 
-        if ($visitable->nextNode()) {
+        if ($node->nextNode()) {
             $this->write(",");
         }
 

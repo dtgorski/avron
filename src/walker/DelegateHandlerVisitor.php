@@ -4,6 +4,7 @@
 
 namespace Avron\Walker;
 
+use Avron\Api\Node;
 use Avron\Api\NodeHandler;
 use Avron\Api\Visitable;
 use Avron\Api\Visitor;
@@ -21,6 +22,7 @@ class DelegateHandlerVisitor implements Visitor
 
     public function visit(Visitable $visitable): bool
     {
+        /** @var Node $visitable */
         foreach ($this->handlers as $handler) {
             if ($handler->canHandle($visitable)) {
                 return $handler->handleVisit($visitable);
@@ -31,6 +33,7 @@ class DelegateHandlerVisitor implements Visitor
 
     public function leave(Visitable $visitable): void
     {
+        /** @var Node $visitable */
         foreach ($this->handlers as $handler) {
             if ($handler->canHandle($visitable)) {
                 $handler->handleLeave($visitable);
